@@ -1,0 +1,119 @@
+.Header-Home {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: #002f34;
+  width: 100%;
+  height: 100px;
+  transition: 0.5s ease;
+  opacity: 1;
+}
+.Header-Home.active {
+  top: -100px;
+  transition: 0.5s ease;
+  opacity: 0.5;
+}
+.Header-items {
+  height: 100%;
+}
+.LogoLink {
+  text-decoration: none;
+  color: rgb(27, 57, 114);
+}
+.elementslink {
+  text-decoration: none;
+  color: white;
+}
+.elementslink li:active {
+  color: rgb(119, 119, 119);
+}
+.LogoHeader {
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+  top: 25px;
+  left: 150px;
+}
+.SpanText {
+  font-size: 25px;
+  margin-left: 10px;
+}
+.Header-windows ul {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 10em;
+}
+
+@media screen and (max-width: 982px) {
+  .LogoHeader {
+    left: 55px;
+    transition: 1s ease-out;
+  }
+  .Header-windows > ul {
+    right: 3em;
+    transition: 1s ease-out;
+  }
+}
+.Header-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 770px) {
+  .Header-windows > ul {
+    display: none;
+  }
+  .Header-mobile {
+    display: block;
+    position: absolute;
+    right: 40px;
+    font-size: 30px;
+    top: 20px;
+  }
+  .DropDownButton {
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 7px;
+    text-align: center;
+  }
+  .Hover {
+    background-color: #045f69;
+    color: rgb(170, 155, 155);
+  }
+  .DropDownButton:hover {
+    background-color: #045f69;
+  }
+  .Header-DropDown {
+    background-color: rgb(207, 207, 207);
+    color: black;
+    border-radius: 0 0 10px 10px;
+  }
+  .Header-DropDown > ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+  }
+  .Header-DropDown ul li {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+@media screen and (max-width: 350px) {
+  .LogoHeader {
+    left: 10px;
+    transition: 1s ease-out;
+  }
+  .Header-mobile {
+    right: 10px;
+    transition: ease-in 1s;
+  }
+}
+.Header-items ul li {
+  margin: 0 10px;
+  font-size: 27px;
+}
+.Header-Element {
+  margin: 10px;
+  font-size: 15px;
+}

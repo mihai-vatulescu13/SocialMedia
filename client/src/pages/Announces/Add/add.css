@@ -1,0 +1,27 @@
+.BodyContainer {
+  background-color: cornflowerblue;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.Mid_Container {
+  background-color: #ffff;
+  width: 95%;
+  min-height: 100vh;
+  margin-top: 100px;
+}
+/*Title*/
+.titleContainer {
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+.titleAdd {
+  font-size: 30px;
+  font-weight: 700;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+/*Forms*/

@@ -1,0 +1,108 @@
+/*Imports*/
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+/*Comune CSS style*/
+.Auth-Container {
+  background-color: rgb(87, 156, 202);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+}
+/* Middle Container */
+.Auth-Mid {
+  background-color: #ffff;
+  display: flex;
+  margin-top: 40px;
+  align-items: center;
+  flex-direction: column;
+  height: 400px;
+  width: 30%;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+/* Register or Login Forms */
+.Auth-Pages {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+/* Form */
+.authForms {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 5px;
+  padding-bottom: 30px;
+}
+/*Inputs */
+.Auth-inputs {
+  width: 80%;
+  margin: 20px;
+  padding: 6px;
+  font-weight: 700;
+  border-radius: 3px;
+  background-color: rgb(230, 230, 230);
+  border: none;
+}
+.Auth-inputs:focus {
+  outline: none;
+  border-bottom: 1px solid;
+  border-radius: 0 0 5px 5px;
+}
+/*Header */
+.HeaderAuth {
+  width: 50%;
+  padding: 16px 0;
+}
+.HeaderAuth:hover {
+  background-color: #3d56b2;
+  border-radius: 8px;
+}
+/* Button submit */
+.AuthButton {
+  box-sizing: border-box;
+  background-color: #0f1433;
+  width: 35%;
+  padding: 4px 0;
+  border-radius: 20px;
+  position: absolute;
+  color: #ffff;
+  font-weight: 800;
+  border: none;
+  bottom: 10px;
+  box-shadow: inset 0 0 0 0 #2e43c7;
+  transition: ease-in-out 0.8s;
+}
+.AuthButton:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 100px #2034b3;
+  color: rgb(0, 0, 0);
+}
+/*Media querry*/
+@media screen and (max-width: 982px) {
+  .Auth-Mid {
+    width: 50%;
+    transition: ease-in 0.5s;
+  }
+}
+@media screen and (max-width: 586px) {
+  .Auth-Mid {
+    width: 55%;
+    transition: ease-in 0.5s;
+  }
+}
+@media screen and (max-width: 360px) {
+  .Auth-Mid {
+    width: 70%;
+    transition: ease-in 0.5s;
+  }
+  .authForms {
+    width: 70%;
+  }
+}

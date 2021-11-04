@@ -1,0 +1,32 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server":"nodemon server.js",
+    "client":"npm start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihai-vatulescu13/SocialMedia.git"
+  },
+  "author": "Mihai Vatulescu & Truica Daniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mihai-vatulescu13/SocialMedia/issues"
+  },
+  "homepage": "https://github.com/mihai-vatulescu13/SocialMedia#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "concurrently": "^6.3.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.14",
+    "path": "^0.12.7"
+  }
+}
