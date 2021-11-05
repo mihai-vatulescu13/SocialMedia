@@ -1,7 +1,26 @@
-const router= require('express').Router()
+const router = require('express').Router()
+const User = require('../models/users');
 
-router.get('/register', (req,res)=>{
-    res.send('RegisterPage')
+router.post('/register', async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    //write data to the database:
+    const newUser = new User({
+      name: name,
+      email: email,
+      password: password
+    })
+
+    //save the user to the database:
+    const user = await newUser.save();
+    res.status(200).json(user);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('Bad server request');
+  }
+
 })
 
 module.exports = router
