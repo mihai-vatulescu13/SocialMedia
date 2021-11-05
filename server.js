@@ -13,6 +13,7 @@ app.use(express.json());
 app.use('/api/auth', authRouters);
 app.use('/api/user', usersRoute);
 
+
 //connect the server to the database:
 mongoose.connect(process.env.DATABASE_MONGO_URL);
 
