@@ -8,7 +8,7 @@ router.get('/users', async (req, res) => {
     const users = await UsersModel.find();
     res.status(200).json(users);
   } catch (err) {
-    res.status(404).json('nada');
+    res.status(404).json('Not found');
   }
 })
 
@@ -29,6 +29,7 @@ router.put('/editUser/:user', async (req, res) => {
 
 router.delete('/deleteUser/:user', async (req, res) => {
   try {
+    //findByIdAndDelete method find the selected object by id from db and delete it:
     await UsersModel.findByIdAndDelete(req.params.user);
     res.status(200).json('deleted');
   } catch (err) {

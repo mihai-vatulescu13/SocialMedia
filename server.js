@@ -12,7 +12,9 @@ const port = process.env.PORT || 5000
 app.use(express.json());
 app.use('/api/auth', authRouters);
 app.use('/api/user', usersRoute);
-
+app.use(() => {
+  console.log('this is a middleware function')
+})
 
 //connect the server to the database:
 mongoose.connect(process.env.DATABASE_MONGO_URL);
