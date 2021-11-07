@@ -1,0 +1,12 @@
+.main-menu{
+ padding: 10px;   
+}
+
+.link-item{
+ margin: 0.5em;   
+}
+
+.form-fields{
+ display: flex;
+ flex-direction: column;
+}
