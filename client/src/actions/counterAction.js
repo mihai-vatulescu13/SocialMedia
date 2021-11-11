@@ -1,4 +1,5 @@
-import { INCREMENT, DECREMENT, SEND_NUMBER } from "./types";
+import { INCREMENT, DECREMENT, SEND_NUMBER, REGISTER } from "./types";
+import axios from 'axios';
 
 export const incrementAction = () => {
   return {
@@ -17,4 +18,19 @@ export const sendNumber = (number) => {
     type: SEND_NUMBER,
     payload: number
   }
+}
+
+//an action may execute something like a fetch request and export action type and payload to the reducer:
+export const setRegister = (userPorps) => async (dispatch) => {
+  const { name, email, city, password } = userPorps;
+
+  //redux thunk allow us to use an composed action:
+  const response = await axios.post('/auth/register', {
+    name, email, city, password
+  })
+
+  dispatch({
+    type: REGISTER,
+    payload: response.data
+  })
 }

@@ -1,20 +1,54 @@
 import { connect } from 'react-redux';
 import { incrementAction, decrementAction, sendNumber } from './actions/counterAction';
 import { useRef } from 'react';
+import "./app.css"
 
 function App({ counter, incrementCounter, decrementCounter, incrementBy }) {
+  //extract data from input fields by using useRef hook:
   const selectNum = useRef();
+  const name = useRef();
+  const email = useRef();
+  const city = useRef();
+  const password = useRef();
 
   return (
     <div className="App">
       <h1>Welcome to React Redux!</h1>
       <h3>counter: {counter}</h3>
-      <p>cu ce val vrei sa se incrementeze?</p>
+      <p>Increment by:</p>
       <input type="number" ref={selectNum} />
-      <button onClick={() => incrementBy(parseInt(selectNum.current.value))}>Send nudes</button>
+      <button onClick={() => incrementBy(parseInt(selectNum.current.value))}>Send</button>
 
       <button onClick={() => incrementCounter()}>+</button>
       <button onClick={() => decrementCounter()}>-</button>
+
+      <h3>insert your credentials into the form below:</h3>
+
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="reg-form">
+        <input
+          type="text"
+          ref={name}
+          placeholder="name"
+        />
+        <input
+          type="text"
+          ref={email}
+          placeholder="email"
+        />
+        <input
+          type="text"
+          ref={city}
+          placeholder="city"
+        />
+        <input
+          type="text"
+          ref={password}
+          placeholder="password"
+        />
+        <button type="submit" className="register-btn">Register</button>
+      </form>
     </div>
   );
 }

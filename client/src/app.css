@@ -1,0 +1,14 @@
+.reg-form{
+  display: flex;
+  flex-direction: column;  
+}
+
+.reg-form  > input{
+ width: 350px;
+ margin: 0.4em;
+}
+
+.register-btn{
+  width: 120px;
+  height: auto;
+}
