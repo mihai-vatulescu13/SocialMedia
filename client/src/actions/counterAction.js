@@ -24,8 +24,10 @@ export const sendNumber = (number) => {
 export const setRegister = (userPorps) => async (dispatch) => {
   const { name, email, city, password } = userPorps;
 
+  console.log('user data in action:', userPorps);
+
   //redux thunk allow us to use an composed action:
-  const response = await axios.post('/auth/register', {
+  const response = await axios.post('http://localhost:5000/api/auth/register', {
     name, email, city, password
   })
 

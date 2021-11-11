@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { incrementAction, decrementAction, sendNumber } from './actions/counterAction';
+import { incrementAction, decrementAction, sendNumber, setRegister } from './actions/counterAction';
 import { useRef } from 'react';
 import "./app.css"
 
-function App({ counter, incrementCounter, decrementCounter, incrementBy }) {
+function App({ counter, incrementCounter, decrementCounter, incrementBy, registerUser }) {
   //extract data from input fields by using useRef hook:
   const selectNum = useRef();
   const name = useRef();
@@ -25,7 +25,16 @@ function App({ counter, incrementCounter, decrementCounter, incrementBy }) {
       <h3>insert your credentials into the form below:</h3>
 
       <form
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          e.preventDefault()
+          // console.log('form was submitted', name.current.value, email.current.value)
+          registerUser({
+            name: name.current.value,
+            email: email.current.value,
+            city: city.current.value,
+            password: password.current.value
+          })
+        }}
         className="reg-form">
         <input
           type="text"
@@ -71,6 +80,9 @@ const mapDispatchToProps = dispatch => {
     },
     incrementBy: (number) => {
       return dispatch(sendNumber(number))
+    },
+    registerUser: (userData) => {
+      return dispatch(setRegister(userData))
     }
   };
 }

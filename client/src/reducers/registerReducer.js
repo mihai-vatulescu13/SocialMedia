@@ -12,6 +12,7 @@ export const registerReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER:
       const { name, email, city, password } = action.payload;
+      console.log('user data in the reducer:', action.payload)
       return { name, email, city, password }
     default:
       return state;
