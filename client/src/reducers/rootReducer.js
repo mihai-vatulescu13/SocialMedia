@@ -1,4 +1,4 @@
-import { counter } from "../actions/types"
+import { INCREMENT, DECREMENT, SEND_NUMBER } from "../actions/types"
 
 //this is a substate from the main Redux state(main app object)
 const initialState = {
@@ -6,15 +6,16 @@ const initialState = {
 }
 
 //this reducer represents a function that by using an action modify this substate:
-function rootReducer(state = initialState, action) {
-  console.log(state, action)
+const RootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case counter:
-      return state
-    case "DECREMENT":
+    case INCREMENT:
+      return { counter: state.counter + 1 }
+    case DECREMENT:
       return { counter: state.counter - 1 }
+    case SEND_NUMBER:
+      return { counter: state.counter + action.payload }
     default: return state
   }
 }
 
-export default rootReducer;
+export { RootReducer }

@@ -1,19 +1,20 @@
-// import { useSelector, useDispatch } from 'react-redux';
-//useDispatch -> used to send action to the reducer(dispatch actions)
-//useSelector -> used to grab the ministate from the reducer file:
 import { connect } from 'react-redux';
-import { incrementAction } from './actions/counterAction'
+import { incrementAction, decrementAction, sendNumber } from './actions/counterAction';
+import { useRef } from 'react';
 
-function App({ counter, setCounter }) {
-  // const dispatch = useDispatch();
-  // const counter = useSelector((state) => console.log('received state:', state));
+function App({ counter, incrementCounter, decrementCounter, incrementBy }) {
+  const selectNum = useRef();
 
   return (
     <div className="App">
       <h1>Welcome to React Redux!</h1>
       <h3>counter: {counter}</h3>
-      <button onClick={() => setCounter()}>+</button>
-      <button onClick={() => setCounter()}>-</button>
+      <p>cu ce val vrei sa se incrementeze?</p>
+      <input type="number" ref={selectNum} />
+      <button onClick={() => incrementBy(parseInt(selectNum.current.value))}>Send nudes</button>
+
+      <button onClick={() => incrementCounter()}>+</button>
+      <button onClick={() => decrementCounter()}>-</button>
     </div>
   );
 }
@@ -21,15 +22,21 @@ function App({ counter, setCounter }) {
 //parameter = useSelector function
 const mapStateToProps = state => {
   //return the counter state value:
-  return { counter: state.counter };
+  return { counter: state.countReducer.counter };
 }
 
 //parameter = useDispatch
 const mapDispatchToProps = dispatch => {
   //return setCounter setter:
   return {
-    setCounter: () => {
+    incrementCounter: () => {
       return dispatch(incrementAction())
+    },
+    decrementCounter: () => {
+      return dispatch(decrementAction())
+    },
+    incrementBy: (number) => {
+      return dispatch(sendNumber(number))
     }
   };
 }
