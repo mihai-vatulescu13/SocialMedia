@@ -1,4 +1,6 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
+import NavBar from "../../components/navbar/NavBar";
+import axios from 'axios';
 
 //add the style for this component later on:
 export default function Login() {
@@ -12,9 +14,13 @@ export default function Login() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/user/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
+    const getData = async () => {
+      const { data } = await axios.get('/user/users');
+      console.log(data)
+      setUsers(data)
+    }
+
+    getData();
   }, [])
 
   //create here a generic function that collects data form the fields: 
@@ -46,6 +52,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1>Login page</h1>
+      <NavBar />
       <div className="login-form-container">
         <form
           action="submit"

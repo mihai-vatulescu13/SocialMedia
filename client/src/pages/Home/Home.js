@@ -5,6 +5,7 @@ export default function Home() {
     <div className="home-page-container">
       <h2>Home page</h2>
       <HomeNaV />
+      <p>user main page where the newsfeed will be rendered</p>
     </div>
   )
 }
