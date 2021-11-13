@@ -17,7 +17,8 @@ const Register = ({ registerUser }) => {
   const onRegisterUser = (e) => {
     e.preventDefault();
     const { name, email, password } = userData;
-
+    
+    //pass user data to the dispatch and then to the action:
     registerUser({
       name: name.current.value,
       email: email.current.value,
