@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useRef } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import './register.css';
@@ -17,10 +16,7 @@ const Register = ({ registerUser }) => {
 
   const onRegisterUser = (e) => {
     e.preventDefault();
-
     const { name, email, password } = userData;
-
-    console.log('user data before sent:', name.current.value, email.current.value, password.current.value)
 
     registerUser({
       name: name.current.value,
