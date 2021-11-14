@@ -1,14 +1,13 @@
-import { REGISTER } from "../actions/types";
+import { LOGIN } from "../actions/types";
 
 const initialState = {
-  name: '',
   email: '',
   password: ''
 }
 
-export const registerReducer = (state = initialState, action) => {
+export const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER:
+    case LOGIN:
       return action.payload;
     default:
       return state;
