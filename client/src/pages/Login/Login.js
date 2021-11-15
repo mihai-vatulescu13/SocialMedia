@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import { useState, useEffect } from "react";
-=======
 import NavBar from "../../components/navbar/NavBar";
 import { useRef, useState } from "react";
 import { connect } from "react-redux";
 // import { loginAction } from '../../actions/actions'
 import { Auth } from "../../actions/actions";
->>>>>>> auth-redux
 
 //add the style for this component later on:
 const Login = ({ connectedUser, setUserLogin, state }) => {

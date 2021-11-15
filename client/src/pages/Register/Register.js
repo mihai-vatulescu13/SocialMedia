@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { useState } from "react";
-import axios from 'axios'
-=======
 import { useState, useRef } from "react";
 import NavBar from "../../components/navbar/NavBar";
->>>>>>> auth-redux
 import './register.css';
 import { connect } from "react-redux";
 // import { registerAction } from "../../actions/actions"
@@ -20,12 +15,8 @@ const Register = ({ registerUser }) => {
     password: useRef()
   }
 
-<<<<<<< HEAD
-  const registerClick = async () => {
-=======
   const onRegisterUser = (e) => {
     e.preventDefault();
->>>>>>> auth-redux
     const { name, email, password } = userData;
     
     //pass user data to the dispatch and then to the action:
@@ -39,46 +30,7 @@ const Register = ({ registerUser }) => {
     email.current.value = '';
     password.current.value = '';
 
-<<<<<<< HEAD
-    //send data to the API trough the http POST request:
-    // fetch('http://localhost:5000/api/auth/register', {
-    //   method: "POST",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify({
-    //     name,
-    //     email,
-    //     password,
-    //     following: [],//persons that the user follow
-    //     follwed: [],//persons that follow the user
-    //     news: [],//used to store notifications/news
-    //     stories: []
-    //   })
-    // })
-    //   .then(res => res.json())
-    //   .then(() => {
-    //     setUserData({
-    //       name: '',
-    //       email: '',
-    //       password: ''
-    //     })
-    //     setIsDataSent(true)
-    //   })
-    //   .catch(err => console.log(err))
-    try{
-      const res = await axios.post('auth/register',
-      {   
-        name,
-        email,
-        password
-     })
-      console.log('baaa',res.data)
-       setIsDataSent(true)
-    }catch(err){
-      console.log(err)
-    }
-=======
     setIsDataSent(true);
->>>>>>> auth-redux
   }
 
   return (
