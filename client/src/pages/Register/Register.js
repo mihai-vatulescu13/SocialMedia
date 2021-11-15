@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'
 import './register.css';
 
 //add the style for this component later on:
@@ -18,7 +19,7 @@ export default function Register() {
     setUserData({ ...userData, [event.target.name]: event.target.value });
   }
 
-  const registerClick = () => {
+  const registerClick = async () => {
     const { name, email, password } = userData;
 
     //validate the input from the user:
@@ -34,29 +35,41 @@ export default function Register() {
     }
 
     //send data to the API trough the http POST request:
-    fetch('http://localhost:5000/api/auth/register', {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
+    // fetch('http://localhost:5000/api/auth/register', {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify({
+    //     name,
+    //     email,
+    //     password,
+    //     following: [],//persons that the user follow
+    //     follwed: [],//persons that follow the user
+    //     news: [],//used to store notifications/news
+    //     stories: []
+    //   })
+    // })
+    //   .then(res => res.json())
+    //   .then(() => {
+    //     setUserData({
+    //       name: '',
+    //       email: '',
+    //       password: ''
+    //     })
+    //     setIsDataSent(true)
+    //   })
+    //   .catch(err => console.log(err))
+    try{
+      const res = await axios.post('auth/register',
+      {   
         name,
         email,
-        password,
-        following: [],//persons that the user follow
-        follwed: [],//persons that follow the user
-        news: [],//used to store notifications/news
-        stories: []
-      })
-    })
-      .then(res => res.json())
-      .then(() => {
-        setUserData({
-          name: '',
-          email: '',
-          password: ''
-        })
-        setIsDataSent(true)
-      })
-      .catch(err => console.log(err))
+        password
+     })
+      console.log('baaa',res.data)
+       setIsDataSent(true)
+    }catch(err){
+      console.log(err)
+    }
   }
 
   return (

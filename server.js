@@ -2,7 +2,7 @@ const express = require('express')
 const authRouters = require('./routes/auth')
 const usersRoute = require('./routes/users')
 const mongoose = require('mongoose');
-const cors = require('cors');
+const helmet = require('helmet')
 
 //get the access to .env file:
 require('dotenv').config();
@@ -10,15 +10,10 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000
 
-//use cors for now:
-app.use(cors(
-  {
-    origin: 'http://localhost:3000'
-  }
-))
 app.use(express.json());
 app.use('/api/auth', authRouters);
 app.use('/api/user', usersRoute);
+app.use(helmet())
 
 //connect the server to the database:
 mongoose.connect(process.env.DATABASE_MONGO_URL);
