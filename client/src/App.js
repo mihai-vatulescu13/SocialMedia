@@ -11,11 +11,11 @@ function App({ connectedUser }) {
     <div className="App">
       <h1>Welcome to social you!</h1>
       <Routes>
-        <Route path="/" element={connectedUser.name? <Home /> : <Navigate replace to="/login" />} />
-        <Route path="/login" element={connectedUser.name ? <Navigate replace to="/"/> : <Login/>} />
-        <Route path="/register" element={connectedUser.name ? <Navigate replace to="/"/> : <Register />} />
+        <Route path="/" element={connectedUser.name ? <Home /> : <Navigate replace to="/login" />} />
+        <Route path="/login" element={connectedUser.name ? <Navigate replace to="/" /> : <Login />} />
+        <Route path="/register" element={connectedUser.name ? <Navigate replace to="/" /> : <Register />} />
         <Route path="/editAccount" element={<EditAccount />} />
-        <Route path="/myAccount/:user" element={}/>
+        {/* <Route path="/myAccount/:user" element={}/> */}
       </Routes>
     </div>
   );
