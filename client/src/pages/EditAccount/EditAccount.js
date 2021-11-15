@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> auth-redux
 export default function EditAccount() {
 
   // const onEditInput = (event) => {
