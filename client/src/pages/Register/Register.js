@@ -1,39 +1,45 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import axios from 'axios'
+=======
+import { useState, useRef } from "react";
+import NavBar from "../../components/navbar/NavBar";
+>>>>>>> auth-redux
 import './register.css';
+import { connect } from "react-redux";
+// import { registerAction } from "../../actions/actions"
+import { Auth } from "../../actions/actions";
 
-//add the style for this component later on:
-export default function Register() {
-  const [isEmptyFields, setIsEmptyFields] = useState(false);
+
+const Register = ({ registerUser }) => {
   const [isDataSent, setIsDataSent] = useState(false);
-  const [isValidEmail, setIsValidEmail] = useState(true);
 
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
-
-  //create here a generic function that collects data form the fields: 
-  const onInputChange = (event) => {
-    setUserData({ ...userData, [event.target.name]: event.target.value });
+  const userData = {
+    name: useRef(),
+    email: useRef(),
+    password: useRef()
   }
 
+<<<<<<< HEAD
   const registerClick = async () => {
+=======
+  const onRegisterUser = (e) => {
+    e.preventDefault();
+>>>>>>> auth-redux
     const { name, email, password } = userData;
+    
+    //pass user data to the dispatch and then to the action:
+    registerUser({
+      name: name.current.value,
+      email: email.current.value,
+      password: password.current.value
+    })
 
-    //validate the input from the user:
-    if (name === "" || email === "" || password === "") {
-      setIsEmptyFields(true);
-      setIsDataSent(false);
-      return console.error('the fields must not be empty')
-    }
+    name.current.value = '';
+    email.current.value = '';
+    password.current.value = '';
 
-    if (!email.includes('@')) {
-      setIsValidEmail(false);
-      return console.error('invalid email')
-    }
-
+<<<<<<< HEAD
     //send data to the API trough the http POST request:
     // fetch('http://localhost:5000/api/auth/register', {
     //   method: "POST",
@@ -70,16 +76,20 @@ export default function Register() {
     }catch(err){
       console.log(err)
     }
+=======
+    setIsDataSent(true);
+>>>>>>> auth-redux
   }
 
   return (
     <div className="register-container">
       <h1>Register page</h1>
+      <NavBar />
       <div className="register-form-container">
         <form
           action="submit"
           className="register-form"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={onRegisterUser}
         >
           <div className="form-fields">
             <label className="form-label">
@@ -89,7 +99,8 @@ export default function Register() {
                 name="name"
                 placeholder="username"
                 className="form-input"
-                onChange={e => onInputChange(e)}
+                required
+                ref={userData.name}
               />
             </label>
             <label className="form-label">
@@ -99,7 +110,8 @@ export default function Register() {
                 name="email"
                 placeholder="email"
                 className="form-input"
-                onChange={e => onInputChange(e)}
+                required
+                ref={userData.email}
               />
             </label>
             <label className="form-label">
@@ -109,7 +121,8 @@ export default function Register() {
                 name="password"
                 placeholder="password"
                 className="form-input"
-                onChange={e => onInputChange(e)}
+                required
+                ref={userData.password}
               />
             </label>
           </div>
@@ -118,23 +131,25 @@ export default function Register() {
               <button
                 className="submit"
                 type="submit"
-                onClick={() => registerClick()}
               >
                 Register
               </button>
             </div>
           </div>
-          {
-            !isEmptyFields ? <p></p> : <p>the fields must not be empty</p>
-          }
-          {
-            isDataSent ? <p>account created</p> : <></>
-          }
-          {
-            isValidEmail ? <p></p> : <p>invalid email</p>
-          }
         </form>
       </div>
-    </div>
+    </div >
   );
 }
+
+
+const dispatchActions = (dispatch) => {
+  //dispatch registerUser function to the reducer:
+  return {
+    registerUser: (userData) => {
+      return dispatch(Auth(userData))
+    }
+  }
+}
+
+export default connect(null, dispatchActions)(Register);

@@ -2,7 +2,10 @@ const express = require('express')
 const authRouters = require('./routes/auth')
 const usersRoute = require('./routes/users')
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const helmet = require('helmet')
+=======
+>>>>>>> auth-redux
 
 //get the access to .env file:
 require('dotenv').config();

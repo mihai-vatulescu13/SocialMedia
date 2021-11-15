@@ -1,56 +1,45 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
+=======
+import NavBar from "../../components/navbar/NavBar";
+import { useRef, useState } from "react";
+import { connect } from "react-redux";
+// import { loginAction } from '../../actions/actions'
+import { Auth } from "../../actions/actions";
+>>>>>>> auth-redux
 
 //add the style for this component later on:
-export default function Login() {
-
-  const [users, setUsers] = useState([])
+const Login = ({ connectedUser, setUserLogin, state }) => {
   const [userExist, setUserExist] = useState(true);
-  //this hook needs to be exported to the context:
-  const [userData, setUserData] = useState({
-    email: '',
-    password: ''
-  });
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/user/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
-  }, [])
-
-  //create here a generic function that collects data form the fields: 
-  const onInputChange = (event) => {
-    setUserData({ ...userData, [event.target.name]: event.target.value });
-  }
+  //to be continued: replace state with refs and brind here reducer actins and the state from the store:
+  let email = useRef();
+  let password = useRef();
 
   const handleSubmit = (event) => {
-    const { email, password } = userData;
+    event.preventDefault();
+    //send data to the action and then to the reducer:
+    setUserLogin({
+      email: email.current.value,
+      password: password.current.value
+    })
 
-    const selectedUser = users.find(item => item.email === email);
-
-    if (!selectedUser) {
-      setUserExist(false);
-      return console.error('the user was not found');
-    }
-
-    if (selectedUser.email === email && selectedUser.password === password) {
-      console.log('the credentials are correct');
-
-      //reset the user status message:
-      setUserExist(true);
+    if (connectedUser) {
+      console.log('the user is connected');
     } else {
-      console.log('try again');
+      console.log('not yet')
     }
   }
-
 
   return (
     <div className="login-container">
       <h1>Login page</h1>
+      <NavBar />
       <div className="login-form-container">
         <form
           action="submit"
           className="login-form"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <div className="form-fields">
             <label>
@@ -58,7 +47,7 @@ export default function Login() {
                 type="text"
                 placeholder="email"
                 name="email"
-                onChange={e => onInputChange(e)}
+                ref={email}
               />
             </label>
             <label>
@@ -66,7 +55,7 @@ export default function Login() {
                 type="password"
                 placeholder="password"
                 name="password"
-                onChange={e => onInputChange(e)}
+                ref={password}
               />
             </label>
           </div>
@@ -74,7 +63,7 @@ export default function Login() {
             <div className="login-btn">
               <button
                 className="login-btn"
-                onClick={(event) => handleSubmit(event)}
+                type="submit"
               >
                 Login
               </button>
@@ -89,3 +78,17 @@ export default function Login() {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    connectedUser: state.AuthReducer
+  }
+}
+
+const dispatchActions = (dispatch) => {
+  return {
+    setUserLogin: (userData) => dispatch(Auth(userData))
+  }
+}
+
+export default connect(mapStateToProps, dispatchActions)(Login);
