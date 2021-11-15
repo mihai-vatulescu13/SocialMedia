@@ -1,13 +1,13 @@
-import { useState } from "react"
+// import { useState } from "react"
 
 export default function Search() {
-  const [searchPayload, setSearchPayload] = useState('');
+  // const [searchPayload, setSearchPayload] = useState('');
 
-  const getSearchPayload = (event) => {
-    let payload = event.target.value;
-    console.log('search payload:', payload)
-    setSearchPayload(payload);
-  }
+  // const getSearchPayload = (event) => {
+  //   let payload = event.target.value;
+  //   console.log('search payload:', payload)
+  //   setSearchPayload(payload);
+  // }
 
   return (
     <div className="search-box">
@@ -16,9 +16,9 @@ export default function Search() {
         name="search"
         id=""
         placeholder="search"
-        onChange={(e) => {
-          getSearchPayload(e)
-        }}
+        // onChange={(e) => {
+        //   getSearchPayload(e)
+        // }}
       />
     </div>
   )

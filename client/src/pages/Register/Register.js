@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import './register.css';
 import { connect } from "react-redux";
@@ -7,7 +7,6 @@ import { Auth } from "../../actions/actions";
 
 
 const Register = ({ registerUser }) => {
-  const [isDataSent, setIsDataSent] = useState(false);
 
   const userData = {
     name: useRef(),
@@ -30,7 +29,6 @@ const Register = ({ registerUser }) => {
     email.current.value = '';
     password.current.value = '';
 
-    setIsDataSent(true);
   }
 
   return (

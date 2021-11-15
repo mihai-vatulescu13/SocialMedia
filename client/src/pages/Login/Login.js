@@ -1,12 +1,11 @@
 import NavBar from "../../components/navbar/NavBar";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { connect } from "react-redux";
 // import { loginAction } from '../../actions/actions'
 import { Auth } from "../../actions/actions";
 
 //add the style for this component later on:
 const Login = ({ connectedUser, setUserLogin, state }) => {
-  const [userExist, setUserExist] = useState(true);
 
   //to be continued: replace state with refs and brind here reducer actins and the state from the store:
   let email = useRef();
@@ -65,10 +64,6 @@ const Login = ({ connectedUser, setUserLogin, state }) => {
               </button>
             </div>
           </div>
-          {/* show here user status existence: */}
-          {
-            userExist ? <p></p> : <p>The user was not found</p>
-          }
         </form>
       </div>
     </div>
