@@ -1,7 +1,8 @@
 import NavBar from "../../components/navbar/NavBar";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { connect } from "react-redux";
-import { loginAction } from "../../actions/actions";
+// import { loginAction } from '../../actions/actions'
+import { Auth } from "../../actions/actions";
 
 //add the style for this component later on:
 const Login = ({ connectedUser, setUserLogin, state }) => {
@@ -76,13 +77,13 @@ const Login = ({ connectedUser, setUserLogin, state }) => {
 
 const mapStateToProps = (state) => {
   return {
-    connectedUser: state.LoginReducer
+    connectedUser: state.AuthReducer
   }
 }
 
 const dispatchActions = (dispatch) => {
   return {
-    setUserLogin: (userData) => dispatch(loginAction(userData))
+    setUserLogin: (userData) => dispatch(Auth(userData))
   }
 }
 

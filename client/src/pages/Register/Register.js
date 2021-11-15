@@ -2,7 +2,8 @@ import { useState, useRef } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import './register.css';
 import { connect } from "react-redux";
-import { registerAction } from "../../actions/actions"
+// import { registerAction } from "../../actions/actions"
+import { Auth } from "../../actions/actions";
 
 
 const Register = ({ registerUser }) => {
@@ -93,17 +94,14 @@ const Register = ({ registerUser }) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {}
-}
 
 const dispatchActions = (dispatch) => {
   //dispatch registerUser function to the reducer:
   return {
     registerUser: (userData) => {
-      return dispatch(registerAction(userData))
+      return dispatch(Auth(userData))
     }
   }
 }
 
-export default connect(mapStateToProps, dispatchActions)(Register);
+export default connect(null, dispatchActions)(Register);

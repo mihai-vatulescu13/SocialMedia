@@ -1,4 +1,4 @@
-import { Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Search from '../Search/Search'
 import './homeNav.css'
 
