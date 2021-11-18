@@ -15,7 +15,6 @@ function App({ connectedUser }) {
         <Route path="/login" element={connectedUser.name ? <Navigate replace to="/" /> : <Login />} />
         <Route path="/register" element={connectedUser.name ? <Navigate replace to="/" /> : <Register />} />
         <Route path="/editAccount" element={<EditAccount />} />
-        {/* <Route path="/myAccount/:user" element={}/> */}
       </Routes>
     </div>
   );
