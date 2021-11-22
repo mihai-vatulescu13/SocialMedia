@@ -4,6 +4,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import EditAccount from "./pages/EditAccount/EditAccount"
 import { connect } from "react-redux";
+import "./App.css";
 
 function App({ connectedUser }) {
 
