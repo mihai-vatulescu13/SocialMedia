@@ -1,10 +1,9 @@
-import { AUTH } from "../actions/types";
+import { AUTH } from '../actions/types';
 
 const initialState = {
-  id:'',
-  email: '',
-  name:''
-}
+  _id: '',
+  name: '',
+};
 
 export const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,4 +12,4 @@ export const AuthReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
