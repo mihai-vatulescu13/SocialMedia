@@ -2,7 +2,6 @@ import { AUTH } from '../actions/types';
 
 const initialState = {
   _id: '',
-  email: '',
   name: '',
 };
 
