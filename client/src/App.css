@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
-
-*{
- font-family: 'Balsamiq Sans', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Outfit:wght@200&family=Roboto:wght@300&display=swap");
+* {
+  font-family: "Outfit";
 }
