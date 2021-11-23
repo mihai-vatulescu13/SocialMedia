@@ -28,9 +28,17 @@ export default function Search() {
         }}
       />
       {
-       searchPayload.length > 0 ?
-        <div>
-          <h3>Show users</h3>
+       searchPayload ?
+        <div className="show-users">
+         {
+           users.map((user,index) =>{
+             return(
+              <div key={index} className="user-search-card">
+               <h5>{user.name}</h5>
+              </div>
+             )
+           })
+         }
         </div> : <></>
       }
     </div>

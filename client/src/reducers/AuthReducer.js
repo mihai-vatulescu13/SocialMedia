@@ -1,8 +1,8 @@
 import { AUTH } from '../actions/types';
 
 const initialState = {
-  _id: 'default',
-  name: 'default',
+  _id: '',
+  name: '',
 };
 
 export const AuthReducer = (state = initialState, action) => {
