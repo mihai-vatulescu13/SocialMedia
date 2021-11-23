@@ -1,10 +1,9 @@
-import { useRef, useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 import axios from "axios";
 
 export default function Search() {
-  const searchPayload = useRef();
+  const [searchPayload,setSearchPayload] = useState('');
   const [users,setUsers] = useState([])
-  let searchPayloadLength = 0;
 
   useEffect(()=>{
    const fetchData = async () =>{
@@ -14,20 +13,22 @@ export default function Search() {
    fetchData();
   },[])
 
+  const onSearchChange = (e) =>{
+   setSearchPayload(e.target.value); 
+  }
+
   return (
     <div className="search-box">
       <input
         type="search"
         name="search"
-        ref={searchPayload}
         placeholder="search users"
         onChange={(e) => {
-          searchPayloadLength = searchPayload.current.value.length
+          onSearchChange(e)
         }}
       />
-      {console.log('payload length:',searchPayloadLength)}
       {
-       searchPayloadLength > 0 ?
+       searchPayload.length > 0 ?
         <div>
           <h3>Show users</h3>
         </div> : <></>
