@@ -1,33 +1,55 @@
-import { useRef } from 'react';
-// import axios from 'axios';
+import { useEffect, useState } from 'react';
+import UserAvatar from './user-avatar.png';
+import './search.css';
+import axios from 'axios';
 
 export default function Search() {
-  const searchPayload = useRef();
-  // const [users, setUsers] = useState([]);
-  let searchPayloadLength = 0;
+  const [searchPayload, setSearchPayload] = useState('');
+  const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await axios.get('/user/users/');
-  //     setUsers(response.data);
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get('/user/users/');
+      setUsers(response.data);
+    };
+    fetchData();
+  }, []);
+
+  const onSearchChange = (e) => {
+    setSearchPayload(e.target.value);
+  };
 
   return (
     <div className="search-box">
       <input
         type="search"
         name="search"
-        ref={searchPayload}
-        placeholder="search users"
+        placeholder="Search users"
         onChange={(e) => {
-          searchPayloadLength = searchPayload.current.value.length;
+          onSearchChange(e);
         }}
       />
-      {searchPayloadLength > 0 ? (
-        <div>
-          <h3>Show users</h3>
+
+      {searchPayload ? (
+        <div className="show-users">
+          {users
+            .filter((user) =>
+              user.name.toLowerCase().includes(searchPayload.toLowerCase())
+            )
+            .map((user, index) => {
+              return (
+                <div key={index} className="user-search-card">
+                  <img
+                    src={UserAvatar}
+                    alt="user avatar"
+                    className="user-picture"
+                  />
+                  <a href="#" className="username-style">
+                    {user.name}
+                  </a>
+                </div>
+              );
+            })}
         </div>
       ) : (
         <></>
