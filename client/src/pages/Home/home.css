@@ -1,0 +1,41 @@
+.home_container {
+  box-sizing: border-box;
+  background-color: rgb(219, 219, 219);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  /* min-height: 100vh; */
+}
+.body-container {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  border: 1px solid blue;
+  min-height: 100vh;
+  margin-top: 3em;
+}
+.post_Card {
+  width: 100%;
+  background-color: white;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+.flow-posts {
+  width: 100%;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.users-sugestion {
+  width: 20%;
+  height: 500px;
+  background-color: rgb(94, 205, 224);
+  position: fixed;
+  right: 3em;
+}
+.cardImg {
+  width: 100%;
+  height: 350px;
+}

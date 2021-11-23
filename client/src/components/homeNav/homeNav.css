@@ -1,14 +1,20 @@
-
-.home-navigation{
- display: flex;
- flex-direction: row;   
- align-items: center;
+.home-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid;
 }
 
-.news-component-container{
- position: fixed;
+.home-navigation-container {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+.news-component-container {
+  position: fixed;
 }
 
-.news-component-container-hidden{
- visibility: none;
+.news-component-container-hidden {
+  visibility: none;
 }

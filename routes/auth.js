@@ -16,7 +16,6 @@ router.post('/register', async (req, res) => {
 
     //save the user to the database:
     const user = await newUser.save();
-    console.log(user);
     res.status(200).json({ name: user.name, _id: user._id });
   } catch (err) {
     console.log(err);
@@ -29,7 +28,6 @@ router.post('/login', async (req, res) => {
   try {
     //find the user from database by email address:
     const user = await User.findOne({ email: email });
-    console.log('baaa', user);
     !user && res.status(404).json('User not found');
     const validPassword = await bcrypt.compare(password, user.password);
     !validPassword
