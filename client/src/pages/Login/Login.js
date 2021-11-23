@@ -23,7 +23,7 @@ const Login = ({ connectedUser, setUserLogin, state }) => {
     if (connectedUser) {
       console.log('the user is connected');
     } else {
-      console.log('not yet')
+      console.log('not yet');
     }
   }
 
