@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import UserAvatar from "./user-avatar.png";
 import "./search.css";
 import axios from "axios";
 
@@ -23,11 +24,12 @@ export default function Search() {
       <input
         type="search"
         name="search"
-        placeholder="search users"
+        placeholder="Search users"
         onChange={(e) => {
           onSearchChange(e);
         }}
       />
+
       {searchPayload ? (
         <div className="show-users">
           {users
@@ -37,7 +39,14 @@ export default function Search() {
             .map((user, index) => {
               return (
                 <div key={index} className="user-search-card">
-                  <h5>{user.name}</h5>
+                  <img
+                    src={UserAvatar}
+                    alt="user avatar"
+                    className="user-picture"
+                  />
+                  <a href="#" className="username-style">
+                    {user.name}
+                  </a>
                 </div>
               );
             })}
