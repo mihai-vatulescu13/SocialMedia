@@ -7,7 +7,6 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   name: {
     type: String,
-    minlength: 4,
     maxlength: 25,
     required: true
   },
