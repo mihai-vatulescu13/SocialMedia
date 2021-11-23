@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import UserAvatar from './user-avatar.png';
-import './search.css';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import UserAvatar from "./user-avatar.png";
+import "./search.css";
+import axios from "axios";
 
 export default function Search() {
-  const [searchPayload, setSearchPayload] = useState('');
+  const [searchPayload, setSearchPayload] = useState("");
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('/user/users/');
+      const response = await axios.get("/user/users/");
       setUsers(response.data);
     };
     fetchData();
@@ -25,6 +25,7 @@ export default function Search() {
         type="search"
         name="search"
         placeholder="Search users"
+        className="search-users-box"
         onChange={(e) => {
           onSearchChange(e);
         }}
