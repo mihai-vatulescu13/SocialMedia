@@ -1,37 +1,32 @@
-import { useState, useRef } from "react";
-import NavBar from "../../components/navbar/NavBar";
+import { useRef } from 'react';
+import NavBar from '../../components/navbar/NavBar';
 import './register.css';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 // import { registerAction } from "../../actions/actions"
-import { Auth } from "../../actions/actions";
-
+import { Auth } from '../../actions/actions';
 
 const Register = ({ registerUser }) => {
-  const [isDataSent, setIsDataSent] = useState(false);
-
   const userData = {
     name: useRef(),
     email: useRef(),
-    password: useRef()
-  }
+    password: useRef(),
+  };
 
   const onRegisterUser = (e) => {
     e.preventDefault();
     const { name, email, password } = userData;
-    
+
     //pass user data to the dispatch and then to the action:
     registerUser({
       name: name.current.value,
       email: email.current.value,
-      password: password.current.value
-    })
+      password: password.current.value,
+    });
 
     name.current.value = '';
     email.current.value = '';
     password.current.value = '';
-
-    setIsDataSent(true);
-  }
+  };
 
   return (
     <div className="register-container">
@@ -80,28 +75,24 @@ const Register = ({ registerUser }) => {
           </div>
           <div className="form-buttons">
             <div className="submit-btn">
-              <button
-                className="submit"
-                type="submit"
-              >
+              <button className="submit" type="submit">
                 Register
               </button>
             </div>
           </div>
         </form>
       </div>
-    </div >
+    </div>
   );
-}
-
+};
 
 const dispatchActions = (dispatch) => {
   //dispatch registerUser function to the reducer:
   return {
     registerUser: (userData) => {
-      return dispatch(Auth(userData))
-    }
-  }
-}
+      return dispatch(Auth(userData));
+    },
+  };
+};
 
 export default connect(null, dispatchActions)(Register);

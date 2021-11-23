@@ -1,18 +1,18 @@
-import { useRef, useEffect, useState } from "react"
-import axios from "axios";
+import { useRef } from 'react';
+// import axios from 'axios';
 
 export default function Search() {
   const searchPayload = useRef();
-  const [users,setUsers] = useState([])
+  // const [users, setUsers] = useState([]);
   let searchPayloadLength = 0;
 
-  useEffect(()=>{
-   const fetchData = async () =>{
-    const response = await axios.get('/user/users/');
-    setUsers(response.data);
-   }
-   fetchData();
-  },[])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await axios.get('/user/users/');
+  //     setUsers(response.data);
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="search-box">
@@ -22,16 +22,16 @@ export default function Search() {
         ref={searchPayload}
         placeholder="search users"
         onChange={(e) => {
-          searchPayloadLength = searchPayload.current.value.length
+          searchPayloadLength = searchPayload.current.value.length;
         }}
       />
-      {console.log('payload length:',searchPayloadLength)}
-      {
-       searchPayloadLength > 0 ?
+      {searchPayloadLength > 0 ? (
         <div>
           <h3>Show users</h3>
-        </div> : <></>
-      }
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
-  )
+  );
 }

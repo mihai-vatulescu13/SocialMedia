@@ -1,13 +1,11 @@
-import NavBar from "../../components/navbar/NavBar";
-import { useRef, useState } from "react";
-import { connect } from "react-redux";
+import NavBar from '../../components/navbar/NavBar';
+import { useRef } from 'react';
+import { connect } from 'react-redux';
 // import { loginAction } from '../../actions/actions'
-import { Auth } from "../../actions/actions";
+import { Auth } from '../../actions/actions';
 
 //add the style for this component later on:
-const Login = ({ connectedUser, setUserLogin, state }) => {
-  const [userExist, setUserExist] = useState(true);
-
+const Login = ({ connectedUser, setUserLogin }) => {
   //to be continued: replace state with refs and brind here reducer actins and the state from the store:
   let email = useRef();
   let password = useRef();
@@ -17,34 +15,25 @@ const Login = ({ connectedUser, setUserLogin, state }) => {
     //send data to the action and then to the reducer:
     setUserLogin({
       email: email.current.value,
-      password: password.current.value
-    })
+      password: password.current.value,
+    });
 
     if (connectedUser) {
       console.log('the user is connected');
     } else {
       console.log('not yet');
     }
-  }
+  };
 
   return (
     <div className="login-container">
       <h1>Login page</h1>
       <NavBar />
       <div className="login-form-container">
-        <form
-          action="submit"
-          className="login-form"
-          onSubmit={handleSubmit}
-        >
+        <form action="submit" className="login-form" onSubmit={handleSubmit}>
           <div className="form-fields">
             <label>
-              <input
-                type="text"
-                placeholder="email"
-                name="email"
-                ref={email}
-              />
+              <input type="text" placeholder="email" name="email" ref={email} />
             </label>
             <label>
               <input
@@ -57,34 +46,27 @@ const Login = ({ connectedUser, setUserLogin, state }) => {
           </div>
           <div className="form-buttons">
             <div className="login-btn">
-              <button
-                className="login-btn"
-                type="submit"
-              >
+              <button className="login-btn" type="submit">
                 Login
               </button>
             </div>
           </div>
-          {/* show here user status existence: */}
-          {
-            userExist ? <p></p> : <p>The user was not found</p>
-          }
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
-    connectedUser: state.AuthReducer
-  }
-}
+    connectedUser: state.AuthReducer,
+  };
+};
 
 const dispatchActions = (dispatch) => {
   return {
-    setUserLogin: (userData) => dispatch(Auth(userData))
-  }
-}
+    setUserLogin: (userData) => dispatch(Auth(userData)),
+  };
+};
 
 export default connect(mapStateToProps, dispatchActions)(Login);

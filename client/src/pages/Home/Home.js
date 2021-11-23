@@ -9,7 +9,14 @@ export default function Home() {
       <div className="body-container">
         <div className="flow-posts">
           {objCards.map((elem, index) => {
-            return <Card key={index} title={elem.name} photo={elem.photo} />;
+            return (
+              <Card
+                key={index}
+                title={elem.name}
+                photo={elem.photo}
+                location={elem.location}
+              />
+            );
           })}
         </div>
         <div className="users-sugestion"></div>
