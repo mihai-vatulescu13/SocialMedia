@@ -4,11 +4,12 @@ import axios from "axios";
 export default function Search() {
   const searchPayload = useRef();
   const [users,setUsers] = useState([])
+  let searchPayloadLength = 0;
 
   useEffect(()=>{
    const fetchData = async () =>{
     const response = await axios.get('/user/users/');
-    console.log('all received users:',response.data);
+    setUsers(response.data);
    }
    fetchData();
   },[])
@@ -21,9 +22,16 @@ export default function Search() {
         ref={searchPayload}
         placeholder="search users"
         onChange={(e) => {
-          console.log(searchPayload.current.value)
+          searchPayloadLength = searchPayload.current.value.length
         }}
       />
+      {console.log('payload length:',searchPayloadLength)}
+      {
+       searchPayloadLength > 0 ?
+        <div>
+          <h3>Show users</h3>
+        </div> : <></>
+      }
     </div>
   )
 }
