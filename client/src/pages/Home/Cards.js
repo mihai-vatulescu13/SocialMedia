@@ -1,21 +1,21 @@
-import './home.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./home.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisH,
   faShareSquare,
   faThumbtack,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faComment,
   faThumbsUp,
   faSmile,
-} from '@fortawesome/free-regular-svg-icons';
+} from "@fortawesome/free-regular-svg-icons";
 const Cards = ({ title, photo, location }) => {
   const PF = process.env.REACT_APP_ASSETS;
   return (
     <div className="post_Card">
       <div className="header_card">
-        <img src={PF + '4.jpg'} alt="avatar" className="avatarImage" />
+        <img src={PF + "4.jpg"} alt="avatar" className="avatarImage" />
         <div className="headerUser">
           <h3>{title}</h3>
           <p>{location}</p>
