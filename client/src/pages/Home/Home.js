@@ -1,7 +1,9 @@
-import HomeNaV from '../../components/homeNav/HomeNav';
-import Card from '../../components/homeCards/Cards';
-import { objCards, ownUser } from '../../components/testData/homeCard';
-import './home.css';
+import HomeNaV from "../../components/homeNav/HomeNav";
+import Card from "../../components/homeCards/Cards";
+import { objCards, ownUser } from "../../components/testData/homeCard";
+import "./home.css";
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <div className="home_container">
@@ -28,18 +30,18 @@ export default function Home() {
               <p className="titleName ">{ownUser.name}</p>
               <span className="subTitle">{ownUser.location}</span>
             </div>
-            <a href="/" className="buttonAccount">
+            <Link to="/" className="buttonAccount">
               Switch
-            </a>
+            </Link>
           </div>
           <div className="suggestions">
             <div className="suggestionItems">
-              <span style={{ marginLeft: '0.5em', fontWeight: '600' }}>
+              <span style={{ marginLeft: "0.5em", fontWeight: "600" }}>
                 Suggestions for you
               </span>
-              <a href="/" className="buttonAccount">
+              <Link to="/" className="buttonAccount">
                 See all
-              </a>
+              </Link>
             </div>
             {objCards.map((elem, index) => {
               return (
@@ -49,9 +51,9 @@ export default function Home() {
                     <p className="titleName ">{elem.name}</p>
                     <span className="subTitle">Suggested for you</span>
                   </div>
-                  <a href="/" className="buttonAccount">
+                  <Link to="/" className="buttonAccount">
                     Follow
-                  </a>
+                  </Link>
                 </div>
               );
             })}
