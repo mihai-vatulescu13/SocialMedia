@@ -1,15 +1,17 @@
 .home-navigation {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border: 1px solid;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
+  width: 100%;
 }
 
 .home-navigation-container {
   position: absolute;
   top: 0;
   z-index: 1;
-  width: 100%;
+  width: 71%;
 }
 .news-component-container {
   position: fixed;
@@ -17,4 +19,28 @@
 
 .news-component-container-hidden {
   visibility: none;
+}
+
+.profile-links {
+  display: flex;
+  justify-content: center;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.app-logo {
+  margin: 0.4em;
+}
+
+.nav-avatar {
+  width: 30px;
+  height: 30px;
+  /* color: gray; */
+}
+
+.nav-icon {
+  font-size: 1.6rem;
+  color: gray;
 }

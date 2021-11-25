@@ -1,3 +1,8 @@
+.search-users-box {
+  height: 30px;
+  font-size: 0.95rem;
+}
+
 .show-users {
   border: 1px solid gray;
   border-radius: 4px;
