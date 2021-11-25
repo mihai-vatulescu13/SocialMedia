@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouseUser, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouseUser,
+  faTrophy,
+  faCameraRetro,
+} from "@fortawesome/free-solid-svg-icons";
 import "./homeNav.css";
 
 export default function HomeNav() {
@@ -21,6 +25,10 @@ export default function HomeNav() {
         <div className="profile-links">
           <Link to="/" className="link-item">
             <FontAwesomeIcon icon={faHouseUser} className="nav-icon" />
+          </Link>
+
+          <Link to="#" className="link-item">
+            <FontAwesomeIcon icon={faCameraRetro} className="nav-icon" />
           </Link>
 
           <Link to="topArticles" className="link-item">
