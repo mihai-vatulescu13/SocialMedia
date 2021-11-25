@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 .home_container {
   box-sizing: border-box;
-  background-color: rgb(219, 219, 219);
+  background-color: rgb(247, 247, 247);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -14,81 +15,63 @@
   margin-top: 5em;
   margin-right: 12em;
 }
-.post_Card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 5em;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
 .flow-posts {
   width: 100%;
 }
 .users-sugestion {
   width: 20%;
   height: 500px;
-  background-color: rgb(94, 205, 224);
+  /* background-color: rgb(161, 210, 219); */
   position: fixed;
-  right: 7em;
+  right: 11em;
 }
-.cardImg {
-  width: 100%;
-  height: 350px;
+.ownerImage {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
 }
-.header_card {
-  box-sizing: border-box;
-  width: 100%;
-  height: 70px;
-  background-color: #fff;
+.ownerInfo {
+  margin-left: 0.5em;
+  flex: 1;
+}
+.ownerUser {
   display: flex;
   align-items: center;
-  padding-left: 1em;
-  position: relative;
+  margin: 1em;
 }
-.avatarImage {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.titleName {
+  font-size: 20px;
+  font-weight: 800;
   cursor: pointer;
+  width: fit-content;
 }
-.headerUser {
-  margin-top: 0.5em;
-  margin-left: 0.5em;
-  cursor: pointer;
-}
-.headerUser > p {
+.subTitle {
   font-size: 13px;
-}
-.stuffPost {
-  position: absolute;
-  right: 3em;
+  font-weight: 600;
+  color: rgb(173, 173, 173);
   cursor: pointer;
 }
-.footer_card {
-  width: 100%;
-  background-color: #fff;
-  height: 100px;
+.buttonAccount {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(14, 14, 14);
 }
-.like_bar {
-  position: relative;
-  width: 100%;
-  margin-top: 1em;
+.Users {
+  display: flex;
+  margin-top: 1.2em;
+  align-items: center;
 }
-.Icons {
-  font-size: 1.55em;
-  margin-left: 0.7em;
+.usersImage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
 }
-.printIcon {
-  position: absolute;
-  right: 1em;
-}
-.comments {
-  box-sizing: border-box;
-  position: absolute;
-  padding: 5px;
-  bottom: 7px;
-  width: 100%;
-  border: 1px solid;
+.suggestionItems {
+  display: flex;
+  justify-content: space-between;
 }
