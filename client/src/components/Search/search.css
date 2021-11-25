@@ -4,6 +4,12 @@
   border: 1px solid rgb(204, 204, 204);
   border-radius: 4px;
   padding: 0.3em;
+  outline: none;
+
+  background: url(http://localhost:3000/assets/defaultImg/search-icon.png)
+    no-repeat scroll 2px;
+  padding-left: 30px;
+  background-size: contain;
 }
 
 .show-users {
@@ -29,4 +35,5 @@
 
 .username-style {
   text-decoration: none;
+  color: rgb(53, 53, 53);
 }

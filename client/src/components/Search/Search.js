@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import UserAvatar from "./user-avatar.png";
 import "./search.css";
 import axios from "axios";
 
 export default function Search() {
   const [searchPayload, setSearchPayload] = useState("");
   const [users, setUsers] = useState([]);
+  const PF = process.env.REACT_APP_ASSETS;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,7 @@ export default function Search() {
               return (
                 <div key={index} className="user-search-card">
                   <img
-                    src={UserAvatar}
+                    src={PF + "user-avatar.png"}
                     alt="user avatar"
                     className="user-picture"
                   />

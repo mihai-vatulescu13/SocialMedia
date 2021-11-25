@@ -3,9 +3,10 @@ import Search from "../Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouseUser, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import "./homeNav.css";
-import UserAvatar from "./user-avatar.png";
 
 export default function HomeNav() {
+  const PF = process.env.REACT_APP_ASSETS;
+
   return (
     <div className="home-navigation-container">
       <nav className="home-navigation">
@@ -26,7 +27,11 @@ export default function HomeNav() {
             <FontAwesomeIcon icon={faTrophy} className="nav-icon" />
           </Link>
           <Link to="/userAccountPage" className="link-item">
-            <img src={UserAvatar} alt="user avatar" className="nav-avatar" />
+            <img
+              src={PF + "user-avatar.png"}
+              alt="user avatar"
+              className="nav-avatar"
+            />
           </Link>
         </div>
       </nav>
