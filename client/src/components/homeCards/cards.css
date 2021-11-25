@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+.post_Card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cardImg {
+  width: 100%;
+  height: 450px;
+  /* object-fit: cover; */
+}
+.header_card {
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+  position: relative;
+}
+.avatarImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.headerUser {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+.headerUser > p {
+  font-size: 13px;
+  font-weight: 700;
+}
+.stuffPost {
+  position: absolute;
+  right: 3em;
+  cursor: pointer;
+}
+.footer_card {
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+}
+.like_bar {
+  position: relative;
+  width: 100%;
+  margin-top: 1em;
+}
+.Icons {
+  font-size: 1.55em;
+  margin-left: 0.7em;
+  color: rgb(63, 63, 63);
+  cursor: pointer;
+}
+.Icons:hover {
+  color: rgb(204, 204, 204);
+}
+.printIcon {
+  position: absolute;
+  right: 1em;
+  color: gray;
+}
+.printIcon:hover {
+  color: #444444;
+}
+.form_container {
+  box-sizing: border-box;
+  position: absolute;
+  padding: 5px;
+  bottom: 0;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid;
+}
+.commentForm {
+  position: relative;
+}
+.Emoji {
+  margin-left: 1em;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.commentButton {
+  position: absolute;
+  bottom: 0;
+  right: 1em;
+  padding: 2px;
+  border-radius: 5px;
+  color: grey;
+  font-weight: 700;
+  outline: 2px solid #386397;
+  border: 2px solid #386397;
+  outline-offset: -2px;
+  transition: outline-offset 250ms ease;
+  cursor: pointer;
+}
+.commentButton:hover,
+.commentButton:focus {
+  outline-offset: 2px;
+  color: #386397;
+}
+.commentInput {
+  margin-left: 0.8em;
+  width: 70%;
+  border: none;
+  padding: 4px;
+  outline: none;
+}
+.comments_container {
+  width: 100%;
+  height: 200px;
+  margin-top: 1em;
+}
+.comment_elem {
+  padding: 0.5em 2em;
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+}
+.userComment {
+  font-weight: bold;
+  font-size: 19px;
+  cursor: pointer;
+}
+.userComment:hover {
+  border-bottom: 1px solid;
+}
+.Readmore {
+  font-size: 18px;
+  font-weight: 800;
+  left: 1.5em;
+  color: rgb(185, 185, 185);
+  cursor: pointer;
+  position: absolute;
+}
+.Readmore:hover {
+  border-bottom: 2px solid rgb(185, 185, 185);
+}

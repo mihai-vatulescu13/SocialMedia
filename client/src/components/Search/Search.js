@@ -45,7 +45,7 @@ export default function Search() {
                     alt="user avatar"
                     className="user-picture"
                   />
-                  <a href="#" className="username-style">
+                  <a href="/" className="username-style">
                     {user.name}
                   </a>
                 </div>
