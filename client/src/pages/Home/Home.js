@@ -1,6 +1,6 @@
 import HomeNaV from '../../components/homeNav/HomeNav';
-import Card from './Cards';
-import { objCards } from '../../components/testData/homeCard';
+import Card from '../../components/homeCards/Cards';
+import { objCards, ownUser } from '../../components/testData/homeCard';
 import './home.css';
 export default function Home() {
   return (
