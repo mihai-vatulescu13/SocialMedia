@@ -1,6 +1,9 @@
 .search-users-box {
   height: 30px;
   font-size: 0.95rem;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  padding: 0.3em;
 }
 
 .show-users {

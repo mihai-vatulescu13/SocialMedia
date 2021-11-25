@@ -3,8 +3,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  background-color: whitesmoke;
   width: 100%;
+  padding: 0.52em;
 }
 
 .home-navigation-container {
@@ -37,7 +39,6 @@
 .nav-avatar {
   width: 30px;
   height: 30px;
-  /* color: gray; */
 }
 
 .nav-icon {
