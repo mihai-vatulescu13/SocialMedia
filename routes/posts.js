@@ -1,23 +1,23 @@
-const router = require('express').Router();
-const User = require('../models/users');
-const Post = require('../models/posts');
+const router = require("express").Router();
+const User = require("../models/users");
+const Post = require("../models/posts");
 
 //get Posts
-router.get('/getPosts', async (req, res) => {
+router.get("/getPosts", async (req, res) => {
   try {
     const posts = await Post.find(req.query.user);
     res.status(200).json(posts);
   } catch (err) {
-    res.status(404).send('Not login');
+    res.status(404).send("Not login");
     console.log(err);
   }
 });
 //add new post
-router.post('/addPost', async (req, res) => {
+router.post("/addPost", async (req, res) => {
   const { description, image, location } = req.body;
   try {
     const user = await User.findOne({ name: req.query.user });
-    console.log(user._id);
+    console.log("user id from db:", user._id);
     const newPost = new Post({
       userId: user._id,
       description: description,
@@ -25,14 +25,14 @@ router.post('/addPost', async (req, res) => {
       location: location,
     });
     await newPost.save();
-    res.status(200).send('Succes');
+    res.status(200).send("Succes");
   } catch (err) {
     res.status(501).json(err);
     console.log(err);
   }
 });
 //edit specific post
-router.put('/editPost', async (req, res) => {
+router.put("/editPost", async (req, res) => {
   const { location, description, image } = req.body;
   try {
     const user = await User.findOne(req.query);
