@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import EditAccount from "./pages/EditAccount/EditAccount";
+import PostUpload from "./pages/PostUpload/PostUpload";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -27,6 +28,16 @@ function App({ connectedUser }) {
           }
         />
         <Route path="/editAccount" element={<EditAccount />} />
+        <Route
+          path="/upload"
+          element={
+            connectedUser.name ? (
+              <PostUpload />
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
         <Route path="/myAccount/:user" />
       </Routes>
     </div>

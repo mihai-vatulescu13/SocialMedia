@@ -27,7 +27,7 @@ export default function HomeNav() {
             <FontAwesomeIcon icon={faHouseUser} className="nav-icon" />
           </Link>
 
-          <Link to="#" className="link-item">
+          <Link to="/upload" className="link-item">
             <FontAwesomeIcon icon={faCameraRetro} className="nav-icon" />
           </Link>
 
