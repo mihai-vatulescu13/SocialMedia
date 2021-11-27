@@ -8,31 +8,29 @@ const PostUpload = () => {
   const location = useRef();
   const postImage = useRef();
 
-  const onUpload = (e) => {
+  const onUpload = async (e) => {
     e.preventDefault();
     let file = postImage.current.files[0];
-
-    const uploadImage = async () => {
-      const base64 = await converBase64(file);
-      console.log("converted image:", typeof base64);
-
-      setImage(base64);
-    };
 
     const converBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
+
         fileReader.onload = () => {
           resolve(fileReader.result);
         };
+
         fileReader.onerror = (error) => {
           reject(error);
         };
       });
     };
 
-    uploadImage();
+    const base64 = await converBase64(file);
+    console.log(base64);
+    //base64 -> our image
+    setImage(base64);
   };
 
   return (
