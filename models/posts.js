@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const PostSchema = new Schema(
   {
     userId: {
-      type: Number,
+      type: String,
       required: true,
     },
     description: {
