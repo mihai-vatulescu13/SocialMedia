@@ -63,18 +63,18 @@ const PostUpload = () => {
             send
           </button>
         </form>
+      </div>
 
-        <div className="preview-image">
-          {image ? (
-            <img
-              src={image}
-              style={{ width: "100px", height: "auto" }}
-              alt="preview"
-            />
-          ) : (
-            <></>
-          )}
-        </div>
+      <div className="preview-image">
+        {image ? (
+          <img
+            src={image}
+            style={{ width: "300px", height: "auto" }}
+            alt="preview"
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
