@@ -15,11 +15,11 @@ router.get("/getPosts", async (req, res) => {
 //add new post
 router.post("/addPost", async (req, res) => {
   const { description, image, location } = req.body;
+
   try {
-    const user = await User.findOne({ name: req.query.user });
-    console.log("user id from db:", user._id);
+    const user = await User.findById(req.query.user);
     const newPost = new Post({
-      userId: user._id,
+      userId: user.id,
       description: description,
       image: image,
       location: location,
