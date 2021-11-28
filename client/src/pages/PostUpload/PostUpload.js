@@ -39,7 +39,7 @@ const PostUpload = ({ user }) => {
   return (
     <div className="post-upload">
       <div className="center-upload-page">
-        <form onSubmit={onUpload}>
+        <form onSubmit={onUpload} className="post-ulpoad-form">
           <textarea
             type="text"
             className="post-description"
