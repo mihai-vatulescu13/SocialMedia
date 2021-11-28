@@ -25,6 +25,10 @@ const PostSchema = new Schema(
       type: Array,
       default: [],
     },
+    printed: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

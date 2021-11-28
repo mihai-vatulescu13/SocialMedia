@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import "./postUpload.css";
+import { useRef, useState } from 'react';
+import './postUpload.css';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-const PostUpload = () => {
-  const [image, setImage] = useState(null);
-
+const PostUpload = ({ user }) => {
   const description = useRef();
   const location = useRef();
   const postImage = useRef();
@@ -28,9 +28,12 @@ const PostUpload = () => {
     };
 
     const base64 = await converBase64(file);
-    console.log(base64);
     //base64 -> our image
-    setImage(base64);
+    await axios.post(`/post/addPost?user=${user}`, {
+      description: description.current.value,
+      image: base64,
+      location: location.current.value,
+    });
   };
 
   return (
@@ -80,5 +83,10 @@ const PostUpload = () => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    user: state.AuthReducer._id,
+  };
+};
 
-export default PostUpload;
+export default connect(mapStateToProps)(PostUpload);
