@@ -1,10 +1,21 @@
-import HomeNaV from "../../components/homeNav/HomeNav";
-import Card from "../../components/homeCards/Cards";
-import { objCards, ownUser } from "../../components/testData/homeCard";
-import "./home.css";
-import { Link } from "react-router-dom";
+import HomeNaV from '../../components/homeNav/HomeNav';
+import Card from '../../components/homeCards/Cards';
+import { objCards, ownUser } from '../../components/testData/homeCard';
+import './home.css';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function Home() {
+function Home() {
+  const [posts, setPosts] = useState(null);
+  useEffect(() => {
+    const fetch = async () => {
+      setPosts(await axios.get('/post/getPosts'));
+    };
+    fetch();
+  }, []);
+
   return (
     <div className="home_container">
       <div className="body-container">
@@ -36,7 +47,7 @@ export default function Home() {
           </div>
           <div className="suggestions">
             <div className="suggestionItems">
-              <span style={{ marginLeft: "0.5em", fontWeight: "600" }}>
+              <span style={{ marginLeft: '0.5em', fontWeight: '600' }}>
                 Suggestions for you
               </span>
               <Link to="/" className="buttonAccount">
@@ -63,3 +74,9 @@ export default function Home() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.AuthReducer._id,
+  };
+};
+export default connect(mapStateToProps)(Home);
