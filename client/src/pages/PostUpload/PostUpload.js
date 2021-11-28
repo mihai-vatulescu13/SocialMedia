@@ -37,6 +37,7 @@ const PostUpload = () => {
     <div className="post-upload">
       <div className="center-upload-page">
         <form onSubmit={onUpload} className="post-ulpoad-form">
+          <h2 className="main-heading">What are you thinking about?</h2>
           <textarea
             type="text"
             className="post-description"
@@ -59,22 +60,22 @@ const PostUpload = () => {
             required
           />
 
+          <div className="preview-image">
+            {image ? (
+              <img
+                src={image}
+                style={{ width: "360px", height: "auto" }}
+                alt="preview"
+              />
+            ) : (
+              <></>
+            )}
+          </div>
+
           <button type="submit" className="upload-btn">
             send
           </button>
         </form>
-      </div>
-
-      <div className="preview-image">
-        {image ? (
-          <img
-            src={image}
-            style={{ width: "300px", height: "auto" }}
-            alt="preview"
-          />
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
