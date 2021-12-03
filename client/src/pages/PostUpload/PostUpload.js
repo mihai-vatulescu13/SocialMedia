@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import './postUpload.css';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import { useRef, useState } from "react";
+import "./postUpload.css";
+import axios from "axios";
+import { connect } from "react-redux";
 
 const PostUpload = ({ user }) => {
   const description = useRef();
@@ -63,7 +63,7 @@ const PostUpload = ({ user }) => {
             required
           />
 
-          <div className="preview-image">
+          {/* <div className="preview-image">
             {image ? (
               <img
                 src={image}
@@ -73,7 +73,7 @@ const PostUpload = ({ user }) => {
             ) : (
               <></>
             )}
-          </div>
+          </div> */}
 
           <button type="submit" className="upload-btn">
             send
