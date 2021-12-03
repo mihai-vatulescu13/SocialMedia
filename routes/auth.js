@@ -3,7 +3,6 @@ const User = require("../models/users");
 const bcrypt = require("bcrypt");
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
-  console.log("user account password:", password);
 
   try {
     //create a new object to store the user data and then save in the db:
