@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./postUpload.css";
 import axios from "axios";
 import { connect } from "react-redux";

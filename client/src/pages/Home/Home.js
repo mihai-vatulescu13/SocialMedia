@@ -1,17 +1,17 @@
-import HomeNaV from '../../components/homeNav/HomeNav';
-import Card from '../../components/homeCards/Cards';
-import { objCards, ownUser } from '../../components/testData/homeCard';
-import './home.css';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import HomeNaV from "../../components/homeNav/HomeNav";
+import Card from "../../components/homeCards/Cards";
+import { objCards, ownUser } from "../../components/testData/homeCard";
+import "./home.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Home() {
   const [posts, setPosts] = useState(null);
   useEffect(() => {
     const fetch = async () => {
-      setPosts(await axios.get('/post/getPosts'));
+      setPosts(await axios.get("/post/getPosts"));
     };
     fetch();
   }, []);
@@ -47,7 +47,7 @@ function Home() {
           </div>
           <div className="suggestions">
             <div className="suggestionItems">
-              <span style={{ marginLeft: '0.5em', fontWeight: '600' }}>
+              <span style={{ marginLeft: "0.5em", fontWeight: "600" }}>
                 Suggestions for you
               </span>
               <Link to="/" className="buttonAccount">

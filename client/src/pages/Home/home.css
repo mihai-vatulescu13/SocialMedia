@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
 .home_container {
   box-sizing: border-box;
   background-color: rgb(247, 247, 247);
@@ -9,7 +9,8 @@
 }
 .body-container {
   display: flex;
-  flex-direction: row;
+  /* before it was -> flex-direction: row; */
+  flex-direction: column;
   width: 45%;
   min-height: 100vh;
   margin-top: 5em;

@@ -4,6 +4,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import EditAccount from "./pages/EditAccount/EditAccount";
 import PostUpload from "./pages/PostUpload/PostUpload";
+import UserPage from "./pages/UserPage/UserPage";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -38,7 +39,12 @@ function App({ connectedUser }) {
             )
           }
         />
-        <Route path="/myAccount/:user" />
+        <Route
+          path="/userAccountPage"
+          element={
+            connectedUser.name ? <UserPage /> : <Navigate replace to="/login" />
+          }
+        />
       </Routes>
     </div>
   );

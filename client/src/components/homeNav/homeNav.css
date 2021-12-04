@@ -11,8 +11,10 @@
   position: fixed;
   top: 0;
   z-index: 1;
-  width: 71%;
+  width: 100%;
   background-color: whitesmoke;
+  left: 0;
+  right: 0;
 }
 .news-component-container {
   position: fixed;
@@ -25,14 +27,19 @@
 .profile-links {
   display: flex;
   justify-content: center;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .link-item {
   text-decoration: none;
 }
 
-.app-logo {
+.app-logo-text {
   margin: 0.4em;
+  font-size: 1.75rem;
+  text-decoration: none;
+  color: rgb(87, 87, 87);
 }
 
 .nav-avatar {

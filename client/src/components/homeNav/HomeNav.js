@@ -15,7 +15,9 @@ export default function HomeNav() {
     <div className="home-navigation-container">
       <nav className="home-navigation">
         <div className="app-logo">
-          <h1>SocialYou</h1>
+          <Link className="app-logo-text" to="/">
+            SocialYou
+          </Link>
         </div>
 
         <div className="search-box">
