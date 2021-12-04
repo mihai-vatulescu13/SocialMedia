@@ -5,23 +5,28 @@ import { connect } from "react-redux";
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
-  let name = useRef();
-  let password = useRef();
 
   const { _id } = connectedUser;
-  console.log("user id:", _id);
 
   useEffect(() => {
     const getUser = async () => {
       const resultUser = await axios.get(`/user/user/${_id}`);
       console.log(resultUser.data);
+
       setUser(resultUser.data);
     };
     getUser();
   }, []);
 
+  const onDataChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   const onEditAccount = async (e) => {
     e.preventDefault();
+    //to be continued:
+    //the password needs to be encrypted on the server side(edit account endpoint)
+    console.log("new user data:", user);
   };
 
   return (
@@ -37,6 +42,8 @@ const EditAccount = ({ connectedUser }) => {
                 name="name"
                 placeholder={user.name}
                 className="form-input"
+                name="name"
+                onChange={(e) => onDataChange(e)}
               />
             </label>
             {/* <label className="form-label">
@@ -50,7 +57,13 @@ const EditAccount = ({ connectedUser }) => {
             </label> */}
             <label className="form-label">
               Change password:
-              <input type="password" name="password" className="form-input" />
+              <input
+                type="password"
+                name="password"
+                className="form-input"
+                name="password"
+                onChange={(e) => onDataChange(e)}
+              />
             </label>
           </div>
 

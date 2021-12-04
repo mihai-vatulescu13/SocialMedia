@@ -39,7 +39,7 @@ const UserPage = ({ connectedUser }) => {
                 src={
                   userProfilePicture === "" ? Pf + "user-avatar.png" : "string"
                 }
-                alt="user profile picture"
+                alt="user profile"
                 className="user-profile-picture"
               />
             </div>
@@ -72,11 +72,7 @@ const UserPage = ({ connectedUser }) => {
               return (
                 //temporary post card
                 <div className="post-card" key={index}>
-                  <img
-                    src={post.image}
-                    alt="post picture"
-                    className="post-picture"
-                  />
+                  <img src={post.image} alt="post" className="post-picture" />
                   <h3>{post.description}</h3>
                 </div>
               );
