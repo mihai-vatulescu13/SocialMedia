@@ -28,7 +28,16 @@ function App({ connectedUser }) {
             connectedUser.name ? <Navigate replace to="/" /> : <Register />
           }
         />
-        <Route path="/editAccount" element={<EditAccount />} />
+        <Route
+          path="/editAccount"
+          element={
+            connectedUser.name ? (
+              <EditAccount />
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
         <Route
           path="/upload"
           element={

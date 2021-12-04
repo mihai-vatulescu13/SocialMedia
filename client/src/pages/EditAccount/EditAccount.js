@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRef, useEffect, useState } from "react";
+import "./editAccount.css";
 import { connect } from "react-redux";
 
 const EditAccount = ({ connectedUser }) => {
@@ -30,7 +31,7 @@ const EditAccount = ({ connectedUser }) => {
         <form action="submit" className="edit-form" onSubmit={onEditAccount}>
           <div className="form-fields">
             <label className="form-label">
-              Name:
+              Change name:
               <input
                 type="text"
                 name="name"
@@ -48,15 +49,11 @@ const EditAccount = ({ connectedUser }) => {
               />
             </label> */}
             <label className="form-label">
-              Password:
-              <input
-                type="password"
-                name="password"
-                //placeholder="password"
-                className="form-input"
-              />
+              Change password:
+              <input type="password" name="password" className="form-input" />
             </label>
           </div>
+
           <div className="form-buttons">
             <div className="submit-btn">
               <button className="submit-edit" type="submit">
@@ -66,7 +63,9 @@ const EditAccount = ({ connectedUser }) => {
           </div>
         </form>
       ) : (
-        <h1>Loading ...</h1>
+        <div className="loading-box">
+          <h1>Loading ...</h1>
+        </div>
       )}
       {/* to be continued */}
       <div className="sign-out-button-box">
