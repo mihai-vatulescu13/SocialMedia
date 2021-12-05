@@ -12,7 +12,7 @@ const PostUpload = ({ user }) => {
     e.preventDefault();
     let file = postImage.current.files[0];
 
-    const converBase64 = (file) => {
+    const convertBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
@@ -27,7 +27,7 @@ const PostUpload = ({ user }) => {
       });
     };
 
-    const base64 = await converBase64(file);
+    const base64 = await convertBase64(file);
     //base64 -> our image
     await axios.post(`/post/addPost?user=${user}`, {
       description: description.current.value,

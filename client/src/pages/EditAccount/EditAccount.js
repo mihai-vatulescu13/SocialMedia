@@ -5,14 +5,21 @@ import { connect } from "react-redux";
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
-
+  /*
+   {
+    name: "",
+    email: "",
+    profilePicture: null,
+    password: "",
+  }
+  */
+  const imageFile = useRef();
   const { _id } = connectedUser;
 
   useEffect(() => {
     const getUser = async () => {
       const resultUser = await axios.get(`/user/user/${_id}`);
       console.log(resultUser.data);
-
       setUser(resultUser.data);
     };
     getUser();
@@ -24,9 +31,31 @@ const EditAccount = ({ connectedUser }) => {
 
   const onEditAccount = async (e) => {
     e.preventDefault();
-    //to be continued:
     //the password needs to be encrypted on the server side(edit account endpoint)
-    console.log("new user data:", user);
+
+    let image = imageFile.current.files[0];
+
+    const convertBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
+    };
+
+    const base64Image = await convertBase64(image);
+
+    await axios.put(`/user/editUser/${_id}`, {
+      ...user,
+      profilePicture: base64Image,
+    });
   };
 
   return (
@@ -65,8 +94,15 @@ const EditAccount = ({ connectedUser }) => {
                 onChange={(e) => onDataChange(e)}
               />
             </label>
+            <div className="add-profile-picture">
+              <input
+                type="file"
+                className="add-picture"
+                // accept=".jpg .png .jpeg"
+                ref={imageFile}
+              />
+            </div>
           </div>
-
           <div className="form-buttons">
             <div className="submit-btn">
               <button className="submit-edit" type="submit">
@@ -80,12 +116,6 @@ const EditAccount = ({ connectedUser }) => {
           <h1>Loading ...</h1>
         </div>
       )}
-      {/* to be continued */}
-      <div className="sign-out-button-box">
-        {/* <button onClick={() => setIsConnected(false)}>
-          Sign out
-        </button> */}
-      </div>
     </div>
   );
 };

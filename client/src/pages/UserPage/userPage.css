@@ -16,6 +16,7 @@
 .user-profile-picture {
   width: 180px;
   height: auto;
+  border-radius: 50%;
 }
 
 .user-main-details {

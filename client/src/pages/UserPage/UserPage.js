@@ -12,6 +12,9 @@ const UserPage = ({ connectedUser }) => {
 
   const Pf = process.env.REACT_APP_ASSETS;
   const { _id } = connectedUser;
+
+  console.log("connected user from store:", currentUser);
+
   useEffect(() => {
     const getUserData = async () => {
       //get and set state with user data:
@@ -35,9 +38,10 @@ const UserPage = ({ connectedUser }) => {
           <div className="picture-and-details">
             <div className="picture-container">
               <img
-                // src={userProfilePicture === "" ? Pf + "user-avatar.png" : currentUser.profilePicture}
                 src={
-                  userProfilePicture === "" ? Pf + "user-avatar.png" : "string"
+                  currentUser.profilePicture === ""
+                    ? Pf + "user-avatar.png"
+                    : currentUser.profilePicture
                 }
                 alt="user profile"
                 className="user-profile-picture"
