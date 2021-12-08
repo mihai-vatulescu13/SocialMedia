@@ -7,9 +7,15 @@ import {
   faCameraRetro,
 } from "@fortawesome/free-solid-svg-icons";
 import "./homeNav.css";
+import { connect } from "react-redux";
+import { useEffect } from "react";
 
-export default function HomeNav() {
+const HomeNav = ({ connectedUser }) => {
   const PF = process.env.REACT_APP_ASSETS;
+
+  useEffect(() => {
+    console.log("connected user in nav component:", connectedUser);
+  }, []);
 
   return (
     <div className="home-navigation-container">
@@ -47,4 +53,12 @@ export default function HomeNav() {
       </nav>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    connectedUser: state.AuthReducer,
+  };
+};
+
+export default connect(mapStateToProps)(HomeNav);

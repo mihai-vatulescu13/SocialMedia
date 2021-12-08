@@ -13,8 +13,6 @@ const UserPage = ({ connectedUser }) => {
   const Pf = process.env.REACT_APP_ASSETS;
   const { _id } = connectedUser;
 
-  console.log("connected user from store:", currentUser);
-
   useEffect(() => {
     const getUserData = async () => {
       //get and set state with user data:
@@ -50,8 +48,10 @@ const UserPage = ({ connectedUser }) => {
             <div className="user-details">
               <div className="name-and-edit-profile">
                 <h3>{currentUser.name}</h3>
-                <button>
-                  <Link to="/editAccount">Edit profile</Link>
+                <button className="edit-profile-button">
+                  <Link to="/editAccount" className="edit-profile-link">
+                    Edit profile
+                  </Link>
                 </button>
               </div>
               <div className="posts-follows-followings">
@@ -60,7 +60,7 @@ const UserPage = ({ connectedUser }) => {
                 <h4>{currentUser.followed.length} followings</h4>
               </div>
               <div className="user-nickname">
-                <h4>User nickname</h4>
+                {/* <h4>User nickname</h4> */}
               </div>
             </div>
           </div>

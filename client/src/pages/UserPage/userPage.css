@@ -15,7 +15,8 @@
 
 .user-profile-picture {
   width: 180px;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -82,4 +83,19 @@
 
 .user-posts-container {
   width: 1300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.edit-profile-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: whitesmoke;
+}
+
+.edit-profile-button {
+  padding: 0.2em;
+  border-radius: 4px;
+  outline: none;
+  background-color: rgb(87, 87, 87);
 }
