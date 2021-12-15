@@ -77,13 +77,19 @@
   justify-content: center;
 }
 
-.user-posts-container {
+.posts-container {
   display: flex;
-  width: 75%;
-  justify-content: space-evenly;
+  width: 70%;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
+
+.user-posts-container {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 614px) {
   .user-posts-container {
     justify-content: center;

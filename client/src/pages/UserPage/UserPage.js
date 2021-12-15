@@ -84,24 +84,26 @@ const UserPage = ({ connectedUser }) => {
       <div className="user-posts">
         {userPosts ? (
           <div className="user-posts-container">
-            {userPosts.map((post, index) => {
-              return (
-                //temporary post card
-                <div
-                  className="post-card"
-                  key={index}
-                  onClick={() => onOpenPostModal(post)}
-                >
-                  <img src={post.image} alt="post" className="post-picture" />
-                  <button
-                    className="delete-post"
-                    onClick={() => onDeletePost(post._id)}
+            <div className="posts-container">
+              {userPosts.map((post, index) => {
+                return (
+                  //temporary post card
+                  <div
+                    className="post-card"
+                    key={index}
+                    onClick={() => onOpenPostModal(post)}
                   >
-                    Delete post
-                  </button>
-                </div>
-              );
-            })}
+                    <img src={post.image} alt="post" className="post-picture" />
+                    <button
+                      className="delete-post"
+                      onClick={() => onDeletePost(post._id)}
+                    >
+                      Delete post
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
             {
               //render here the post modal(just for test)
               openedPostModal === true ? (
