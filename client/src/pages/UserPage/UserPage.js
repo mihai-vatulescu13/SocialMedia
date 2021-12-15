@@ -82,12 +82,11 @@ const UserPage = ({ connectedUser }) => {
       )}
       {/* redner here user posts */}
       <div className="user-posts">
-        {userPosts ? (
+        {userPosts && currentUser ? (
           <div className="user-posts-container">
             <div className="posts-container">
               {userPosts.map((post, index) => {
                 return (
-                  //temporary post card
                   <div
                     className="post-card"
                     key={index}
@@ -111,6 +110,7 @@ const UserPage = ({ connectedUser }) => {
                   post={currentPost}
                   openedPostModal={openedPostModal}
                   setOpenedPostModal={setOpenedPostModal}
+                  userData={currentUser}
                 />
               ) : (
                 <></>

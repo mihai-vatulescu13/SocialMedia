@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useRef } from 'react';
-import './postModal.css';
+import { useEffect } from "react";
+import { useRef } from "react";
+import "./postModal.css";
 
-const PostModal = ({ post, setOpenedPostModal }) => {
+const PostModal = ({ post, setOpenedPostModal, userData }) => {
   const cardRef = useRef();
   useEffect(() => {
     const outsideClick = (e) => {
@@ -10,9 +10,9 @@ const PostModal = ({ post, setOpenedPostModal }) => {
         setOpenedPostModal();
       }
     };
-    document.addEventListener('click', outsideClick);
+    document.addEventListener("click", outsideClick);
     return () => {
-      document.removeEventListener('click', outsideClick);
+      document.removeEventListener("click", outsideClick);
     };
   }, []);
   return (
@@ -21,11 +21,18 @@ const PostModal = ({ post, setOpenedPostModal }) => {
         <img src={post.image} alt="post" className="post-img" />
         <div className="info-post">
           <div className="user-post">
-            <img src={post.image} alt="userImage" className="userImage" />
-            <span className="post-manu"> &#8230;</span>
+            <div className="image-and-username">
+              <img
+                src={userData.profilePicture}
+                alt="userImage"
+                className="userImage"
+              />
+              <h4 className="username-heading">{userData.name}</h4>
+            </div>
+            <span className="post-menu"> &#8230;</span>
           </div>
           <div className="comments-section">
-            <h3>{post.description}</h3>
+            <h3 className="post-desc-heading">{post.description}</h3>
           </div>
           <div className="react-socialbar">ba</div>
           <div className="input-sendComment">ba</div>
