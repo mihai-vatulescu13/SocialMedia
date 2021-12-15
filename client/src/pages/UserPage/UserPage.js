@@ -81,7 +81,7 @@ const UserPage = ({ connectedUser }) => {
         <h1>Loading...</h1>
       )}
       {/* redner here user posts */}
-      <section className="user-posts">
+      <div className="user-posts">
         {userPosts ? (
           <div className="user-posts-container">
             {userPosts.map((post, index) => {
@@ -120,7 +120,7 @@ const UserPage = ({ connectedUser }) => {
             <h1>Loading...</h1>
           </div>
         )}
-      </section>
+      </div>
     </div>
   );
 };
