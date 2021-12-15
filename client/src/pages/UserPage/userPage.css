@@ -1,6 +1,7 @@
 .user-page-container {
   background-color: whitesmoke;
   min-height: 99vh;
+  position: absolute;
 }
 
 .center-nav {

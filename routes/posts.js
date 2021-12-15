@@ -62,17 +62,18 @@ router.put("/editPost", async (req, res) => {
 });
 
 //delete post
-router.delete("/deletePost", async (req, res) => {
+router.delete("/deletePost/:postId", async (req, res) => {
   try {
-    const user = await User.findById(req.query.user);
-    !user && res.status(404).send("Not found");
-    await Post.findOneAndDelete({ userId: user.id });
+    // const user = await User.findById(req.query.user);
+    // !user && res.status(404).send("Not found");
+    await Post.findOneAndDelete({ _id: req.params.postId });
     res.status(200).send("Succes");
   } catch (err) {
     res.status(500).send("Faill");
     console.log(err);
   }
 });
+
 //Like post
 router.put("/likePost", async (req, res) => {
   try {

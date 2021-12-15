@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./userPage.css";
 import { connect } from "react-redux";
+import PostModal from "../../components/PostModal/PostModal";
 import axios from "axios";
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
-  const [userProfilePicture, setUserProfilePicture] = useState("");
+  const [currentPost, setCurrentPost] = useState({});
+  const [openedPostModal, setOpenedPostModal] = useState(false);
 
   const Pf = process.env.REACT_APP_ASSETS;
   const { _id } = connectedUser;
@@ -25,6 +27,16 @@ const UserPage = ({ connectedUser }) => {
 
     getUserData();
   }, []);
+
+  const onDeletePost = async (postId) => {
+    const response = await axios.delete(`/post/deletePost/${postId}`);
+    console.log("deletion response:", response.data);
+  };
+
+  const onOpenPostModal = (postData) => {
+    setCurrentPost(postData);
+    setOpenedPostModal((prevVal) => !prevVal);
+  };
 
   return (
     <div className="user-page-container">
@@ -75,12 +87,33 @@ const UserPage = ({ connectedUser }) => {
             {userPosts.map((post, index) => {
               return (
                 //temporary post card
-                <div className="post-card" key={index}>
+                <div
+                  className="post-card"
+                  key={index}
+                  onClick={() => onOpenPostModal(post)}
+                >
                   <img src={post.image} alt="post" className="post-picture" />
-                  <h3>{post.description}</h3>
+                  <button
+                    className="delete-post"
+                    onClick={() => onDeletePost(post._id)}
+                  >
+                    Delete post
+                  </button>
                 </div>
               );
             })}
+            {
+              //render here the post modal(just for test)
+              openedPostModal === true ? (
+                <PostModal
+                  post={currentPost}
+                  openedPostModal={openedPostModal}
+                  setOpenedPostModal={setOpenedPostModal}
+                />
+              ) : (
+                <></>
+              )
+            }
           </div>
         ) : (
           <div>
