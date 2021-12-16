@@ -38,8 +38,8 @@ const PostModal = ({ post, setOpenedPostModal, userData }) => {
             <h5 className="posted-date">{format(post.createdAt)}</h5>
             <h3 className="post-desc-heading">{post.description}</h3>
           </div>
-          <div className="react-socialbar">ba</div>
-          <div className="input-sendComment">ba</div>
+          <div className="react-socialbar">ba dane</div>
+          <div className="input-sendComment">ba ba ba</div>
         </div>
       </div>
     </div>
