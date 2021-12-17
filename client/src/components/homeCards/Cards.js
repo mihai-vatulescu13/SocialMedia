@@ -1,29 +1,61 @@
-import './cards.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./cards.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisH,
   faShareSquare,
   faThumbtack,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faComment,
   faThumbsUp,
   faSmile,
-} from '@fortawesome/free-regular-svg-icons';
-import { comments } from '../../components/testData/homeCard';
+} from "@fortawesome/free-regular-svg-icons";
+import { comments } from "../../components/testData/homeCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from "timeago.js";
 
-const Cards = ({ title, photo, location, like, printed }) => {
+const Cards = ({
+  title,
+  photo,
+  location,
+  like,
+  printed,
+  createdAt,
+  userId,
+}) => {
   const PF = process.env.REACT_APP_ASSETS;
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  const [user, setUser] = useState({
+    image: "",
+    name: "",
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await axios.get(`/user/getUser/${userId}`);
+      setUser({ ...user, image: data.profilePicture, name: data.name });
+    };
+
+    fetchUser();
+  }, []);
+
   return (
     <div className="post_Card">
       <div className="header_card">
-        <img src={PF + '4.jpg'} alt="avatar" className="avatarImage" />
+        <img
+          src={user.image ? user.image : PF + "user-avatar.png"}
+          alt="avatar"
+          className="avatarImage"
+        />
         <div className="headerUser">
-          <h3>{title}</h3>
-          <p>{location}</p>
+          <h3>{user.name ? user.name : "nuuu"}</h3>
+          <div className="location-and-posted-date">
+            <p className="location-paragraph">{location} </p>{" "}
+            <h5 className="created-at-heading">{format(createdAt)}</h5>
+          </div>
         </div>
         <div className="stuffPost">
           <FontAwesomeIcon icon={faEllipsisH} />
@@ -35,14 +67,14 @@ const Cards = ({ title, photo, location, like, printed }) => {
           <FontAwesomeIcon
             icon={faThumbsUp}
             className="Icons likeIcon"
-            style={like && { color: '#20a1dd' }}
+            style={like && { color: "#20a1dd" }}
           />
           <FontAwesomeIcon icon={faShareSquare} className="Icons" />
           <FontAwesomeIcon icon={faComment} className="Icons" />
           <FontAwesomeIcon
             icon={faThumbtack}
             className="Icons printIcon"
-            style={printed && { color: '#444444' }}
+            style={printed && { color: "#444444" }}
           />
         </div>
         <div className="comments_container">
@@ -52,7 +84,7 @@ const Cards = ({ title, photo, location, like, printed }) => {
                 return (
                   <p key={index} className="comment_elem">
                     <span className="userComment">{elem.name}</span>
-                    {': ' + elem.comment}
+                    {": " + elem.comment}
                   </p>
                 );
               })}
@@ -62,7 +94,7 @@ const Cards = ({ title, photo, location, like, printed }) => {
             comments.map((elem, index) => {
               return (
                 <p key={index} className="comment_elem">
-                  <span className="userComment">{elem.name + ': '}</span>
+                  <span className="userComment">{elem.name + ": "}</span>
                   {elem.comment}
                 </p>
               );

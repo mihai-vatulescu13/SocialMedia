@@ -11,7 +11,7 @@ const EditAccount = ({ connectedUser }) => {
 
   useEffect(() => {
     const getUser = async () => {
-      const resultUser = await axios.get(`/user/user/${_id}`);
+      const resultUser = await axios.get(`/user/getUser/${_id}`);
       setUser(resultUser.data);
     };
     getUser();

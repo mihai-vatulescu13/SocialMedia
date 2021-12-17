@@ -8,14 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./homeNav.css";
 import { connect } from "react-redux";
-import { useEffect } from "react";
 
-const HomeNav = ({ connectedUser }) => {
+const HomeNav = ({}) => {
   const PF = process.env.REACT_APP_ASSETS;
-
-  useEffect(() => {
-    console.log("connected user in nav component:", connectedUser);
-  }, []);
 
   return (
     <div className="home-navigation-container">

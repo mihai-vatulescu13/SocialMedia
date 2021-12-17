@@ -18,7 +18,7 @@ const UserPage = ({ connectedUser }) => {
   useEffect(() => {
     const getUserData = async () => {
       //get and set state with user data:
-      const { data } = await axios.get(`/user/user/${_id}`);
+      const { data } = await axios.get(`/user/getUser/${_id}`);
       setCurrentUser(data);
       //get and set state with user posts
       const userPostsArray = await axios.get(`/post/getUserPosts/${_id}`);

@@ -3,42 +3,72 @@ import Card from "../../components/homeCards/Cards";
 import { objCards, ownUser } from "../../components/testData/homeCard";
 import "./home.css";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Home() {
+function Home({ userId }) {
   const [posts, setPosts] = useState(null);
+  const [user, setUser] = useState({
+    image: "",
+    name: "",
+  });
+
+  const PF = process.env.REACT_APP_ASSETS;
+
   useEffect(() => {
-    const fetch = async () => {
-      setPosts(await axios.get("/post/getPosts"));
+    const fetchPosts = async () => {
+      const { data } = await axios.get("/post/getPosts");
+      setPosts(data);
     };
-    fetch();
+
+    const fetchCurrentUserData = async (userId) => {
+      const { data } = await axios.get(`/user/getUser/${userId}`);
+      setUser({ ...user, image: data.profilePicture, name: data.name });
+    };
+
+    fetchCurrentUserData(userId);
+    fetchPosts();
   }, []);
 
   return (
     <div className="home_container">
       <div className="body-container">
         <HomeNaV />
-        <div className="flow-posts">
-          {objCards.map((elem, index) => {
-            return (
-              <Card
-                key={index}
-                title={elem.name}
-                photo={elem.photo}
-                location={elem.location}
-                like={elem.like}
-                printed={elem.printed}
-              />
-            );
-          })}
-        </div>
+        {posts ? (
+          <div className="flow-posts">
+            {posts
+              .filter((elem) => elem.userId !== userId)
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map((elem, index) => {
+                return (
+                  <Card
+                    key={index}
+                    title={elem.description}
+                    photo={elem.image}
+                    location={elem.location}
+                    like={elem.like}
+                    printed={elem.printed}
+                    createdAt={elem.createdAt}
+                    userId={elem.userId}
+                  />
+                );
+              })}
+          </div>
+        ) : (
+          <h1>Loading ...</h1>
+        )}
         <div className="users-sugestion">
           <div className="ownerUser">
-            <img src={ownUser.photo} alt="avatar" className="ownerImage" />
+            <img
+              src={user.image ? user.image : PF + "user-avatar.png"}
+              alt="avatar"
+              className="ownerImage"
+            />
             <div className="ownerInfo">
-              <p className="titleName ">{ownUser.name}</p>
+              <p className="titleName ">
+                {user.name ? user.name : "Loading..."}
+              </p>
               <span className="subTitle">{ownUser.location}</span>
             </div>
             <Link to="/" className="buttonAccount">
@@ -76,7 +106,7 @@ function Home() {
 }
 const mapStateToProps = (state) => {
   return {
-    user: state.AuthReducer._id,
+    userId: state.AuthReducer._id,
   };
 };
 export default connect(mapStateToProps)(Home);
