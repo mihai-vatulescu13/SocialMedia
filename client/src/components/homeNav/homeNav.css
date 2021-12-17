@@ -52,3 +52,8 @@
   font-size: 1.6rem;
   color: rgb(54, 54, 54);
 }
+
+.application-logo {
+  height: 57px;
+  width: 70px;
+}

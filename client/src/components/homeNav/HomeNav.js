@@ -22,7 +22,11 @@ const HomeNav = ({ connectedUser }) => {
       <nav className="home-navigation">
         <div className="app-logo">
           <Link className="app-logo-text" to="/">
-            SocialYou
+            <img
+              src={PF + "appLogo.png"}
+              className="application-logo"
+              alt="app logo"
+            />
           </Link>
         </div>
 
