@@ -6,31 +6,26 @@ import { connect } from "react-redux";
 import { Auth } from "../../actions/actions";
 
 const Register = ({ registerUser }) => {
-
   const userData = {
     name: useRef(),
     email: useRef(),
-    city: useRef(),
     password: useRef(),
   };
 
   const onRegisterUser = (e) => {
     e.preventDefault();
-    const { name, email, city, password } = userData;
+    const { name, email, password } = userData;
 
     //pass user data to the dispatch and then to the action:
     registerUser({
       name: name.current.value,
       email: email.current.value,
-      city: city.current.value,
       password: password.current.value,
     });
 
     name.current.value = "";
     email.current.value = "";
-    city.current.value = "";
     password.current.value = "";
-
   };
 
   return (

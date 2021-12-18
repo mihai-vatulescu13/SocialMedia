@@ -11,6 +11,10 @@ const userSchema = new Schema(
       maxlength: 25,
       required: true,
     },
+    profilePicture: {
+      type: String,
+      default: "",
+    },
     password: {
       type: String,
       minlength: 6,
@@ -20,10 +24,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-    },
-    city: {
-      type: String,
-      default: ''
     },
     following: {
       type: Array,

@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+.home_container {
+  box-sizing: border-box;
+  background-color: rgb(247, 247, 247);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.body-container {
+  display: flex;
+  /* before it was -> flex-direction: row; */
+  flex-direction: column;
+  width: 45%;
+  min-height: 100vh;
+  margin-top: 5em;
+  margin-right: 12em;
+}
+.flow-posts {
+  width: 100%;
+}
+.users-sugestion {
+  width: 20%;
+  height: 500px;
+  /* background-color: rgb(161, 210, 219); */
+  position: fixed;
+  right: 11em;
+}
+.ownerImage {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.ownerInfo {
+  margin-left: 0.5em;
+  flex: 1;
+}
+.ownerUser {
+  display: flex;
+  align-items: center;
+  margin: 1em;
+}
+.titleName {
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  width: fit-content;
+}
+.subTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(173, 173, 173);
+  cursor: pointer;
+}
+.buttonAccount {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(14, 14, 14);
+}
+.Users {
+  display: flex;
+  margin-top: 1.2em;
+  align-items: center;
+}
+.usersImage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.suggestionItems {
+  display: flex;
+  justify-content: space-between;
+}

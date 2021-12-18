@@ -1,0 +1,78 @@
+.post-description {
+  resize: none;
+  outline: none;
+  height: 200px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border: 1px solid rgb(202, 202, 202);
+}
+
+.post-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.center-upload-page {
+  background-color: rgb(222, 241, 253);
+  width: 100%;
+  height: 800px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.post-ulpoad-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid; */
+  width: 80%;
+}
+
+.location {
+  width: 100%;
+  padding: 0.7em;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgb(202, 202, 202);
+  border-radius: 5px;
+}
+
+.post-description,
+.upload-btn,
+.location {
+  margin: 2em;
+}
+
+.post-description,
+.post-upload {
+  width: 100%;
+}
+
+.upload-btn {
+  width: 100px;
+  height: 30px;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.main-heading {
+  color: rgb(90, 90, 90);
+}
+
+.preview-image {
+  margin-top: 0.7em;
+}
+
+/* .post-img {
+  opacity: 0;
+} */
