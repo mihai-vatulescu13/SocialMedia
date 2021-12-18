@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useRef } from "react";
-import { format } from "timeago.js";
-import "./postModal.css";
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import { format } from 'timeago.js';
+import './postModal.css';
 
 const PostModal = ({ post, setOpenedPostModal, userData }) => {
   const cardRef = useRef();
@@ -12,11 +12,11 @@ const PostModal = ({ post, setOpenedPostModal, userData }) => {
         setOpenedPostModal();
       }
     };
-    document.addEventListener("click", outsideClick);
+    document.addEventListener('click', outsideClick);
     return () => {
-      document.removeEventListener("click", outsideClick);
+      document.removeEventListener('click', outsideClick);
     };
-  }, []);
+  }, [setOpenedPostModal]);
 
   return (
     <div className="background-modal-container">

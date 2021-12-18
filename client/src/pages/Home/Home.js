@@ -1,35 +1,37 @@
-import HomeNaV from "../../components/homeNav/HomeNav";
-import Card from "../../components/homeCards/Cards";
-import { objCards, ownUser } from "../../components/testData/homeCard";
-import "./home.css";
-import { Link } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import HomeNaV from '../../components/homeNav/HomeNav';
+import Card from '../../components/homeCards/Cards';
+import { objCards, ownUser } from '../../components/testData/homeCard';
+import './home.css';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Home({ userId }) {
   const [posts, setPosts] = useState(null);
   const [user, setUser] = useState({
-    image: "",
-    name: "",
+    image: '',
+    name: '',
   });
 
   const PF = process.env.REACT_APP_ASSETS;
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get("/post/getPosts");
+      const { data } = await axios.get('/post/getPosts');
       setPosts(data);
     };
 
     const fetchCurrentUserData = async (userId) => {
       const { data } = await axios.get(`/user/getUser/${userId}`);
-      setUser({ ...user, image: data.profilePicture, name: data.name });
+      setUser((prevValue) => {
+        return { ...prevValue, image: data.profilePicture, name: data.name };
+      });
     };
 
     fetchCurrentUserData(userId);
     fetchPosts();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="home_container">
@@ -47,10 +49,11 @@ function Home({ userId }) {
                     title={elem.description}
                     photo={elem.image}
                     location={elem.location}
-                    like={elem.like}
+                    like={elem.likes}
                     printed={elem.printed}
                     createdAt={elem.createdAt}
                     userId={elem.userId}
+                    postId={elem._id}
                   />
                 );
               })}
@@ -61,13 +64,13 @@ function Home({ userId }) {
         <div className="users-sugestion">
           <div className="ownerUser">
             <img
-              src={user.image ? user.image : PF + "user-avatar.png"}
+              src={user.image ? user.image : PF + 'user-avatar.png'}
               alt="avatar"
               className="ownerImage"
             />
             <div className="ownerInfo">
               <p className="titleName ">
-                {user.name ? user.name : "Loading..."}
+                {user.name ? user.name : 'Loading...'}
               </p>
               <span className="subTitle">{ownUser.location}</span>
             </div>
@@ -77,7 +80,7 @@ function Home({ userId }) {
           </div>
           <div className="suggestions">
             <div className="suggestionItems">
-              <span style={{ marginLeft: "0.5em", fontWeight: "600" }}>
+              <span style={{ marginLeft: '0.5em', fontWeight: '600' }}>
                 Suggestions for you
               </span>
               <Link to="/" className="buttonAccount">

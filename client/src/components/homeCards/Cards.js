@@ -1,22 +1,22 @@
-import "./cards.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './cards.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEllipsisH,
   faShareSquare,
   faThumbtack,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faComment,
   faThumbsUp,
   faSmile,
-} from "@fortawesome/free-regular-svg-icons";
-import { comments } from "../../components/testData/homeCard";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { format } from "timeago.js";
+} from '@fortawesome/free-regular-svg-icons';
+import { comments } from '../../components/testData/homeCard';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { format } from 'timeago.js';
 
 const Cards = ({
-  title,
+  postId,
   photo,
   location,
   like,
@@ -29,52 +29,92 @@ const Cards = ({
     e.preventDefault();
   };
   const [user, setUser] = useState({
-    image: "",
-    name: "",
+    image: '',
+    name: '',
   });
-
+  const [likes, setLikes] = useState({
+    lengthLikes: null,
+    yourLike: null,
+  });
+  const handleClick = async () => {
+    const { data } = await axios.put(`/post/likePost/${postId}`, {
+      userId: userId,
+    });
+    if (data === 'dislike') {
+      setLikes((prevValue) => {
+        return {
+          ...prevValue,
+          lengthLikes: prevValue.lengthLikes - 1,
+          yourLike: false,
+        };
+      });
+    }
+    if (data === 'like') {
+      setLikes((prevValue) => {
+        return {
+          ...prevValue,
+          lengthLikes: prevValue.lengthLikes + 1,
+          yourLike: true,
+        };
+      });
+    }
+  };
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await axios.get(`/user/getUser/${userId}`);
-      setUser({ ...user, image: data.profilePicture, name: data.name });
+      setUser((prevValue) => {
+        return {
+          ...prevValue,
+          image: data.profilePicture,
+          name: data.name,
+        };
+      });
     };
-
+    setLikes({
+      lengthLikes: like.length,
+      yourLike: like.includes(userId) ? true : false,
+    });
     fetchUser();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="post_Card">
-      <div className="header_card">
+      <header className="header_card">
         <img
-          src={user.image ? user.image : PF + "user-avatar.png"}
+          src={user.image ? user.image : PF + 'user-avatar.png'}
           alt="avatar"
           className="avatarImage"
         />
         <div className="headerUser">
-          <h3>{user.name ? user.name : "nuuu"}</h3>
+          <h3>{user.name ? user.name : ''}</h3>
           <div className="location-and-posted-date">
-            <p className="location-paragraph">{location} </p>{" "}
+            <p className="location-paragraph">{location} </p>
             <h5 className="created-at-heading">{format(createdAt)}</h5>
           </div>
         </div>
         <div className="stuffPost">
           <FontAwesomeIcon icon={faEllipsisH} />
         </div>
-      </div>
+      </header>
       <img src={photo} alt="postimg" className="cardImg" />
-      <div className="footer_card">
+      <footer className="footer_card">
         <div className="like_bar">
           <FontAwesomeIcon
             icon={faThumbsUp}
             className="Icons likeIcon"
-            style={like && { color: "#20a1dd" }}
+            style={likes.yourLike ? { color: '#20a1dd' } : {}}
+            onClick={handleClick}
           />
+          <span className="Likes">
+            {likes.lengthLikes && likes.lengthLikes}
+          </span>
+          {console.log('statulbaa', likes)}
           <FontAwesomeIcon icon={faShareSquare} className="Icons" />
           <FontAwesomeIcon icon={faComment} className="Icons" />
           <FontAwesomeIcon
             icon={faThumbtack}
             className="Icons printIcon"
-            style={printed && { color: "#444444" }}
+            style={printed && { color: '#444444' }}
           />
         </div>
         <div className="comments_container">
@@ -84,7 +124,7 @@ const Cards = ({
                 return (
                   <p key={index} className="comment_elem">
                     <span className="userComment">{elem.name}</span>
-                    {": " + elem.comment}
+                    {': ' + elem.comment}
                   </p>
                 );
               })}
@@ -94,7 +134,7 @@ const Cards = ({
             comments.map((elem, index) => {
               return (
                 <p key={index} className="comment_elem">
-                  <span className="userComment">{elem.name + ": "}</span>
+                  <span className="userComment">{elem.name + ': '}</span>
                   {elem.comment}
                 </p>
               );
@@ -114,7 +154,7 @@ const Cards = ({
             </button>
           </form>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

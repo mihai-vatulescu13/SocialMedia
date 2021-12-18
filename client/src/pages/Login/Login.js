@@ -17,12 +17,6 @@ const Login = ({ connectedUser, setUserLogin }) => {
       email: email.current.value,
       password: password.current.value,
     });
-
-    if (connectedUser) {
-      console.log('the user is connected');
-    } else {
-      console.log('not yet');
-    }
   };
 
   return (
