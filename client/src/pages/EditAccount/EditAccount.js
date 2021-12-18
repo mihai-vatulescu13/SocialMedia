@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useRef, useEffect, useState } from "react";
-import "./editAccount.css";
-import { connect } from "react-redux";
+import axios from 'axios';
+import { useRef, useEffect, useState } from 'react';
+import './editAccount.css';
+import { connect } from 'react-redux';
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
@@ -15,7 +15,7 @@ const EditAccount = ({ connectedUser }) => {
       setUser(resultUser.data);
     };
     getUser();
-  }, []);
+  }, [_id]);
 
   const onDataChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -65,7 +65,6 @@ const EditAccount = ({ connectedUser }) => {
                 name="name"
                 placeholder={user.name}
                 className="form-input"
-                name="name"
                 onChange={(e) => onDataChange(e)}
               />
             </label>
@@ -84,7 +83,6 @@ const EditAccount = ({ connectedUser }) => {
                 type="password"
                 name="password"
                 className="form-input"
-                name="password"
                 onChange={(e) => onDataChange(e)}
               />
             </label>

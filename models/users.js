@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 //grab schema from mongoose:
 const { Schema } = mongoose;
@@ -13,7 +13,7 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      default: "",
+      default: '',
     },
     password: {
       type: String,
@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    savedPosts: {
+      type: Array,
+      default: [],
     },
     following: {
       type: Array,
@@ -37,4 +41,4 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model('users', userSchema);

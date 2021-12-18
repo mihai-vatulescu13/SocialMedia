@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import Search from "../Search/Search";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom';
+import Search from '../Search/Search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouseUser,
   faTrophy,
   faCameraRetro,
-} from "@fortawesome/free-solid-svg-icons";
-import "./homeNav.css";
-import { connect } from "react-redux";
+} from '@fortawesome/free-solid-svg-icons';
+import './homeNav.css';
+import { connect } from 'react-redux';
 
-const HomeNav = ({}) => {
+const HomeNav = () => {
   const PF = process.env.REACT_APP_ASSETS;
 
   return (
@@ -18,7 +18,7 @@ const HomeNav = ({}) => {
         <div className="app-logo">
           <Link className="app-logo-text" to="/">
             <img
-              src={PF + "appLogo.png"}
+              src={PF + 'appLogo.png'}
               className="application-logo"
               alt="app logo"
             />
@@ -43,7 +43,7 @@ const HomeNav = ({}) => {
           </Link>
           <Link to="/userAccountPage" className="link-item">
             <img
-              src={PF + "user-avatar.png"}
+              src={PF + 'user-avatar.png'}
               alt="user avatar"
               className="nav-avatar"
             />

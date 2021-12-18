@@ -27,8 +27,6 @@
     "helmet": "^4.6.0",
     "mongoose": "^6.0.12",
     "nodemon": "^2.0.14",
-    "npkill": "^0.8.2",
-    "path": "^0.12.7",
-    "react-router-dom": "^4.2.2"
+    "path": "^0.12.7"
   }
 }
