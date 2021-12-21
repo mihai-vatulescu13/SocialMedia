@@ -30,67 +30,67 @@ const Register = ({ registerUser }) => {
 
   return (
     <div className="register-container">
-      <h1>Register page</h1>
-      <NavBar />
-      <div className="register-form-container">
-        <form
-          action="submit"
-          className="register-form"
-          onSubmit={onRegisterUser}
-        >
-          <div className="form-fields">
-            <label className="form-label">
-              Name:
-              <input
-                type="text"
-                name="name"
-                placeholder="username"
-                className="form-input"
-                required
-                ref={userData.name}
-              />
-            </label>
-            <label className="form-label">
-              Email:
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="form-input"
-                required
-                ref={userData.email}
-              />
-            </label>
-            <label className="form-label">
-              City:
-              <input
-                type="text"
-                name="city"
-                placeholder="city"
-                className="form-input"
-                ref={userData.city}
-              />
-            </label>
-            <label className="form-label">
-              Password
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="form-input"
-                required
-                ref={userData.password}
-              />
-            </label>
-          </div>
-          <div className="form-buttons">
-            <div className="submit-btn">
-              <button className="submit" type="submit">
+      <div className="heading-nav-form">
+        <h1 className="login-reg-heading">Register</h1>
+        <NavBar />
+        <div className="register-form-container">
+          <form
+            action="submit"
+            className="register-form"
+            onSubmit={onRegisterUser}
+          >
+            <div className="form-fields">
+              <label className="form-label">
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="username"
+                  className="form-textbox"
+                  required
+                  ref={userData.name}
+                />
+              </label>
+              <label className="form-label">
+                Email:
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  className="form-textbox"
+                  required
+                  ref={userData.email}
+                />
+              </label>
+              <label className="form-label">
+                City:
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="city"
+                  className="form-textbox"
+                  ref={userData.city}
+                />
+              </label>
+              <label className="form-label">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  className="form-textbox"
+                  required
+                  ref={userData.password}
+                />
+              </label>
+            </div>
+            <div className="reg-btn-box">
+              <button className="submit-form-btn" type="submit">
                 Register
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

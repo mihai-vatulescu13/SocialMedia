@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { connect } from "react-redux";
 // import { loginAction } from '../../actions/actions'
 import { Auth } from "../../actions/actions";
+import "./login.css";
 
 //add the style for this component later on:
 const Login = ({ connectedUser, setUserLogin }) => {
@@ -21,31 +22,38 @@ const Login = ({ connectedUser, setUserLogin }) => {
 
   return (
     <div className="login-container">
-      <h1>Login page</h1>
-      <NavBar />
-      <div className="login-form-container">
-        <form action="submit" className="login-form" onSubmit={handleSubmit}>
-          <div className="form-fields">
-            <label>
-              <input type="text" placeholder="email" name="email" ref={email} />
-            </label>
-            <label>
-              <input
-                type="password"
-                placeholder="password"
-                name="password"
-                ref={password}
-              />
-            </label>
-          </div>
-          <div className="form-buttons">
-            <div className="login-btn">
-              <button className="login-btn" type="submit">
+      <div className="heading-nav-form">
+        <h1 className="login-reg-heading">Login</h1>
+        <NavBar />
+        <div className="login-form-container">
+          <form action="submit" className="login-form" onSubmit={handleSubmit}>
+            <div className="form-fields">
+              <label>
+                <input
+                  type="text"
+                  placeholder="email"
+                  name="email"
+                  ref={email}
+                  className="form-textbox"
+                />
+              </label>
+              <label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  ref={password}
+                  className="form-textbox"
+                />
+              </label>
+            </div>
+            <div className="login-btn-box">
+              <button className="submit-form-btn" type="submit">
                 Login
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

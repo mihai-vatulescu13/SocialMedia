@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
 .post_Card {
   max-width: 900px;
   width: 100%;
@@ -126,7 +126,7 @@
 }
 .comment_elem {
   padding: 0.5em 2em;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-size: 13px;
 }
 .userComment {
@@ -157,4 +157,29 @@
 
 .created-at-heading {
   margin-left: 0.7em;
+}
+
+.avatarImageDescription {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.post-description-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em;
+  padding-left: 1em;
+}
+
+.post-description-heading {
+  font-weight: 200;
+  margin-left: 12px;
+}
+
+.username-description-heading {
+  margin-left: 5px;
 }

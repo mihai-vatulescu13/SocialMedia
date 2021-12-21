@@ -1,23 +1,24 @@
-import './cards.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./cards.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisH,
   faShareSquare,
   faThumbtack,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faComment,
   faThumbsUp,
   faSmile,
-} from '@fortawesome/free-regular-svg-icons';
-import { comments } from '../../components/testData/homeCard';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { format } from 'timeago.js';
+} from "@fortawesome/free-regular-svg-icons";
+import { comments } from "../../components/testData/homeCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from "timeago.js";
 
 const Cards = ({
   postId,
   photo,
+  description,
   location,
   like,
   printed,
@@ -29,8 +30,8 @@ const Cards = ({
     e.preventDefault();
   };
   const [user, setUser] = useState({
-    image: '',
-    name: '',
+    image: "",
+    name: "",
   });
   const [likes, setLikes] = useState({
     lengthLikes: null,
@@ -40,7 +41,7 @@ const Cards = ({
     const { data } = await axios.put(`/post/likePost/${postId}`, {
       userId: userId,
     });
-    if (data === 'dislike') {
+    if (data === "dislike") {
       setLikes((prevValue) => {
         return {
           ...prevValue,
@@ -49,7 +50,7 @@ const Cards = ({
         };
       });
     }
-    if (data === 'like') {
+    if (data === "like") {
       setLikes((prevValue) => {
         return {
           ...prevValue,
@@ -81,12 +82,12 @@ const Cards = ({
     <div className="post_Card">
       <header className="header_card">
         <img
-          src={user.image ? user.image : PF + 'user-avatar.png'}
+          src={user.image ? user.image : PF + "user-avatar.png"}
           alt="avatar"
           className="avatarImage"
         />
         <div className="headerUser">
-          <h3>{user.name ? user.name : ''}</h3>
+          <h3>{user.name ? user.name : ""}</h3>
           <div className="location-and-posted-date">
             <p className="location-paragraph">{location} </p>
             <h5 className="created-at-heading">{format(createdAt)}</h5>
@@ -102,20 +103,31 @@ const Cards = ({
           <FontAwesomeIcon
             icon={faThumbsUp}
             className="Icons likeIcon"
-            style={likes.yourLike ? { color: '#20a1dd' } : {}}
+            style={likes.yourLike ? { color: "#20a1dd" } : {}}
             onClick={handleClick}
           />
           <span className="Likes">
             {likes.lengthLikes && likes.lengthLikes}
           </span>
-          {console.log('statulbaa', likes)}
+          {console.log("statulbaa", likes)}
           <FontAwesomeIcon icon={faShareSquare} className="Icons" />
           <FontAwesomeIcon icon={faComment} className="Icons" />
           <FontAwesomeIcon
             icon={faThumbtack}
             className="Icons printIcon"
-            style={printed && { color: '#444444' }}
+            style={printed && { color: "#444444" }}
           />
+        </div>
+        <div className="post-description-container">
+          <img
+            src={user.image ? user.image : PF + "user-avatar.png"}
+            alt="avatar"
+            className="avatarImageDescription"
+          />
+          <h5 className="username-description-heading">
+            {user.name ? user.name : ""}
+          </h5>{" "}
+          <h5 className="post-description-heading">{description}</h5>
         </div>
         <div className="comments_container">
           {comments.length > 3 ? (
@@ -124,7 +136,7 @@ const Cards = ({
                 return (
                   <p key={index} className="comment_elem">
                     <span className="userComment">{elem.name}</span>
-                    {': ' + elem.comment}
+                    {": " + elem.comment}
                   </p>
                 );
               })}
@@ -134,7 +146,7 @@ const Cards = ({
             comments.map((elem, index) => {
               return (
                 <p key={index} className="comment_elem">
-                  <span className="userComment">{elem.name + ': '}</span>
+                  <span className="userComment">{elem.name + ": "}</span>
                   {elem.comment}
                 </p>
               );
