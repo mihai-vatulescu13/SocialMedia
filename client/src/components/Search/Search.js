@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import "./search.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Search() {
   const [searchPayload, setSearchPayload] = useState("");
   const [users, setUsers] = useState([]);
+  const [isUserChosen, setIsUserChosen] = useState(false);
+
   const PF = process.env.REACT_APP_ASSETS;
 
   useEffect(() => {
@@ -39,15 +42,19 @@ export default function Search() {
             )
             .map((user, index) => {
               return (
-                <div key={index} className="user-search-card">
+                <div
+                  key={index}
+                  className="user-search-card"
+                  onClick={() => console.log("user search:", user.name)}
+                >
                   <img
                     src={PF + "user-avatar.png"}
                     alt="user avatar"
                     className="user-picture"
                   />
-                  <a href="/" className="username-style">
+                  <Link to={`/users/${user._id}`} className="username-style">
                     {user.name}
-                  </a>
+                  </Link>
                 </div>
               );
             })}

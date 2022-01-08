@@ -69,9 +69,11 @@ function Home({ userId }) {
               className="ownerImage"
             />
             <div className="ownerInfo">
-              <p className="titleName ">
-                {user.name ? user.name : "Loading..."}
-              </p>
+              <Link to={`/users/${userId}`} className="username-style">
+                <p className="titleName ">
+                  {user.name ? user.name : "Loading..."}
+                </p>
+              </Link>
               <span className="subTitle">{ownUser.location}</span>
             </div>
             <Link to="/" className="buttonAccount">

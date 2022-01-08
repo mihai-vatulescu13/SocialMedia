@@ -14,6 +14,7 @@ import { comments } from "../../components/testData/homeCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 const Cards = ({
   postId,
@@ -26,17 +27,21 @@ const Cards = ({
   userId,
 }) => {
   const PF = process.env.REACT_APP_ASSETS;
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   const [user, setUser] = useState({
     image: "",
     name: "",
   });
+
   const [likes, setLikes] = useState({
     lengthLikes: null,
     yourLike: null,
   });
+
   const handleClick = async () => {
     const { data } = await axios.put(`/post/likePost/${postId}`, {
       userId: userId,
@@ -60,6 +65,7 @@ const Cards = ({
       });
     }
   };
+
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await axios.get(`/user/getUser/${userId}`);
@@ -87,7 +93,13 @@ const Cards = ({
           className="avatarImage"
         />
         <div className="headerUser">
-          <h3>{user.name ? user.name : ""}</h3>
+          {user.name ? (
+            <Link to={`/users/${userId}`} className="username-style">
+              <h3>{user.name}</h3>
+            </Link>
+          ) : (
+            <h3></h3>
+          )}
           <div className="location-and-posted-date">
             <p className="location-paragraph">{location} </p>
             <h5 className="created-at-heading">{format(createdAt)}</h5>
@@ -109,7 +121,6 @@ const Cards = ({
           <span className="Likes">
             {likes.lengthLikes && likes.lengthLikes}
           </span>
-          {console.log("statulbaa", likes)}
           <FontAwesomeIcon icon={faShareSquare} className="Icons" />
           <FontAwesomeIcon icon={faComment} className="Icons" />
           <FontAwesomeIcon

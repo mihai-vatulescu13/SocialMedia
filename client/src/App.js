@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import EditAccount from "./pages/EditAccount/EditAccount";
 import PostUpload from "./pages/PostUpload/PostUpload";
 import UserPage from "./pages/UserPage/UserPage";
+import FoundUserPage from "./pages/FoundUserPage/FoundUserPage";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -54,6 +55,7 @@ function App({ connectedUser }) {
             connectedUser.name ? <UserPage /> : <Navigate replace to="/login" />
           }
         />
+        <Route path="/users/:userId" element={<FoundUserPage />} />
       </Routes>
     </div>
   );
