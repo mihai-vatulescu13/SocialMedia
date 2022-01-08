@@ -69,7 +69,7 @@ function Home({ userId }) {
               className="ownerImage"
             />
             <div className="ownerInfo">
-              <Link to={`/users/${userId}`} className="username-style">
+              <Link to={`/userAccountPage`} className="username-style">
                 <p className="titleName ">
                   {user.name ? user.name : "Loading..."}
                 </p>
