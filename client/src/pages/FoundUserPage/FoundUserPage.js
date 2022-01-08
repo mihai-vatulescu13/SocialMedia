@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostModal from "../../components/PostModal/PostModal";
 import HomeNav from "../../components/homeNav/HomeNav";
+import "./foundUserPage.css";
 
 const FoundUserPage = () => {
   const { userId } = useParams();
@@ -53,6 +54,7 @@ const FoundUserPage = () => {
               <div className="user-details">
                 <div className="name-and-edit-profile">
                   <h3>{foundUser.name}</h3>
+                  <button className="follow-button">Follow</button>
                 </div>
                 <div className="posts-follows-followings">
                   <h4>{userPosts.length} posts</h4>
