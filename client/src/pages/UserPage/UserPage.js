@@ -1,10 +1,10 @@
-import HomeNav from '../../components/homeNav/HomeNav';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import './userPage.css';
-import { connect } from 'react-redux';
-import PostModal from '../../components/PostModal/PostModal';
-import axios from 'axios';
+import HomeNav from "../../components/homeNav/HomeNav";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "./userPage.css";
+import { connect } from "react-redux";
+import PostModal from "../../components/PostModal/PostModal";
+import axios from "axios";
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
@@ -30,7 +30,7 @@ const UserPage = ({ connectedUser }) => {
 
   const onDeletePost = async (postId) => {
     const response = await axios.delete(`/post/deletePost/${postId}`);
-    console.log('deletion response:', response.data);
+    console.log("deletion response:", response.data);
   };
 
   const onOpenPostModal = (postData) => {
@@ -49,14 +49,17 @@ const UserPage = ({ connectedUser }) => {
             <div className="picture-container">
               <img
                 src={
-                  currentUser.profilePicture === ''
-                    ? Pf + 'user-avatar.png'
+                  currentUser.profilePicture === ""
+                    ? Pf + "user-avatar.png"
                     : currentUser.profilePicture
                 }
                 alt="user profile"
                 className="user-profile-picture"
               />
             </div>
+
+            {console.log("current user following arr:", currentUser.following)}
+
             <div className="user-details">
               <div className="name-and-edit-profile">
                 <h3>{currentUser.name}</h3>

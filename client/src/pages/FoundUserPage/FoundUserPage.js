@@ -3,16 +3,20 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostModal from "../../components/PostModal/PostModal";
 import HomeNav from "../../components/homeNav/HomeNav";
+import { connect } from "react-redux";
 import "./foundUserPage.css";
 
-const FoundUserPage = () => {
-  const { userId } = useParams();
+const FoundUserPage = ({ connectedUser }) => {
+  const { _id, name, profilePicture } = connectedUser; //comes from current user data(from redeux)
+  const { userId } = useParams(); //comes as URL parameter
   const [foundUser, setFoundUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
   const [currentPost, setCurrentPost] = useState({});
   const [openedPostModal, setOpenedPostModal] = useState(false);
 
   const Pf = process.env.REACT_APP_ASSETS;
+
+  console.log("Connected user data:", connectedUser);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -29,6 +33,14 @@ const FoundUserPage = () => {
   const onOpenPostModal = (postData) => {
     setCurrentPost(postData);
     setOpenedPostModal((prevVal) => !prevVal);
+  };
+
+  const followSelectedUser = async () => {
+    const { data } = await axios.put(`/user/followUser/${_id}`, {
+      foundUser,
+      connectedUser,
+    });
+    console.log("follow response:", data);
   };
 
   return (
@@ -54,7 +66,14 @@ const FoundUserPage = () => {
               <div className="user-details">
                 <div className="name-and-edit-profile">
                   <h3>{foundUser.name}</h3>
-                  <button className="follow-button">Follow</button>
+                  <button
+                    className="follow-button"
+                    onClick={() => {
+                      followSelectedUser();
+                    }}
+                  >
+                    Follow
+                  </button>
                 </div>
                 <div className="posts-follows-followings">
                   <h4>{userPosts.length} posts</h4>
@@ -111,4 +130,11 @@ const FoundUserPage = () => {
   );
 };
 
-export default FoundUserPage;
+//extract state from redux:
+const mapStateToProps = (state) => {
+  return {
+    connectedUser: state.AuthReducer,
+  };
+};
+
+export default connect(mapStateToProps)(FoundUserPage);

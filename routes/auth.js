@@ -20,7 +20,13 @@ router.post("/register", async (req, res) => {
 
     //save the user to the database:
     const user = await newUser.save();
-    res.status(200).json({ name: user.name, _id: user._id });
+    res
+      .status(200)
+      .json({
+        name: user.name,
+        _id: user._id,
+        profilePicture: user.profilePicture,
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json("Bad server request");
@@ -36,7 +42,11 @@ router.post("/login", async (req, res) => {
     const validPassword = await bcrypt.compare(password, user.password);
     !validPassword
       ? res.status(400).json("wrong password")
-      : res.status(200).json({ name: user.name, _id: user._id });
+      : res.status(200).json({
+          name: user.name,
+          _id: user._id,
+          profilePicture: user.profilePicture,
+        });
   } catch (err) {
     console.error(err);
     res.status(500).json("Bad server request");
