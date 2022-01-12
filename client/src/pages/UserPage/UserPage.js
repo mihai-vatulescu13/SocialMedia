@@ -58,7 +58,7 @@ const UserPage = ({ connectedUser }) => {
               />
             </div>
 
-            {console.log("current user following arr:", currentUser.following)}
+            {/* {console.log("current user following arr:", currentUser.following)} */}
 
             <div className="user-details">
               <div className="name-and-edit-profile">

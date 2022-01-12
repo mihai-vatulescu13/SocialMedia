@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export default function Search() {
   const [searchPayload, setSearchPayload] = useState("");
   const [users, setUsers] = useState([]);
-  const [isUserChosen, setIsUserChosen] = useState(false);
 
   const PF = process.env.REACT_APP_ASSETS;
 

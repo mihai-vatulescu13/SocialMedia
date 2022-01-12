@@ -39,9 +39,6 @@ router.put("/editUser/:user", async (req, res) => {
 //follow user endpoint:
 router.put("/followUser/:id", async (req, res) => {
   const { _id, name, profilePicture } = req.body.foundUser;
-  const connectedUserId = req.params.id;
-
-  console.log("current user data:", req.body);
 
   try {
     //push inside of current user follows array the selected user that will be followed:

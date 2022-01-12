@@ -7,16 +7,15 @@ import { connect } from "react-redux";
 import "./foundUserPage.css";
 
 const FoundUserPage = ({ connectedUser }) => {
-  const { _id, name, profilePicture } = connectedUser; //comes from current user data(from redeux)
+  const { _id } = connectedUser; //comes from current user data(from redeux)
   const { userId } = useParams(); //comes as URL parameter
   const [foundUser, setFoundUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
   const [currentPost, setCurrentPost] = useState({});
   const [openedPostModal, setOpenedPostModal] = useState(false);
+  const [userFollowed, setUserFollowed] = useState(false);
 
   const Pf = process.env.REACT_APP_ASSETS;
-
-  console.log("Connected user data:", connectedUser);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -63,6 +62,7 @@ const FoundUserPage = ({ connectedUser }) => {
                   className="user-profile-picture"
                 />
               </div>
+
               <div className="user-details">
                 <div className="name-and-edit-profile">
                   <h3>{foundUser.name}</h3>
@@ -72,7 +72,9 @@ const FoundUserPage = ({ connectedUser }) => {
                       followSelectedUser();
                     }}
                   >
-                    Follow
+                    {foundUser.followed.some((user) => user._id === _id)
+                      ? "Unfollow"
+                      : "Follow"}
                   </button>
                 </div>
                 <div className="posts-follows-followings">
