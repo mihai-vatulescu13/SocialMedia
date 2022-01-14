@@ -39,32 +39,70 @@ router.put("/editUser/:user", async (req, res) => {
 //follow user endpoint:
 router.put("/followUser/:id", async (req, res) => {
   const { _id, name, profilePicture } = req.body.foundUser;
+  const { userFollowed } = req.body;
+  console.log("user followed status:", userFollowed);
 
   try {
-    //push inside of current user follows array the selected user that will be followed:
-    const userFollow = await UsersModel.updateOne(
-      { _id: req.params.id },
-      {
-        $push: {
-          following: {
-            $each: [{ _id, name, profilePicture }],
+    //if the user is not followed yet then, follow them:
+    if (userFollowed === false) {
+      //push inside of current user follows array the selected user that will be followed:
+      const userFollow = await UsersModel.updateOne(
+        { _id: req.params.id },
+        {
+          $push: {
+            following: {
+              $each: [{ _id, name, profilePicture }],
+            },
           },
-        },
-      }
-    );
+        }
+      );
 
-    const userFollowed = await UsersModel.updateOne(
-      { _id: _id },
-      {
-        $push: {
-          followed: {
-            $each: [{ ...req.body.connectedUser }],
+      const userFollowed = await UsersModel.updateOne(
+        { _id: _id },
+        {
+          $push: {
+            followed: {
+              $each: [{ ...req.body.connectedUser }],
+            },
           },
-        },
-      }
-    );
+        }
+      );
 
-    return res.send("Success follow request");
+      return res.send("Success follow request");
+    } else {
+      //unfollow side:
+
+      const userUnfollow = await UsersModel.updateOne(
+        {
+          _id: req.params.id,
+        },
+        {
+          $pull: {
+            following: {
+              _id: _id,
+            },
+          },
+        }
+      );
+
+      const userUnfollowed = await UsersModel.updateOne(
+        {
+          _id: _id,
+        },
+        {
+          $pull: {
+            followed: {
+              _id: req.body.connectedUser._id,
+            },
+          },
+        }
+      );
+
+      // console.log("user to unfollow _id:", _id);
+      // console.log("current user id:", req.body.connectedUser._id);
+
+      return res.send("Success unfollow request");
+    }
   } catch (err) {
     console.log(err);
   }

@@ -12,6 +12,7 @@ function Home({ userId }) {
   const [user, setUser] = useState({
     image: "",
     name: "",
+    followingUsers: [],
   });
 
   const PF = process.env.REACT_APP_ASSETS;
@@ -25,7 +26,12 @@ function Home({ userId }) {
     const fetchCurrentUserData = async (userId) => {
       const { data } = await axios.get(`/user/getUser/${userId}`);
       setUser((prevValue) => {
-        return { ...prevValue, image: data.profilePicture, name: data.name };
+        return {
+          ...prevValue,
+          image: data.profilePicture,
+          name: data.name,
+          followingUsers: data.following.map((user) => user._id),
+        };
       });
     };
 
@@ -39,8 +45,13 @@ function Home({ userId }) {
         <HomeNaV />
         {posts ? (
           <div className="flow-posts">
+            {/* {console.log("just psts:", user.followingUsers)} */}
             {posts
-              .filter((elem) => elem.userId !== userId)
+              .filter(
+                (elem) =>
+                  elem.userId !== userId &&
+                  user.followingUsers.includes(elem.userId)
+              )
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .map((elem, index) => {
                 return (

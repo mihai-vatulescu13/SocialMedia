@@ -20,6 +20,13 @@ const FoundUserPage = ({ connectedUser }) => {
   useEffect(() => {
     const getUserData = async () => {
       const { data } = await axios.get(`/user/getUser/${userId}`);
+
+      if (data.followed.some((user) => user._id === _id)) {
+        setUserFollowed(true);
+      } else {
+        setUserFollowed(false);
+      }
+
       setFoundUser(data);
 
       const userPostsArray = await axios.get(`/post/getUserPosts/${userId}`);
@@ -38,8 +45,11 @@ const FoundUserPage = ({ connectedUser }) => {
     const { data } = await axios.put(`/user/followUser/${_id}`, {
       foundUser,
       connectedUser,
+      userFollowed,
     });
     console.log("follow response:", data);
+
+    setUserFollowed(!userFollowed);
   };
 
   return (
@@ -72,9 +82,7 @@ const FoundUserPage = ({ connectedUser }) => {
                       followSelectedUser();
                     }}
                   >
-                    {foundUser.followed.some((user) => user._id === _id)
-                      ? "Unfollow"
-                      : "Follow"}
+                    {userFollowed ? "Unfollow" : "Follow"}
                   </button>
                 </div>
                 <div className="posts-follows-followings">
