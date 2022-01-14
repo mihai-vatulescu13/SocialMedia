@@ -5,12 +5,16 @@ import "./userPage.css";
 import { connect } from "react-redux";
 import PostModal from "../../components/PostModal/PostModal";
 import axios from "axios";
+import FollowModal from "../../components/FollowModal/FollowModal";
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
   const [currentPost, setCurrentPost] = useState({});
+  //modals hooks:
   const [openedPostModal, setOpenedPostModal] = useState(false);
+  const [openedFollowsModal, setOpenedFollowsModal] = useState(false);
+  const [openedFollowingsModal, setOpenedFollowingsModal] = useState(false);
 
   const Pf = process.env.REACT_APP_ASSETS;
   const { _id } = connectedUser;
@@ -36,6 +40,16 @@ const UserPage = ({ connectedUser }) => {
   const onOpenPostModal = (postData) => {
     setCurrentPost(postData);
     setOpenedPostModal((prevVal) => !prevVal);
+  };
+
+  const onOpenFollowsModal = () => {
+    setOpenedFollowsModal((prevVal) => !prevVal);
+    setOpenedFollowingsModal(false);
+  };
+
+  const onOpenFollowingsModal = () => {
+    setOpenedFollowingsModal((prevVal) => !prevVal);
+    setOpenedFollowsModal(false);
   };
 
   return (
@@ -71,8 +85,20 @@ const UserPage = ({ connectedUser }) => {
               </div>
               <div className="posts-follows-followings">
                 <h4>{userPosts.length} posts</h4>
-                <h4>{currentUser.following.length} follows</h4>
-                <h4>{currentUser.followed.length} followings</h4>
+                <div className="follows-heading">
+                  <h4
+                    onClick={() => {
+                      onOpenFollowsModal();
+                    }}
+                  >
+                    {currentUser.following.length} follows
+                  </h4>
+                </div>
+                <div className="follows-heading">
+                  <h4 onClick={() => onOpenFollowingsModal()}>
+                    {currentUser.followed.length} followings
+                  </h4>
+                </div>
               </div>
               <div className="user-nickname">
                 {/* <h4>User nickname</h4> */}
@@ -107,7 +133,7 @@ const UserPage = ({ connectedUser }) => {
               })}
             </div>
             {
-              //render here the post modal(just for test)
+              //current user post modal:
               openedPostModal === true ? (
                 <PostModal
                   post={currentPost}
@@ -119,6 +145,26 @@ const UserPage = ({ connectedUser }) => {
                 <></>
               )
             }
+            {openedFollowsModal ? (
+              <FollowModal
+                heading="Follows"
+                openedFollowsModal={openedFollowsModal}
+                setOpenedFollowsModal={setOpenedFollowsModal}
+                followsUsers={currentUser ? currentUser.following : []}
+              />
+            ) : (
+              <></>
+            )}
+            {openedFollowingsModal ? (
+              <FollowModal
+                heading="Is followed by"
+                openedFollowsModal={openedFollowingsModal}
+                setOpenedFollowsModal={setOpenedFollowingsModal}
+                followsUsers={currentUser ? currentUser.followed : []}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         ) : (
           <div>

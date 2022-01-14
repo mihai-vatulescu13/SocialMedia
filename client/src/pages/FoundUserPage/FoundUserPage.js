@@ -5,6 +5,7 @@ import PostModal from "../../components/PostModal/PostModal";
 import HomeNav from "../../components/homeNav/HomeNav";
 import { connect } from "react-redux";
 import "./foundUserPage.css";
+import FollowModal from "../../components/FollowModal/FollowModal";
 
 const FoundUserPage = ({ connectedUser }) => {
   const { _id } = connectedUser; //comes from current user data(from redeux)
@@ -12,8 +13,11 @@ const FoundUserPage = ({ connectedUser }) => {
   const [foundUser, setFoundUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
   const [currentPost, setCurrentPost] = useState({});
-  const [openedPostModal, setOpenedPostModal] = useState(false);
   const [userFollowed, setUserFollowed] = useState(false);
+
+  const [openedPostModal, setOpenedPostModal] = useState(false);
+  const [openedFollowsModal, setOpenedFollowsModal] = useState(false);
+  const [openedFollowingsModal, setOpenedFollowingsModal] = useState(false);
 
   const Pf = process.env.REACT_APP_ASSETS;
 
@@ -39,6 +43,16 @@ const FoundUserPage = ({ connectedUser }) => {
   const onOpenPostModal = (postData) => {
     setCurrentPost(postData);
     setOpenedPostModal((prevVal) => !prevVal);
+  };
+
+  const onOpenFollowsModal = () => {
+    setOpenedFollowsModal((prevVal) => !prevVal);
+    setOpenedFollowingsModal(false);
+  };
+
+  const onOpenFollowingsModal = () => {
+    setOpenedFollowingsModal((prevVal) => !prevVal);
+    setOpenedFollowsModal(false);
   };
 
   const followSelectedUser = async () => {
@@ -87,8 +101,20 @@ const FoundUserPage = ({ connectedUser }) => {
                 </div>
                 <div className="posts-follows-followings">
                   <h4>{userPosts.length} posts</h4>
-                  <h4>{foundUser.following.length} follows</h4>
-                  <h4>{foundUser.followed.length} followings</h4>
+                  <div className="follows-heading">
+                    <h4
+                      onClick={() => {
+                        onOpenFollowsModal();
+                      }}
+                    >
+                      {foundUser.following.length} follows
+                    </h4>
+                  </div>
+                  <div className="follows-heading">
+                    <h4 onClick={() => onOpenFollowingsModal()}>
+                      {foundUser.followed.length} followings
+                    </h4>
+                  </div>
                 </div>
                 <div className="user-nickname">
                   {/* <h4>User nickname</h4> */}
@@ -129,6 +155,26 @@ const FoundUserPage = ({ connectedUser }) => {
                 <></>
               )
             }
+            {openedFollowsModal ? (
+              <FollowModal
+                heading="Follows"
+                openedFollowsModal={openedFollowsModal}
+                setOpenedFollowsModal={setOpenedFollowsModal}
+                followsUsers={foundUser ? foundUser.following : []}
+              />
+            ) : (
+              <></>
+            )}
+            {openedFollowingsModal ? (
+              <FollowModal
+                heading="Is followed by"
+                openedFollowsModal={openedFollowingsModal}
+                setOpenedFollowsModal={setOpenedFollowingsModal}
+                followsUsers={foundUser ? foundUser.followed : []}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         ) : (
           <div>

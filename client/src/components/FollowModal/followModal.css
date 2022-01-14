@@ -1,0 +1,74 @@
+.follow-component-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(58, 58, 58, 0.8);
+  z-index: 2;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.follows-list-and-close-btn {
+  width: 450px;
+  height: 650px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.follows-list {
+  width: 445px;
+  height: 550px;
+  border: 1px solid rgb(214, 214, 214);
+  overflow-y: scroll;
+}
+
+.follows-list-and-close-btn > h4 {
+  text-align: center;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.close-follows-modal {
+  height: 30px;
+  width: 85px;
+  font-size: 1rem;
+  margin-top: 0.5em;
+
+  padding: 0.2em;
+  border-radius: 4px;
+  /* outline: none; */
+  background-color: rgb(87, 87, 87);
+  color: whitesmoke;
+}
+
+/* user follow card stilyng */
+.user-follow-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.follow-user-img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 0.5em;
+}
+
+.user-follow-name > h3 {
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+.user-follow-link {
+  text-decoration: none;
+  color: initial;
+}

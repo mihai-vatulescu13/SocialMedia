@@ -138,7 +138,7 @@ const Cards = ({
           <h5 className="username-description-heading">
             {user.name ? user.name : ""}
           </h5>{" "}
-          <h5 className="post-description-heading">{description}</h5>
+          <h4 className="post-description-heading">{description}</h4>
         </div>
         <div className="comments_container">
           {comments.length > 3 ? (

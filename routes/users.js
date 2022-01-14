@@ -99,6 +99,7 @@ router.put("/followUser/:id", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    return res.send(err);
   }
 });
 

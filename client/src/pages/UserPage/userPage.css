@@ -47,6 +47,16 @@
   cursor: pointer;
 }
 
+.posts-follows-followings > .follows-heading {
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+.follows-heading {
+  display: flex;
+  flex-direction: column;
+}
+
 .name-and-edit-profile {
   display: flex;
   flex-direction: row;
