@@ -40,7 +40,6 @@ router.put("/editUser/:user", async (req, res) => {
 router.put("/followUser/:id", async (req, res) => {
   const { _id, name, profilePicture } = req.body.foundUser;
   const { userFollowed } = req.body;
-  console.log("user followed status:", userFollowed);
 
   try {
     //if the user is not followed yet then, follow them:
@@ -70,8 +69,6 @@ router.put("/followUser/:id", async (req, res) => {
 
       return res.send("Success follow request");
     } else {
-      //unfollow side:
-
       const userUnfollow = await UsersModel.updateOne(
         {
           _id: req.params.id,
@@ -97,9 +94,6 @@ router.put("/followUser/:id", async (req, res) => {
           },
         }
       );
-
-      // console.log("user to unfollow _id:", _id);
-      // console.log("current user id:", req.body.connectedUser._id);
 
       return res.send("Success unfollow request");
     }
