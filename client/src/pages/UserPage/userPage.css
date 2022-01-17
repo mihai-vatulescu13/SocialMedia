@@ -30,7 +30,9 @@
 .picture-and-details {
   display: flex;
   flex-direction: row;
-  width: 60%;
+  width: 100%;
+  /* width: 60%; */
+  max-width: 1200px;
   justify-content: space-around;
 }
 
@@ -89,11 +91,9 @@
 }
 
 .posts-container {
-  display: flex;
-  width: 70%;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .user-posts-container {
