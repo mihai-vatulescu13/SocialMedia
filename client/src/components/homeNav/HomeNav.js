@@ -9,8 +9,9 @@ import {
 import "./homeNav.css";
 import { connect } from "react-redux";
 
-const HomeNav = () => {
+const HomeNav = ({ connectedUser }) => {
   const PF = process.env.REACT_APP_ASSETS;
+  const { profilePicture } = connectedUser;
 
   return (
     <div className="home-navigation-container">
@@ -43,7 +44,7 @@ const HomeNav = () => {
           </Link>
           <Link to="/userAccountPage" className="link-item">
             <img
-              src={PF + "user-avatar.png"}
+              src={profilePicture ? profilePicture : PF + "user-avatar.png"}
               alt="user avatar"
               className="nav-avatar"
             />

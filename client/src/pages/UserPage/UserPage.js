@@ -148,7 +148,6 @@ const UserPage = ({ connectedUser }) => {
             {openedFollowsModal ? (
               <FollowModal
                 heading="Follows"
-                openedFollowsModal={openedFollowsModal}
                 setOpenedFollowsModal={setOpenedFollowsModal}
                 followsUsers={currentUser ? currentUser.following : []}
               />
@@ -158,7 +157,6 @@ const UserPage = ({ connectedUser }) => {
             {openedFollowingsModal ? (
               <FollowModal
                 heading="Is followed by"
-                openedFollowsModal={openedFollowingsModal}
                 setOpenedFollowsModal={setOpenedFollowingsModal}
                 followsUsers={currentUser ? currentUser.followed : []}
               />

@@ -15,8 +15,13 @@
   width: 50%;
   object-fit: cover;
 }
+
 .picture-post-container {
   background-color: brown;
+}
+
+.hide-scroll {
+  overflow: hidden;
 }
 
 .close-post-modal-btn {

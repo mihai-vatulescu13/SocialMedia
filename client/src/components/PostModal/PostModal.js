@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useRef } from 'react';
-import { format } from 'timeago.js';
-import './postModal.css';
+import { useEffect } from "react";
+import { useRef } from "react";
+import { format } from "timeago.js";
+import "./postModal.css";
 
 const PostModal = ({ post, setOpenedPostModal, userData }) => {
   const cardRef = useRef();
@@ -12,9 +12,14 @@ const PostModal = ({ post, setOpenedPostModal, userData }) => {
         setOpenedPostModal();
       }
     };
-    document.addEventListener('click', outsideClick);
+    document.addEventListener("click", outsideClick);
+    //add the remove-scroll class to the body:
+    document.querySelector("body").classList.add("hide-scroll");
+
     return () => {
-      document.removeEventListener('click', outsideClick);
+      document.removeEventListener("click", outsideClick);
+      //remove the remove-scroll class from the body:
+      document.querySelector("body").classList.remove("hide-scroll");
     };
   }, [setOpenedPostModal]);
 
