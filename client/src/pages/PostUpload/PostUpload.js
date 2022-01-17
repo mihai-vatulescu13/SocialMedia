@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import "./postUpload.css";
 import axios from "axios";
+import imageCompression from "browser-image-compression";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 const PostUpload = ({ user }) => {
@@ -8,32 +10,48 @@ const PostUpload = ({ user }) => {
   const location = useRef();
   const postImage = useRef();
 
+  const nav = useNavigate();
+
   const onUpload = async (e) => {
     e.preventDefault();
     let file = postImage.current.files[0];
 
-    const convertBase64 = (file) => {
-      return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-
-        fileReader.onload = () => {
-          resolve(fileReader.result);
-        };
-
-        fileReader.onerror = (error) => {
-          reject(error);
-        };
-      });
+    const options = {
+      maxSizeMB: 0.4,
+      maxWidthOrHeight: 1300,
+      useWebWorker: true,
     };
 
-    const base64 = await convertBase64(file);
-    //base64 -> our image
-    await axios.post(`/post/addPost?user=${user}`, {
-      description: description.current.value,
-      image: base64,
-      location: location.current.value,
-    });
+    try {
+      const compressedFile = await imageCompression(file, options);
+
+      const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        });
+      };
+
+      const base64 = await convertBase64(compressedFile);
+
+      //base64 -> our image
+      await axios.post(`/post/addPost?user=${user}`, {
+        description: description.current.value,
+        image: base64,
+        location: location.current.value,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    nav("/");
   };
 
   return (
