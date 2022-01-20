@@ -38,8 +38,8 @@ const UserPage = ({ connectedUser }) => {
 
       <UserDetails
         currentUser={currentUser}
-        setOpenedFollowsModal
-        setOpenedFollowingsModal
+        setOpenedFollowsModal={setOpenedFollowsModal}
+        setOpenedFollowingsModal={setOpenedFollowingsModal}
         userPosts={currentUser}
       />
 
