@@ -26,13 +26,21 @@
   cursor: pointer;
 }
 
-.user-posts-container {
-  display: flex;
-  justify-content: center;
+.post-picture {
+  width: 275px;
+  height: 300px;
+  object-fit: cover;
 }
 
-@media screen and (max-width: 614px) {
-  .user-posts-container {
-    justify-content: center;
-  }
+.edit-profile-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: whitesmoke;
+}
+
+.edit-profile-button {
+  padding: 0.2em;
+  border-radius: 4px;
+  outline: none;
+  background-color: rgb(87, 87, 87);
 }
