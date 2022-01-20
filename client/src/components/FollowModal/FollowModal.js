@@ -6,7 +6,6 @@ const FollowModal = ({ heading, setOpenedFollowsModal, followsUsers }) => {
   const modalRef = useRef();
 
   useEffect(() => {
-    console.log('followsUsers:', followsUsers);
     const outsideClick = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
         setOpenedFollowsModal();
