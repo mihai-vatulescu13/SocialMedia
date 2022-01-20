@@ -42,16 +42,14 @@
   justify-content: flex-start;
   padding: 1em;
   padding-left: 0;
+  list-style: none;
 }
 
-.posts-follows-followings > h4 {
+.posts-follows-followings > li {
   margin-right: 1em;
   cursor: pointer;
-}
-
-.posts-follows-followings > .follows-heading {
-  margin-right: 1em;
-  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .follows-heading {
@@ -69,6 +67,14 @@
 .name-and-edit-profile > button {
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.followers-number {
+  font-size: 1em;
+  font-weight: bold;
+  background-color: rgba(228, 228, 228, 0);
+  border: none;
+  cursor: pointer;
 }
 
 .post-card {

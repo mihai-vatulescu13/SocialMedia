@@ -1,11 +1,11 @@
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import PostModal from "../../components/PostModal/PostModal";
-import HomeNav from "../../components/homeNav/HomeNav";
-import { connect } from "react-redux";
-import "./foundUserPage.css";
-import FollowModal from "../../components/FollowModal/FollowModal";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import PostModal from '../../components/PostModal/PostModal';
+import HomeNav from '../../components/homeNav/HomeNav';
+import { connect } from 'react-redux';
+import './foundUserPage.css';
+import FollowModal from '../../components/FollowModal/FollowModal';
 
 const FoundUserPage = ({ connectedUser }) => {
   const { _id } = connectedUser; //comes from current user data(from redeux)
@@ -18,6 +18,13 @@ const FoundUserPage = ({ connectedUser }) => {
   const [openedPostModal, setOpenedPostModal] = useState(false);
   const [openedFollowsModal, setOpenedFollowsModal] = useState(false);
   const [openedFollowingsModal, setOpenedFollowingsModal] = useState(false);
+
+  // const [stateGeneral, setGeneral] = useState({
+  //   foundUser: '',
+  //   userPosts: [],
+  //   currentPost: {},
+  //   userFollowed: false,
+  // });
 
   const Pf = process.env.REACT_APP_ASSETS;
 
@@ -61,7 +68,7 @@ const FoundUserPage = ({ connectedUser }) => {
       connectedUser,
       userFollowed,
     });
-    console.log("follow response:", data);
+    console.log('follow response:', data);
 
     setUserFollowed(!userFollowed);
   };
@@ -78,8 +85,8 @@ const FoundUserPage = ({ connectedUser }) => {
               <div className="picture-container">
                 <img
                   src={
-                    foundUser.profilePicture === ""
-                      ? Pf + "user-avatar.png"
+                    foundUser.profilePicture === ''
+                      ? Pf + 'user-avatar.png'
                       : foundUser.profilePicture
                   }
                   alt="user profile"
@@ -96,7 +103,7 @@ const FoundUserPage = ({ connectedUser }) => {
                       followSelectedUser();
                     }}
                   >
-                    {userFollowed ? "Unfollow" : "Follow"}
+                    {userFollowed ? 'Unfollow' : 'Follow'}
                   </button>
                 </div>
                 <div className="posts-follows-followings">

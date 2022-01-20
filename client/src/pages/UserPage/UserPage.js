@@ -1,11 +1,11 @@
-import HomeNav from "../../components/homeNav/HomeNav";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import "./userPage.css";
-import { connect } from "react-redux";
-import PostModal from "../../components/PostModal/PostModal";
-import axios from "axios";
-import FollowModal from "../../components/FollowModal/FollowModal";
+import HomeNav from '../../components/homeNav/HomeNav';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import './userPage.css';
+import { connect } from 'react-redux';
+import PostModal from '../../components/PostModal/PostModal';
+import axios from 'axios';
+import FollowModal from '../../components/FollowModal/FollowModal';
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
@@ -34,22 +34,7 @@ const UserPage = ({ connectedUser }) => {
 
   const onDeletePost = async (postId) => {
     const response = await axios.delete(`/post/deletePost/${postId}`);
-    console.log("deletion response:", response.data);
-  };
-
-  const onOpenPostModal = (postData) => {
-    setCurrentPost(postData);
-    setOpenedPostModal((prevVal) => !prevVal);
-  };
-
-  const onOpenFollowsModal = () => {
-    setOpenedFollowsModal((prevVal) => !prevVal);
-    setOpenedFollowingsModal(false);
-  };
-
-  const onOpenFollowingsModal = () => {
-    setOpenedFollowingsModal((prevVal) => !prevVal);
-    setOpenedFollowsModal(false);
+    console.log('deletion response:', response.data);
   };
 
   return (
@@ -63,8 +48,8 @@ const UserPage = ({ connectedUser }) => {
             <div className="picture-container">
               <img
                 src={
-                  currentUser.profilePicture === ""
-                    ? Pf + "user-avatar.png"
+                  currentUser.profilePicture === ''
+                    ? Pf + 'user-avatar.png'
                     : currentUser.profilePicture
                 }
                 alt="user profile"
@@ -83,23 +68,29 @@ const UserPage = ({ connectedUser }) => {
                   </Link>
                 </button>
               </div>
-              <div className="posts-follows-followings">
-                <h4>{userPosts.length} posts</h4>
-                <div className="follows-heading">
-                  <h4
-                    onClick={() => {
-                      onOpenFollowsModal();
-                    }}
-                  >
-                    {currentUser.following.length} follows
-                  </h4>
-                </div>
-                <div className="follows-heading">
-                  <h4 onClick={() => onOpenFollowingsModal()}>
-                    {currentUser.followed.length} followings
-                  </h4>
-                </div>
-              </div>
+
+              <ul className="posts-follows-followings">
+                <li>{userPosts.length} posts</li>
+
+                <li
+                  onClick={() => {
+                    setOpenedFollowsModal((prevVal) => !prevVal);
+                    setOpenedFollowingsModal(false);
+                  }}
+                >
+                  {currentUser.following.length} follows
+                </li>
+
+                <li
+                  onClick={() => {
+                    setOpenedFollowingsModal((prevVal) => !prevVal);
+                    setOpenedFollowsModal(false);
+                  }}
+                >
+                  {currentUser.followed.length} followings
+                </li>
+              </ul>
+
               <div className="user-nickname">
                 {/* <h4>User nickname</h4> */}
               </div>
@@ -119,7 +110,10 @@ const UserPage = ({ connectedUser }) => {
                   <div
                     className="post-card"
                     key={index}
-                    onClick={() => onOpenPostModal(post)}
+                    onClick={() => {
+                      setCurrentPost(post);
+                      setOpenedPostModal((prevVal) => !prevVal);
+                    }}
                   >
                     <img src={post.image} alt="post" className="post-picture" />
                     <button
