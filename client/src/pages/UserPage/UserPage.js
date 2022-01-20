@@ -1,11 +1,13 @@
-import HomeNav from '../../components/homeNav/HomeNav';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import './userPage.css';
-import { connect } from 'react-redux';
-import PostModal from '../../components/PostModal/PostModal';
-import axios from 'axios';
-import FollowModal from '../../components/FollowModal/FollowModal';
+import HomeNav from "../../components/homeNav/HomeNav";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "./userPage.css";
+import { connect } from "react-redux";
+import PostModal from "../../components/PostModal/PostModal";
+import axios from "axios";
+import FollowModal from "../../components/FollowModal/FollowModal";
+import RenderPosts from "../../components/RenderPosts/RenderPosts";
+import UserDetails from "../../components/UserDetails/UserDetails";
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
@@ -34,7 +36,7 @@ const UserPage = ({ connectedUser }) => {
 
   const onDeletePost = async (postId) => {
     const response = await axios.delete(`/post/deletePost/${postId}`);
-    console.log('deletion response:', response.data);
+    console.log("deletion response:", response.data);
   };
 
   return (
@@ -42,90 +44,24 @@ const UserPage = ({ connectedUser }) => {
       <section className="center-nav">
         <HomeNav className="home-nav-user-page" />
       </section>
-      {currentUser ? (
-        <section className="user-main-details">
-          <div className="picture-and-details">
-            <div className="picture-container">
-              <img
-                src={
-                  currentUser.profilePicture === ''
-                    ? Pf + 'user-avatar.png'
-                    : currentUser.profilePicture
-                }
-                alt="user profile"
-                className="user-profile-picture"
-              />
-            </div>
 
-            {/* {console.log("current user following arr:", currentUser.following)} */}
+      <UserDetails
+        currentUser={currentUser}
+        setOpenedFollowsModal
+        setOpenedFollowingsModal
+        userPosts={userPosts}
+      />
 
-            <div className="user-details">
-              <div className="name-and-edit-profile">
-                <h3>{currentUser.name}</h3>
-                <button className="edit-profile-button">
-                  <Link to="/editAccount" className="edit-profile-link">
-                    Edit profile
-                  </Link>
-                </button>
-              </div>
-
-              <ul className="posts-follows-followings">
-                <li>{userPosts.length} posts</li>
-
-                <li
-                  onClick={() => {
-                    setOpenedFollowsModal((prevVal) => !prevVal);
-                    setOpenedFollowingsModal(false);
-                  }}
-                >
-                  {currentUser.following.length} follows
-                </li>
-
-                <li
-                  onClick={() => {
-                    setOpenedFollowingsModal((prevVal) => !prevVal);
-                    setOpenedFollowsModal(false);
-                  }}
-                >
-                  {currentUser.followed.length} followings
-                </li>
-              </ul>
-
-              <div className="user-nickname">
-                {/* <h4>User nickname</h4> */}
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : (
-        <h1>Loading...</h1>
-      )}
       {/* redner here user posts */}
       <div className="user-posts">
         {userPosts && currentUser ? (
           <div className="user-posts-container">
-            <div className="posts-container">
-              {userPosts.map((post, index) => {
-                return (
-                  <div
-                    className="post-card"
-                    key={index}
-                    onClick={() => {
-                      setCurrentPost(post);
-                      setOpenedPostModal((prevVal) => !prevVal);
-                    }}
-                  >
-                    <img src={post.image} alt="post" className="post-picture" />
-                    <button
-                      className="delete-post"
-                      onClick={() => onDeletePost(post._id)}
-                    >
-                      Delete post
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+            <RenderPosts
+              userPosts={userPosts}
+              setCurrentPost={setCurrentPost}
+              setOpenedPostModal={setOpenedPostModal}
+              onDeletePost={onDeletePost}
+            />
             {
               //current user post modal:
               openedPostModal === true ? (
