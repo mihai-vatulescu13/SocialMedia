@@ -3,16 +3,13 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './userPage.css';
 import { connect } from 'react-redux';
-import PostModal from '../../components/PostModal/PostModal';
 import axios from 'axios';
-import FollowModal from '../../components/FollowModal/FollowModal';
+import RenderPost from '../../components/RenderHomePost/RenderPost';
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
   const [userPosts, setUserPosts] = useState([]);
-  const [currentPost, setCurrentPost] = useState({});
   //modals hooks:
-  const [openedPostModal, setOpenedPostModal] = useState(false);
   const [openedFollowsModal, setOpenedFollowsModal] = useState(false);
   const [openedFollowingsModal, setOpenedFollowingsModal] = useState(false);
 
@@ -31,11 +28,6 @@ const UserPage = ({ connectedUser }) => {
 
     getUserData();
   }, [_id]);
-
-  const onDeletePost = async (postId) => {
-    const response = await axios.delete(`/post/deletePost/${postId}`);
-    console.log('deletion response:', response.data);
-  };
 
   return (
     <div className="user-page-container">
@@ -56,8 +48,6 @@ const UserPage = ({ connectedUser }) => {
                 className="user-profile-picture"
               />
             </div>
-
-            {/* {console.log("current user following arr:", currentUser.following)} */}
 
             <div className="user-details">
               <div className="name-and-edit-profile">
@@ -100,70 +90,14 @@ const UserPage = ({ connectedUser }) => {
       ) : (
         <h1>Loading...</h1>
       )}
-      {/* redner here user posts */}
-      <div className="user-posts">
-        {userPosts && currentUser ? (
-          <div className="user-posts-container">
-            <div className="posts-container">
-              {userPosts.map((post, index) => {
-                return (
-                  <div
-                    className="post-card"
-                    key={index}
-                    onClick={() => {
-                      setCurrentPost(post);
-                      setOpenedPostModal((prevVal) => !prevVal);
-                    }}
-                  >
-                    <img src={post.image} alt="post" className="post-picture" />
-                    <button
-                      className="delete-post"
-                      onClick={() => onDeletePost(post._id)}
-                    >
-                      Delete post
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-            {
-              //current user post modal:
-              openedPostModal === true ? (
-                <PostModal
-                  post={currentPost}
-                  openedPostModal={openedPostModal}
-                  setOpenedPostModal={setOpenedPostModal}
-                  userData={currentUser}
-                />
-              ) : (
-                <></>
-              )
-            }
-            {openedFollowsModal ? (
-              <FollowModal
-                heading="Follows"
-                setOpenedFollowsModal={setOpenedFollowsModal}
-                followsUsers={currentUser ? currentUser.following : []}
-              />
-            ) : (
-              <></>
-            )}
-            {openedFollowingsModal ? (
-              <FollowModal
-                heading="Is followed by"
-                setOpenedFollowsModal={setOpenedFollowingsModal}
-                followsUsers={currentUser ? currentUser.followed : []}
-              />
-            ) : (
-              <></>
-            )}
-          </div>
-        ) : (
-          <div>
-            <h1>Loading...</h1>
-          </div>
-        )}
-      </div>
+      <RenderPost
+        userPosts={userPosts}
+        currentUser={currentUser}
+        openedFollowsModal={openedFollowsModal}
+        setOpenedFollowsModal={setOpenedFollowsModal}
+        setOpenedFollowingsModal={setOpenedFollowingsModal}
+        openedFollowingsModal={openedFollowingsModal}
+      />
     </div>
   );
 };
