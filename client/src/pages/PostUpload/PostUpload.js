@@ -16,14 +16,17 @@ const PostUpload = ({ user }) => {
     e.preventDefault();
     let file = postImage.current.files[0];
 
-    const options = {
+    const imageCompressingOptions = {
       maxSizeMB: 0.4,
       maxWidthOrHeight: 1300,
       useWebWorker: true,
     };
 
     try {
-      const compressedFile = await imageCompression(file, options);
+      const compressedFile = await imageCompression(
+        file,
+        imageCompressingOptions
+      );
 
       const convertBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -58,7 +61,7 @@ const PostUpload = ({ user }) => {
     <div className="post-upload">
       <div className="center-upload-page">
         <form onSubmit={onUpload} className="post-ulpoad-form">
-          <h2 className="main-heading">What are you thinking about?</h2>
+          <h2 className="main-heading">What you want to post?</h2>
           <textarea
             type="text"
             className="post-description"
@@ -73,13 +76,15 @@ const PostUpload = ({ user }) => {
             ref={location}
           />
 
-          <input
-            type="file"
-            className="post-img"
-            accept=".jpg, .png, .jpeg"
-            ref={postImage}
-            required
-          />
+          <div className="image-upload-container">
+            <input
+              type="file"
+              className="post-img-icon"
+              accept=".jpg, .png, .jpeg"
+              ref={postImage}
+              required
+            />
+          </div>
 
           {/* <div className="preview-image">
             {image ? (

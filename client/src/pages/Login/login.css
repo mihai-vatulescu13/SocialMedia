@@ -10,7 +10,8 @@
   height: 550px;
   padding: 2em;
   border-radius: 5px;
-  box-shadow: 6px 6px 10px gray;
+  /* box-shadow: 6px 6px 10px gray; */
+  box-shadow: 0 0 10px gray;
 }
 
 .form-fields > label {

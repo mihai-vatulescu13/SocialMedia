@@ -1,5 +1,4 @@
 import HomeNav from "../../components/homeNav/HomeNav";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./userPage.css";
 import { connect } from "react-redux";
