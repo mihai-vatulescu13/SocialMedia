@@ -1,8 +1,8 @@
-import './renderpost.css';
-import { useState } from 'react';
-import FollowModal from '../../components/FollowModal/FollowModal';
-import PostModal from '../../components/PostModal/PostModal';
-import axios from 'axios';
+import "./renderpost.css";
+import { useState } from "react";
+import PostModal from "../../components/PostModal/PostModal";
+import axios from "axios";
+import UsersListModal from "../UsersListModal/UsersListModal";
 
 const RenderPost = ({
   userPosts,
@@ -57,7 +57,7 @@ const RenderPost = ({
             )
           }
           {openedFollowsModal ? (
-            <FollowModal
+            <UsersListModal
               heading="Follows"
               setOpenedFollowsModal={setOpenedFollowsModal}
               followsUsers={currentUser ? currentUser.following : []}
@@ -66,7 +66,7 @@ const RenderPost = ({
             <></>
           )}
           {openedFollowingsModal ? (
-            <FollowModal
+            <UsersListModal
               heading="Is followed by"
               setOpenedFollowsModal={setOpenedFollowingsModal}
               followsUsers={currentUser ? currentUser.followed : []}

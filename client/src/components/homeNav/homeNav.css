@@ -57,3 +57,10 @@
   height: 57px;
   width: 70px;
 }
+
+.upload-post-logo {
+  height: auto;
+  width: 35px;
+  position: relative;
+  bottom: 6px;
+}

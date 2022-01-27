@@ -9,3 +9,7 @@
   height: 30px;
   font-size: 1rem;
 }
+
+.follows-heading > h4 {
+  margin-left: 1em;
+}

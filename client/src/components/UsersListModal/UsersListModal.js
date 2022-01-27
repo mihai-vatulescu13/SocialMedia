@@ -1,8 +1,8 @@
-import './followModal.css';
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import "./usersListModal.css";
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
-const FollowModal = ({ heading, setOpenedFollowsModal, followsUsers }) => {
+const UsersListModal = ({ heading, setOpenedFollowsModal, followsUsers }) => {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -11,10 +11,10 @@ const FollowModal = ({ heading, setOpenedFollowsModal, followsUsers }) => {
         setOpenedFollowsModal();
       }
     };
-    document.addEventListener('click', outsideClick);
+    document.addEventListener("click", outsideClick);
 
     return () => {
-      document.removeEventListener('click', outsideClick);
+      document.removeEventListener("click", outsideClick);
     };
   }, [setOpenedFollowsModal]);
 
@@ -53,4 +53,4 @@ const FollowModal = ({ heading, setOpenedFollowsModal, followsUsers }) => {
   );
 };
 
-export default FollowModal;
+export default UsersListModal;

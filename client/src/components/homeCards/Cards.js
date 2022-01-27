@@ -118,9 +118,14 @@ const Cards = ({
             style={likes.yourLike ? { color: "#20a1dd" } : {}}
             onClick={handleClick}
           />
+
+          {console.log("likes:", likes)}
+
           <span className="Likes">
+            {" "}
             {likes.lengthLikes && likes.lengthLikes}
           </span>
+
           <FontAwesomeIcon icon={faShareSquare} className="Icons" />
           <FontAwesomeIcon icon={faComment} className="Icons" />
           <FontAwesomeIcon

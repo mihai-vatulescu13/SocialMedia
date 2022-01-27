@@ -9,8 +9,6 @@ const UserDetails = ({
 }) => {
   const Pf = process.env.REACT_APP_ASSETS;
 
-  console.log(userPosts, currentUser);
-
   return currentUser && userPosts ? (
     <div className="user-main-details">
       <div className="picture-and-details">

@@ -36,7 +36,12 @@ const HomeNav = ({ connectedUser }) => {
           </Link>
 
           <Link to="/upload" className="link-item">
-            <FontAwesomeIcon icon={faCameraRetro} className="nav-icon" />
+            {/* <FontAwesomeIcon icon={faCameraRetro} className="nav-icon" /> */}
+            <img
+              src={PF + "add-post-logo.png"}
+              alt="add post logo"
+              className="upload-post-logo"
+            />
           </Link>
 
           <Link to="topArticles" className="link-item">
