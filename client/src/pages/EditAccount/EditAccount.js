@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { useRef, useEffect, useState } from 'react';
-import './editAccount.css';
-import { connect } from 'react-redux';
+import axios from "axios";
+import { useRef, useEffect, useState } from "react";
+import "./editAccount.css";
+import { connect } from "react-redux";
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
@@ -54,9 +54,9 @@ const EditAccount = ({ connectedUser }) => {
 
   return (
     <div className="account-container">
-      <h2>Edit account</h2>
       {user ? (
         <form action="submit" className="edit-form" onSubmit={onEditAccount}>
+          <h2 className="edit-account-heading">Edit account</h2>
           <div className="form-fields">
             <label className="form-label">
               Change name:
@@ -68,6 +68,7 @@ const EditAccount = ({ connectedUser }) => {
                 onChange={(e) => onDataChange(e)}
               />
             </label>
+
             {/* <label className="form-label">
               City:
               <input
@@ -77,6 +78,7 @@ const EditAccount = ({ connectedUser }) => {
                 className="form-input"
               />
             </label> */}
+
             <label className="form-label">
               Change password:
               <input
@@ -86,19 +88,24 @@ const EditAccount = ({ connectedUser }) => {
                 onChange={(e) => onDataChange(e)}
               />
             </label>
-            <div className="add-profile-picture">
+
+            <div className="profile-picture-upload">
               <input
                 type="file"
-                className="add-picture"
-                // accept=".jpg .png .jpeg"
+                className="post-img-icon"
+                accept=".jpg, .png, .jpeg"
                 ref={imageFile}
+                required
               />
             </div>
           </div>
           <div className="form-buttons">
             <div className="submit-btn">
-              <button className="submit-edit" type="submit">
-                Save data
+              <button className="edit-form-btn" type="submit">
+                Save
+              </button>
+              <button className="edit-form-btn" type="submit">
+                Back
               </button>
             </div>
           </div>
