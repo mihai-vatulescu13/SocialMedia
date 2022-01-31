@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
+  const [confirmedPassword, setConfirmedPassword] = useState("");
 
   const imageFile = useRef();
   const { _id } = connectedUser;
@@ -19,6 +20,10 @@ const EditAccount = ({ connectedUser }) => {
 
   const onDataChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const onConfirmedPassword = (e) => {
+    setConfirmedPassword(e.target.value);
   };
 
   const onEditAccount = async (e) => {
@@ -44,12 +49,18 @@ const EditAccount = ({ connectedUser }) => {
       }
     };
 
+    if (confirmedPassword !== "" && user.password !== confirmedPassword) {
+      return console.error("passwords didn't match");
+    }
+
     const base64Image = await convertBase64(image);
 
     await axios.put(`/user/editUser/${_id}`, {
       ...user,
       profilePicture: base64Image,
     });
+
+    console.log("data updated with success");
   };
 
   return (
@@ -69,7 +80,7 @@ const EditAccount = ({ connectedUser }) => {
               />
             </label>
 
-            {/* <label className="form-label">
+            <label className="form-label">
               City:
               <input
                 type="text"
@@ -77,7 +88,7 @@ const EditAccount = ({ connectedUser }) => {
                 //placeholder={city}
                 className="form-input"
               />
-            </label> */}
+            </label>
 
             <label className="form-label">
               Change password:
@@ -89,14 +100,25 @@ const EditAccount = ({ connectedUser }) => {
               />
             </label>
 
-            <div className="profile-picture-upload">
+            <label className="form-label">
+              Confirm password:
               <input
-                type="file"
-                className="post-img-icon"
-                accept=".jpg, .png, .jpeg"
-                ref={imageFile}
-                required
+                type="password"
+                className="form-input"
+                onChange={(e) => onConfirmedPassword(e)}
               />
+            </label>
+
+            <div className="upload-heading-and-input">
+              <h4>Change profile picture</h4>
+              <div className="profile-picture-upload">
+                <input
+                  type="file"
+                  className="post-img-icon"
+                  accept=".jpg, .png, .jpeg"
+                  ref={imageFile}
+                />
+              </div>
             </div>
           </div>
           <div className="form-buttons">
@@ -104,9 +126,7 @@ const EditAccount = ({ connectedUser }) => {
               <button className="edit-form-btn" type="submit">
                 Save
               </button>
-              <button className="edit-form-btn" type="submit">
-                Back
-              </button>
+              <button className="edit-form-btn">Back</button>
             </div>
           </div>
         </form>

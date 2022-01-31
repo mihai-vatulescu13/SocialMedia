@@ -23,6 +23,7 @@ router.get("/users", async (req, res) => {
 
 router.put("/editUser/:user", async (req, res) => {
   try {
+    //before save data into database encrypt the new(edited) password:
     const user = await UsersModel.findByIdAndUpdate(req.params.user, {
       $set: req.body,
     });
