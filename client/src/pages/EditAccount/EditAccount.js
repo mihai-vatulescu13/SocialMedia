@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [previewImage, setPreviewImage] = useState(null);
 
   const imageFile = useRef();
   const { _id } = connectedUser;
