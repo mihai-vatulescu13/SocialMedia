@@ -3,9 +3,10 @@ import Search from "../Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouseUser,
-  faTrophy,
+  faUsers,
   faCameraRetro,
 } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import "./homeNav.css";
 import { connect } from "react-redux";
 
@@ -35,6 +36,10 @@ const HomeNav = ({ connectedUser }) => {
             <FontAwesomeIcon icon={faHouseUser} className="nav-icon" />
           </Link>
 
+          <Link to="/messenger" className="link-item">
+            <FontAwesomeIcon icon={faCommentDots} className="nav-icon" />
+          </Link>
+
           <Link to="/upload" className="link-item">
             {/* <FontAwesomeIcon icon={faCameraRetro} className="nav-icon" /> */}
             <img
@@ -45,7 +50,7 @@ const HomeNav = ({ connectedUser }) => {
           </Link>
 
           <Link to="topArticles" className="link-item">
-            <FontAwesomeIcon icon={faTrophy} className="nav-icon" />
+            <FontAwesomeIcon icon={faUsers} className="nav-icon" />
           </Link>
           <Link to="/userAccountPage" className="link-item">
             <img

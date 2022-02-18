@@ -1,13 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Register from './pages/Register/Register';
-import Login from './pages/Login/Login';
-import EditAccount from './pages/EditAccount/EditAccount';
-import PostUpload from './pages/PostUpload/PostUpload';
-import UserPage from './pages/UserPage/UserPage';
-import FoundUserPage from './pages/FoundUserPage/FoundUserPage';
-import { connect } from 'react-redux';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Register from "./pages/Register/Register";
+import Login from "./pages/Login/Login";
+import EditAccount from "./pages/EditAccount/EditAccount";
+import PostUpload from "./pages/PostUpload/PostUpload";
+import UserPage from "./pages/UserPage/UserPage";
+import FoundUserPage from "./pages/FoundUserPage/FoundUserPage";
+import Messages from "./pages/Messages/Messages";
+import { connect } from "react-redux";
+import "./App.css";
 
 function App({ connectedUser }) {
   return (
@@ -56,6 +57,7 @@ function App({ connectedUser }) {
           }
         />
         <Route path="/users/:userId" element={<FoundUserPage />} />
+        <Route path="/messenger" element={<Messages />} />
       </Routes>
     </div>
   );
