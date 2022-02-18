@@ -1,20 +1,21 @@
-import "./cards.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './cards.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEllipsisH,
   faShareSquare,
   faThumbtack,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faComment,
   faThumbsUp,
   faSmile,
-} from "@fortawesome/free-regular-svg-icons";
-import { comments } from "../../components/testData/homeCard";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { format } from "timeago.js";
-import { Link } from "react-router-dom";
+} from '@fortawesome/free-regular-svg-icons';
+import { comments } from '../../components/testData/homeCard';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { format } from 'timeago.js';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Cards = ({
   postId,
@@ -25,6 +26,7 @@ const Cards = ({
   printed,
   createdAt,
   userId,
+  CurrentUserId,
 }) => {
   const PF = process.env.REACT_APP_ASSETS;
 
@@ -33,8 +35,8 @@ const Cards = ({
   };
 
   const [user, setUser] = useState({
-    image: "",
-    name: "",
+    image: '',
+    name: '',
   });
 
   const [likes, setLikes] = useState({
@@ -44,9 +46,9 @@ const Cards = ({
 
   const handleClick = async () => {
     const { data } = await axios.put(`/post/likePost/${postId}`, {
-      userId: userId,
+      userId: CurrentUserId,
     });
-    if (data === "dislike") {
+    if (data === 'dislike') {
       setLikes((prevValue) => {
         return {
           ...prevValue,
@@ -55,7 +57,7 @@ const Cards = ({
         };
       });
     }
-    if (data === "like") {
+    if (data === 'like') {
       setLikes((prevValue) => {
         return {
           ...prevValue,
@@ -88,7 +90,7 @@ const Cards = ({
     <div className="post_Card">
       <header className="header_card">
         <img
-          src={user.image ? user.image : PF + "user-avatar.png"}
+          src={user.image ? user.image : PF + 'user-avatar.png'}
           alt="avatar"
           className="avatarImage"
         />
@@ -115,14 +117,14 @@ const Cards = ({
           <FontAwesomeIcon
             icon={faThumbsUp}
             className="Icons likeIcon"
-            style={likes.yourLike ? { color: "#20a1dd" } : {}}
+            style={likes.yourLike ? { color: '#20a1dd' } : {}}
             onClick={handleClick}
           />
 
-          {console.log("likes:", likes)}
+          {console.log('likes:', likes)}
 
           <span className="Likes">
-            {" "}
+            {' '}
             {likes.lengthLikes && likes.lengthLikes}
           </span>
 
@@ -131,18 +133,18 @@ const Cards = ({
           <FontAwesomeIcon
             icon={faThumbtack}
             className="Icons printIcon"
-            style={printed && { color: "#444444" }}
+            style={printed && { color: '#444444' }}
           />
         </div>
         <div className="post-description-container">
           <img
-            src={user.image ? user.image : PF + "user-avatar.png"}
+            src={user.image ? user.image : PF + 'user-avatar.png'}
             alt="avatar"
             className="avatarImageDescription"
           />
           <h5 className="username-description-heading">
-            {user.name ? user.name : ""}
-          </h5>{" "}
+            {user.name ? user.name : ''}
+          </h5>{' '}
           <h4 className="post-description-heading">{description}</h4>
         </div>
         <div className="comments_container">
@@ -152,7 +154,7 @@ const Cards = ({
                 return (
                   <p key={index} className="comment_elem">
                     <span className="userComment">{elem.name}</span>
-                    {": " + elem.comment}
+                    {': ' + elem.comment}
                   </p>
                 );
               })}
@@ -162,7 +164,7 @@ const Cards = ({
             comments.map((elem, index) => {
               return (
                 <p key={index} className="comment_elem">
-                  <span className="userComment">{elem.name + ": "}</span>
+                  <span className="userComment">{elem.name + ': '}</span>
                   {elem.comment}
                 </p>
               );
@@ -186,5 +188,11 @@ const Cards = ({
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  console.log('Statul ba', state);
+  return {
+    CurrentUserId: state.AuthReducer._id,
+  };
+};
 
-export default Cards;
+export default connect(mapStateToProps)(Cards);
