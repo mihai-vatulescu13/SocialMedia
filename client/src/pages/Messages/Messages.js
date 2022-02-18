@@ -4,6 +4,7 @@ import HomeNav from "../../components/homeNav/HomeNav";
 import { connect } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
+import { Conversation } from "../../components/conversation/Conversation";
 
 const Messages = ({ connectedUser }) => {
   const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
@@ -27,14 +28,13 @@ const Messages = ({ connectedUser }) => {
           <ul>
             {users ? (
               users.map((item, index) => {
+                //render a list of users conversations:
                 return (
-                  <li key={index} className="user-message-card">
-                    <img
-                      src={item.profilePicture}
-                      alt="user follow"
-                      className="message-user-img"
+                  <li key={index} className="conversation-item">
+                    <Conversation
+                      name={item.name}
+                      profilePicture={item.profilePicture}
                     />
-                    <h3>{item.name}</h3>
                   </li>
                 );
               })

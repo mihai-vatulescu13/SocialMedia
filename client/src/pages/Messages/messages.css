@@ -10,26 +10,8 @@
   flex-direction: row;
 }
 
-.message-user-img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 0.5em;
-}
-
-.user-message-card {
-  display: flex;
-  flex-direction: row;
+.conversation-item {
   list-style-type: none;
-  border: 1px solid gray;
-  margin: 0.5em;
-  padding: 0.5em;
-  border-radius: 5px;
-}
-
-.users-nav {
-  /* border: 1px solid green; */
 }
 
 .messages-container {
