@@ -81,10 +81,10 @@ const Cards = ({
     };
     setLikes({
       lengthLikes: like.length,
-      yourLike: like.includes(userId) ? true : false,
+      yourLike: like.includes(CurrentUserId) ? true : false,
     });
     fetchUser();
-  }, [userId]);
+  }, [userId, CurrentUserId]);
 
   return (
     <div className="post_Card">
