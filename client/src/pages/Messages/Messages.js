@@ -5,9 +5,17 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
 import { Conversation } from "../../components/conversation/Conversation";
+import Message from "../../components/Message/Message";
 
 const Messages = ({ connectedUser }) => {
-  const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
+  // const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
+  const messagesConversation = [
+    { id: 1, message: "alooo" },
+    { id: 2, message: "zii ce vrei" },
+    { id: 1, message: "voiam sa vad ce faci" },
+    { id: 1, message: "sper ca nu te-am deranjat" },
+    { id: 2, message: "e ok, stai linistit" },
+  ];
   const [users, setUsers] = useState();
   const { _id } = connectedUser;
 
@@ -23,12 +31,11 @@ const Messages = ({ connectedUser }) => {
     <div>
       <HomeNav />
       <div className="chat-app">
+        {/* users(friends) conversations: */}
         <section className="users-nav">
-          {/* return an user card: */}
           <ul>
             {users ? (
               users.map((item, index) => {
-                //render a list of users conversations:
                 return (
                   <li key={index} className="conversation-item">
                     <Conversation
@@ -43,13 +50,17 @@ const Messages = ({ connectedUser }) => {
             )}
           </ul>
         </section>
+        {/* messages container between the current user and its friend(selected user from conversations list) */}
         <section className="messages-container">
           <h2>selected user messages</h2>
           <ul>
-            {messages.map((item, index) => {
+            {messagesConversation.map((item, index) => {
               return (
                 <li key={index} className="message-item">
-                  {item}
+                  <Message
+                    messageContent={item.message}
+                    ownMessage={item.id === 1 ? true : false}
+                  />
                 </li>
               );
             })}
