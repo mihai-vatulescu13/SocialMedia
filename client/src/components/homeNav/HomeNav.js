@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouseUser,
-  faUsers,
-  faCameraRetro,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHouseUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import "./homeNav.css";
 import { connect } from "react-redux";
