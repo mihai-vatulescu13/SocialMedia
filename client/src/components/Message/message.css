@@ -18,6 +18,11 @@
   margin: 4px 0 4px 0;
 }
 
+.message-content-style {
+  border-radius: 15px;
+  padding: 5px;
+}
+
 .my-message {
   display: flex;
   align-items: center;

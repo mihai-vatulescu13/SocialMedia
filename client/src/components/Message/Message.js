@@ -18,7 +18,9 @@ const Message = ({ userPicture, messageContent, ownMessage }) => {
             style={
               ownMessage
                 ? { backgroundColor: " rgb(0, 110, 255)" }
-                : { backgroundColor: " rgb(219, 219, 219)" }
+                : {
+                    backgroundColor: " rgb(69, 69, 69)",
+                  }
             }
           >
             {messageContent}
