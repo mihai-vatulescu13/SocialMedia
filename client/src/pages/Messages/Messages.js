@@ -65,6 +65,10 @@ const Messages = ({ connectedUser }) => {
               );
             })}
           </ul>
+          <div className="send-message-form">
+            <input type="text" className="msg-input" />
+            <button className="send-message-btn">Send</button>
+          </div>
         </section>
       </div>
     </div>
