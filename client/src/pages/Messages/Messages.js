@@ -53,7 +53,7 @@ const Messages = ({ connectedUser }) => {
         {/* messages container between the current user and its friend(selected user from conversations list) */}
         <section className="messages-container">
           <h2>selected user messages</h2>
-          <ul>
+          <ul className="messages-list">
             {messagesConversation.map((item, index) => {
               return (
                 <li key={index} className="message-item">
@@ -65,6 +65,10 @@ const Messages = ({ connectedUser }) => {
               );
             })}
           </ul>
+          <div className="send-message-form">
+            <input type="text" className="msg-input" />
+            <button className="send-message-btn">Send</button>
+          </div>
         </section>
       </div>
     </div>
