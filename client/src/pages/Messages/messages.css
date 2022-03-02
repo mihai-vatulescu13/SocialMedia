@@ -24,3 +24,24 @@
 .message-item {
   list-style-type: none;
 }
+
+.messages-list {
+  height: 94%;
+}
+
+.send-message-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.send-message-btn {
+  width: 80px;
+  height: 22px;
+}
+
+.msg-input {
+  width: 620px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid gray;
+}
