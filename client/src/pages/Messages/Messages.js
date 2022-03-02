@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import "./messages.css";
-import HomeNav from "../../components/homeNav/HomeNav";
-import { connect } from "react-redux";
-import axios from "axios";
-import { useEffect } from "react";
-import { Conversation } from "../../components/conversation/Conversation";
-import Message from "../../components/Message/Message";
+import React, { useState } from 'react';
+import './messages.css';
+import HomeNav from '../../components/homeNav/HomeNav';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Conversation } from '../../components/conversation/Conversation';
+import Message from '../../components/Message/Message';
 
 const Messages = ({ connectedUser }) => {
   // const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
   const messagesConversation = [
-    { id: 1, message: "alooo" },
-    { id: 2, message: "zii ce vrei" },
-    { id: 1, message: "voiam sa vad ce faci" },
-    { id: 1, message: "sper ca nu te-am deranjat" },
-    { id: 2, message: "e ok, stai linistit" },
+    { id: 1, message: 'alooo' },
+    { id: 2, message: 'zii ce vrei' },
+    { id: 1, message: 'voiam sa vad ce faci' },
+    { id: 1, message: 'sper ca nu te-am deranjat' },
+    { id: 2, message: 'e ok, stai linistit' },
   ];
   const [users, setUsers] = useState();
   const { _id } = connectedUser;
@@ -25,7 +25,7 @@ const Messages = ({ connectedUser }) => {
       setUsers(data.following);
     };
     getUserData();
-  }, []);
+  }, [_id]);
 
   return (
     <div>

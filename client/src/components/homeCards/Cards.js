@@ -79,12 +79,14 @@ const Cards = ({
         };
       });
     };
+    fetchUser();
+  }, [userId]);
+  useEffect(() => {
     setLikes({
       lengthLikes: like.length,
       yourLike: like.includes(CurrentUserId) ? true : false,
     });
-    fetchUser();
-  }, [userId, CurrentUserId]);
+  }, [like, CurrentUserId]);
 
   return (
     <div className="post_Card">
@@ -95,12 +97,10 @@ const Cards = ({
           className="avatarImage"
         />
         <div className="headerUser">
-          {user.name ? (
+          {user.name && (
             <Link to={`/users/${userId}`} className="username-style">
               <h3>{user.name}</h3>
             </Link>
-          ) : (
-            <h3></h3>
           )}
           <div className="location-and-posted-date">
             <p className="location-paragraph">{location} </p>
