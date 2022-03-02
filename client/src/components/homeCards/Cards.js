@@ -79,12 +79,14 @@ const Cards = ({
         };
       });
     };
+    fetchUser();
+  }, [userId, CurrentUserId]);
+  useEffect(() => {
     setLikes({
       lengthLikes: like.length,
       yourLike: like.includes(CurrentUserId) ? true : false,
     });
-    fetchUser();
-  }, [userId, CurrentUserId]);
+  }, [like]);
 
   return (
     <div className="post_Card">
