@@ -1,12 +1,11 @@
-import axios from "axios";
-import { useRef, useEffect, useState } from "react";
-import "./editAccount.css";
-import { connect } from "react-redux";
+import axios from 'axios';
+import { useRef, useEffect, useState } from 'react';
+import './editAccount.css';
+import { connect } from 'react-redux';
 
 const EditAccount = ({ connectedUser }) => {
   const [user, setUser] = useState();
-  const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
+  const [confirmedPassword, setConfirmedPassword] = useState('');
 
   const imageFile = useRef();
   const { _id } = connectedUser;
@@ -50,7 +49,7 @@ const EditAccount = ({ connectedUser }) => {
       }
     };
 
-    if (confirmedPassword !== "" && user.password !== confirmedPassword) {
+    if (confirmedPassword !== '' && user.password !== confirmedPassword) {
       return console.error("passwords didn't match");
     }
 
@@ -61,7 +60,7 @@ const EditAccount = ({ connectedUser }) => {
       profilePicture: base64Image,
     });
 
-    console.log("data updated with success");
+    console.log('data updated with success');
   };
 
   return (

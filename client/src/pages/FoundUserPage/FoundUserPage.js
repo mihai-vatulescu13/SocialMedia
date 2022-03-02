@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import HomeNav from "../../components/homeNav/HomeNav";
-import { connect } from "react-redux";
-import "./foundUserPage.css";
-import RenderPost from "../../components/RenderHomePost/RenderPost";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import HomeNav from '../../components/homeNav/HomeNav';
+import { connect } from 'react-redux';
+import './foundUserPage.css';
+import RenderPost from '../../components/RenderHomePost/RenderPost';
 
 const FoundUserPage = ({ connectedUser }) => {
   const { _id } = connectedUser; //comes from current user data(from redeux)
@@ -35,7 +35,7 @@ const FoundUserPage = ({ connectedUser }) => {
     };
 
     getUserData();
-  }, []);
+  }, [_id, userId]);
 
   const followSelectedUser = async () => {
     const { data } = await axios.put(`/user/followUser/${_id}`, {
@@ -43,7 +43,7 @@ const FoundUserPage = ({ connectedUser }) => {
       connectedUser,
       userFollowed,
     });
-    console.log("follow response:", data);
+    console.log('follow response:', data);
 
     setUserFollowed(!userFollowed);
   };
@@ -60,8 +60,8 @@ const FoundUserPage = ({ connectedUser }) => {
               <div className="picture-container">
                 <img
                   src={
-                    foundUser.profilePicture === ""
-                      ? Pf + "user-avatar.png"
+                    foundUser.profilePicture === ''
+                      ? Pf + 'user-avatar.png'
                       : foundUser.profilePicture
                   }
                   alt="user profile"
@@ -78,11 +78,11 @@ const FoundUserPage = ({ connectedUser }) => {
                       followSelectedUser();
                     }}
                   >
-                    {userFollowed ? "Unfollow" : "Follow"}
+                    {userFollowed ? 'Unfollow' : 'Follow'}
                   </button>
                 </div>
                 <div className="posts-follows-followings">
-                  <h4>{userPosts.length + " "} posts</h4>
+                  <h4>{userPosts.length + ' '} posts</h4>
                   <div className="follows-heading">
                     <h4
                       onClick={() => {
@@ -90,7 +90,7 @@ const FoundUserPage = ({ connectedUser }) => {
                         setOpenedFollowingsModal(false);
                       }}
                     >
-                      {foundUser.following.length + " "} follows
+                      {foundUser.following.length + ' '} follows
                     </h4>
                   </div>
                   <div className="follows-heading">
@@ -100,7 +100,7 @@ const FoundUserPage = ({ connectedUser }) => {
                         setOpenedFollowsModal(false);
                       }}
                     >
-                      {foundUser.followed.length + " "} followings
+                      {foundUser.followed.length + ' '} followings
                     </h4>
                   </div>
                 </div>
