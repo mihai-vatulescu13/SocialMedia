@@ -32,10 +32,34 @@ app.use('/api/post', postsRoute);
 mongoose.connect(process.env.DATABASE_MONGO_URL);
 
 // socket part
+// functions
+const addUser = (socketId, userId) => {
+  if (socketId && userId) {
+    !OnlineUsers.includes(userId) && OnlineUsers.push({ socketId, userId });
+  }
+};
+const deleteUser = (socketId) => {
+  OnlineUsers = OnlineUsers.filter((elem) => elem.socketId !== socketId);
+};
+const getUser = (userId) => {
+  return OnlineUsers.find((user) => user.userId === userId);
+};
+//connection
 io.on('connection', (socket) => {
-  console.log('connected');
+  socket.on('newUser', (userId) => {
+    addUser(socket.id, userId);
+    io.emit('getUsers', OnlineUsers);
+  });
+  socket.on('sendMessage', ({ senderId, receiverId, text }) => {
+    const user = getUser(receiverId);
+    io.to(user.socketId).emit('getMessage', {
+      senderId,
+      text,
+    });
+  });
   socket.on('disconnect', () => {
-    console.log('disconnect');
+    deleteUser(socket.id);
+    io.emit('getUsers', OnlineUsers);
   });
 });
 
