@@ -1,25 +1,34 @@
-import React, { useState } from "react";
-import "./messages.css";
-import HomeNav from "../../components/homeNav/HomeNav";
-import { connect } from "react-redux";
-import axios from "axios";
-import { useEffect } from "react";
-import { Conversation } from "../../components/conversation/Conversation";
-import Message from "../../components/Message/Message";
+import { useState, useRef, useEffect } from 'react';
+import './messages.css';
+import HomeNav from '../../components/homeNav/HomeNav';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { Conversation } from '../../components/conversation/Conversation';
+import Message from '../../components/Message/Message';
+import { io } from 'socket.io-client';
 
 const Messages = ({ connectedUser }) => {
-  // const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
+  const socket = useRef();
+  const [onlineUsers, setOnline] = useState([]);
   const messagesConversation = [
-    { id: 1, message: "alooo" },
-    { id: 2, message: "zii ce vrei" },
-    { id: 1, message: "voiam sa vad ce faci" },
-    { id: 1, message: "sper ca nu te-am deranjat" },
-    { id: 2, message: "e ok, stai linistit" },
+    { id: 1, message: 'alooo' },
+    { id: 2, message: 'zii ce vrei' },
+    { id: 1, message: 'voiam sa vad ce faci' },
+    { id: 1, message: 'sper ca nu te-am deranjat' },
+    { id: 2, message: 'e ok, stai linistit' },
   ];
   const [users, setUsers] = useState();
   const { _id } = connectedUser;
+  useEffect(() => {
+    socket.current = io('http://localhost:5000');
+  }, []);
 
   useEffect(() => {
+    if (_id) {
+      socket.current.on('getUsers', (data) => {
+        console.log(data);
+      });
+    }
     const getUserData = async () => {
       const { data } = await axios.get(`/user/getUser/${_id}`);
       setUsers(data.following);

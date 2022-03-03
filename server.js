@@ -46,6 +46,7 @@ const getUser = (userId) => {
 };
 //connection
 io.on('connection', (socket) => {
+  console.log('connected user', OnlineUsers);
   socket.on('newUser', (userId) => {
     addUser(socket.id, userId);
     io.emit('getUsers', OnlineUsers);
@@ -60,6 +61,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     deleteUser(socket.id);
     io.emit('getUsers', OnlineUsers);
+    console.log('disconnected user', OnlineUsers);
   });
 });
 
