@@ -45,3 +45,8 @@
   outline: none;
   border: 1px solid gray;
 }
+
+.messages-list-container {
+  height: 94%;
+  overflow-y: scroll;
+}
