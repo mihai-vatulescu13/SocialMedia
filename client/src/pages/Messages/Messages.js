@@ -77,7 +77,7 @@ const Messages = ({ connectedUser }) => {
           <ul className="messages-list-container">
             {messagesConversation.map((item, index) => {
               return (
-                <li key={index} className="message-item">
+                <li key={index} className="message-item asa">
                   <Message
                     messageContent={item.message}
                     ownMessage={item.id === 1 ? true : false}
