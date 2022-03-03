@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Conversation } from "../../components/conversation/Conversation";
 import Message from "../../components/Message/Message";
+import { socket } from "socket.io-client";
 
 const Messages = ({ connectedUser }) => {
   // const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
