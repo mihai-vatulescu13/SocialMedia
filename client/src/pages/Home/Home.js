@@ -1,30 +1,29 @@
-import HomeNaV from '../../components/homeNav/HomeNav';
-import Card from '../../components/homeCards/Cards';
-import { objCards, ownUser } from '../../components/testData/homeCard';
-import './home.css';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { useEffect, useState, useRef } from 'react';
-import { io } from 'socket.io-client';
-import axios from 'axios';
+import HomeNaV from "../../components/homeNav/HomeNav";
+import Card from "../../components/homeCards/Cards";
+import { objCards, ownUser } from "../../components/testData/homeCard";
+import "./home.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
+import axios from "axios";
 
 function Home({ userId }) {
   const [posts, setPosts] = useState(null);
   const [user, setUser] = useState({
-    image: '',
-    name: '',
+    image: "",
+    name: "",
     followingUsers: [],
   });
   const socket = useRef();
 
   const PF = process.env.REACT_APP_ASSETS;
   useEffect(() => {
-    socket.current = io('http://localhost:5000');
-    console.log('Home page');
+    socket.current = io("http://localhost:5000");
   }, []);
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get('/post/getPosts');
+      const { data } = await axios.get("/post/getPosts");
       setPosts(data);
     };
 
@@ -80,14 +79,14 @@ function Home({ userId }) {
         <div className="users-sugestion">
           <div className="ownerUser">
             <img
-              src={user.image ? user.image : PF + 'user-avatar.png'}
+              src={user.image ? user.image : PF + "user-avatar.png"}
               alt="avatar"
               className="ownerImage"
             />
             <div className="ownerInfo">
               <Link to={`/userAccountPage`} className="username-style">
                 <p className="titleName ">
-                  {user.name ? user.name : 'Loading...'}
+                  {user.name ? user.name : "Loading..."}
                 </p>
               </Link>
               <span className="subTitle">{ownUser.location}</span>
@@ -98,7 +97,7 @@ function Home({ userId }) {
           </div>
           <div className="suggestions">
             <div className="suggestionItems">
-              <span style={{ marginLeft: '0.5em', fontWeight: '600' }}>
+              <span style={{ marginLeft: "0.5em", fontWeight: "600" }}>
                 Suggestions for you
               </span>
               <Link to="/" className="buttonAccount">
