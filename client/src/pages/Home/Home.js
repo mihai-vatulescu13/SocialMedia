@@ -4,7 +4,8 @@ import { objCards, ownUser } from "../../components/testData/homeCard";
 import "./home.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
 import axios from "axios";
 
 function Home({ userId }) {
@@ -14,9 +15,12 @@ function Home({ userId }) {
     name: "",
     followingUsers: [],
   });
+  const socket = useRef();
 
   const PF = process.env.REACT_APP_ASSETS;
-
+  useEffect(() => {
+    socket.current = io("http://localhost:5000");
+  }, []);
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await axios.get("/post/getPosts");

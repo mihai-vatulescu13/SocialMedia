@@ -1,23 +1,26 @@
-import React, { useState } from "react";
 import "./messages.css";
 import HomeNav from "../../components/homeNav/HomeNav";
 import { connect } from "react-redux";
 import axios from "axios";
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Conversation } from "../../components/conversation/Conversation";
 import Message from "../../components/Message/Message";
+import { socket } from "socket.io-client";
 
 const Messages = ({ connectedUser }) => {
-  // const messages = ["helk", "alooo", "votez AUR", "ami plake cafeaua"];
-  const messagesConversation = [
-    { id: 1, message: "alooo" },
-    { id: 2, message: "zii ce vrei" },
-    { id: 1, message: "voiam sa vad ce faci" },
-    { id: 1, message: "sper ca nu te-am deranjat" },
-    { id: 2, message: "e ok, stai linistit" },
-  ];
+  const [messagesConversation, setMessagesConversation] = useState([]);
+  const [conversations, setConversations] = useState([]);
+
   const [users, setUsers] = useState();
   const { _id } = connectedUser;
+
+  useEffect(() => {
+    const fetchingConversations = async () => {
+      const { data } = await axios.get(`/conversation/getConversations/${_id}`);
+      setConversations(data);
+    };
+    fetchingConversations();
+  }, []);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -25,7 +28,7 @@ const Messages = ({ connectedUser }) => {
       setUsers(data.following);
     };
     getUserData();
-  }, []);
+  }, [_id]);
 
   return (
     <div>
@@ -34,14 +37,13 @@ const Messages = ({ connectedUser }) => {
         {/* users(friends) conversations: */}
         <section className="users-nav">
           <ul>
-            {users ? (
-              users.map((item, index) => {
+            {conversations ? (
+              conversations.map((item, index) => {
+                let friend = item.members.find((id) => id !== _id);
+                console.log("friend id:", friend);
                 return (
                   <li key={index} className="conversation-item">
-                    <Conversation
-                      name={item.name}
-                      profilePicture={item.profilePicture}
-                    />
+                    <Conversation />
                   </li>
                 );
               })
@@ -53,10 +55,10 @@ const Messages = ({ connectedUser }) => {
         {/* messages container between the current user and its friend(selected user from conversations list) */}
         <section className="messages-container">
           <h2>selected user messages</h2>
-          <ul className="messages-list">
+          <ul className="messages-list-container">
             {messagesConversation.map((item, index) => {
               return (
-                <li key={index} className="message-item">
+                <li key={index} className="message-item asa">
                   <Message
                     messageContent={item.message}
                     ownMessage={item.id === 1 ? true : false}

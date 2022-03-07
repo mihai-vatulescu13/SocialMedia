@@ -1,10 +1,10 @@
-import HomeNav from "../../components/homeNav/HomeNav";
-import { useState, useEffect } from "react";
-import "./userPage.css";
-import { connect } from "react-redux";
-import axios from "axios";
-import RenderPost from "../../components/RenderHomePost/RenderPost";
-import UserDetails from "../../components/UserDetails/UserDetails";
+import HomeNav from '../../components/homeNav/HomeNav';
+import { useState, useEffect } from 'react';
+import './userPage.css';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import RenderPost from '../../components/RenderHomePost/RenderPost';
+import UserDetails from '../../components/UserDetails/UserDetails';
 
 const UserPage = ({ connectedUser }) => {
   const [currentUser, setCurrentUser] = useState();
@@ -13,7 +13,6 @@ const UserPage = ({ connectedUser }) => {
   const [openedFollowsModal, setOpenedFollowsModal] = useState(false);
   const [openedFollowingsModal, setOpenedFollowingsModal] = useState(false);
 
-  const Pf = process.env.REACT_APP_ASSETS;
   const { _id } = connectedUser;
 
   useEffect(() => {
