@@ -48,6 +48,7 @@ const deleteUser = (socketId) => {
 const getUser = (userId) => {
   return OnlineUsers.find((user) => user.userId === userId);
 };
+
 //connection
 io.on("connection", (socket) => {
   socket.on("newUser", (userId) => {
